@@ -10,14 +10,30 @@ const waIcon = (cls = '') =>
   `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.79-1.47-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.08.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35zM12.04 21.5h-.01a9.45 9.45 0 0 1-4.81-1.32l-.35-.2-3.58.94.96-3.49-.23-.36a9.44 9.44 0 0 1-1.45-5.03c0-5.22 4.25-9.47 9.48-9.47 2.53 0 4.9.99 6.7 2.78a9.4 9.4 0 0 1 2.77 6.7c0 5.23-4.25 9.48-9.48 9.48zm8.06-17.54A11.33 11.33 0 0 0 12.04.62C5.76.62.65 5.73.65 12.01c0 2 .52 3.96 1.52 5.69L.55 23.6l6.04-1.58a11.36 11.36 0 0 0 5.44 1.39h.01c6.28 0 11.39-5.11 11.39-11.39 0-3.04-1.18-5.9-3.33-8.05z"/></svg>`;
 
 // ── Navigation ────────────────────────────────────────────────
-const NAV = [
+// Services and projects come from data.js; required lazily because data.js itself requires this file.
+const NAV = () => {
+  const { services, projects } = require('./data');
+  return [
   { label: 'Home', href: '/', key: 'home' },
   {
     label: 'About Us', href: '/about-us/', key: 'about',
     children: [
+      { label: 'Our Story & Values', href: '/about-us/', desc: 'Mission, vision, values and team', icon: 'heart-handshake' },
       { label: 'What We Do', href: '/about-us/#what-we-do', desc: 'Water, soil, food forests and more', icon: 'sprout' },
-      { label: 'Services', href: '/services/', desc: 'Five ways we help you regenerate', icon: 'compass' },
+      { label: 'Our Approach', href: '/about-us/#approach', desc: 'Assess, design, implement, manage, teach', icon: 'route' },
     ],
+  },
+  {
+    label: 'Services', href: '/services/', key: 'services',
+    children: services.map((s) => ({ label: s.navLabel, href: s.path, desc: {
+      design: 'Site assessment and buildable designs', installation: 'Building regenerative and community projects',
+      farm: 'Agroforestry, food forests and more', maintenance: 'Ongoing care, monitoring and reviews',
+      education: 'Training linked to Permavia Academy',
+    }[s.key], icon: s.icon })),
+  },
+  {
+    label: 'Projects', href: '/projects/', key: 'projects',
+    children: Object.values(projects).map((p) => ({ label: p.name, href: p.path, desc: `${p.type} · ${p.status.replace('Underway: ', '')}`, icon: { 'million-trees': 'trees', 'permavia-farm': 'tractor', 'permavia-academy': 'graduation-cap' }[p.path.replace(/\//g, '')] })),
   },
   {
     label: 'Products', href: '/products/', key: 'products',
@@ -29,7 +45,8 @@ const NAV = [
   { label: 'Blog', href: '/blog/', key: 'blog' },
   { label: 'Events', href: '/our-events/', key: 'events' },
   { label: 'Contact', href: '/contact/', key: 'contact' },
-];
+  ];
+};
 
 const brandMark = () => `
       <img class="brand-mark" src="/assets/img/logo-mark.png" alt="" width="46" height="46">
@@ -40,7 +57,7 @@ const brandMark = () => `
       </span>`;
 
 function header(active) {
-  const items = NAV.map((n) => {
+  const items = NAV().map((n) => {
     const cur = n.key === active ? ' aria-current="page"' : '';
     if (!n.children) return `<li><a class="nav-link" href="${n.href}"${cur}>${n.label}</a></li>`;
     const sub = n.children
@@ -78,19 +95,12 @@ function header(active) {
 // ── Footer ────────────────────────────────────────────────────
 function footer() {
   const explore = [
-    ['Home', '/'], ['About Us', '/about-us/'], ['Courses', '/courses/'], ['Shop', '/shop/'],
+    ['Home', '/'], ['About Us', '/about-us/'], ['Services', '/services/'], ['Projects', '/projects/'], ['Courses', '/courses/'], ['Shop', '/shop/'],
     ['Products', '/products/'], ['Blog', '/blog/'], ['Events', '/our-events/'], ['FAQ', '/faq/'], ['Contact', '/contact/'],
   ];
-  const services = [
-    ['Regenerative Design', '/services/#design'],
-    ['Installation & Community Projects', '/services/#installation'],
-    ['Farm Solutions', '/services/#farm'],
-    ['Maintenance', '/services/#maintenance'],
-    ['Education for Regenerative Design', '/services/#education'],
-  ];
-  const projects = [
-    ['Million Trees', '/million-trees/'], ['Permavia Farm', '/permavia-farm/'], ['Permavia Academy', '/permavia-academy/'],
-  ];
+  const { services: svc, projects: proj } = require('./data');
+  const services = svc.map((s) => [s.key === 'education' ? 'Education for Regenerative Design' : s.navLabel, s.path]);
+  const projects = Object.values(proj).map((p) => [p.name, p.path]);
   const list = (arr) => arr.map(([l, h]) => `<li><a href="${h}">${l}</a></li>`).join('');
   return `
 <footer class="site-footer">
@@ -99,7 +109,7 @@ function footer() {
     <div class="footer-top">
       <div class="footer-brand">
         <a class="brand brand--footer" href="/" aria-label="Permavia Landscapes, home">${brandMark()}</a>
-        <p class="footer-line">${site.brandLine}</p>
+        <p class="footer-line">${site.tagline}</p>
         <p>${site.mission}</p>
         <a class="btn btn--wa" href="${waLink()}" target="_blank" rel="noopener">${waIcon()} Chat on WhatsApp</a>
       </div>
@@ -126,7 +136,7 @@ function footer() {
     </div>
     <div class="footer-bottom">
       <p>&copy; <span data-year>2026</span> Permavia Landscapes. All rights reserved.</p>
-      <p><a href="/privacy-policy/">Privacy Policy</a><span aria-hidden="true">·</span>${site.tagline}</p>
+      <p><a href="/privacy-policy/">Privacy Policy</a><span aria-hidden="true">·</span>${site.brandLine}</p>
     </div>
   </div>
 </footer>
@@ -149,7 +159,7 @@ function ctaBand({ title = "Let's Talk About Your <em>Project</em>", text, extra
         ${tickHtml}
       </div>
       <div class="cta-actions">
-        <a class="btn btn--primary btn--lg" href="/contact/">Get a Free Consultation ${icon('arrow-right')}</a>
+        <a class="btn btn--primary btn--lg" href="/contact/">Book a Free Consultation ${icon('arrow-right')}</a>
         <a class="btn btn--wa btn--lg" href="${waLink()}" target="_blank" rel="noopener">${waIcon()} Chat on WhatsApp</a>
         ${extra}
         <p class="cta-note">We reply on WhatsApp within an hour, then book your free 30-minute call.<br>Or call <a href="tel:${site.phoneHref}">${site.phone}</a></p>

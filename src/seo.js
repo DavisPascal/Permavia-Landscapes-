@@ -22,6 +22,36 @@ module.exports = {
     title: 'Permaculture & Landscape Design Services in Uganda',
     description: 'Regenerative design, community projects, farm solutions like agroforestry and food forests, maintenance and training in Uganda. Book a free call.',
   },
+  '/services/regenerative-design/': {
+    keyword: 'regenerative landscape design Uganda',
+    title: 'Regenerative Landscape Design in Uganda | Permavia',
+    description: 'Site assessment, water-sensitive design, food forest and agroforestry layouts with a phased budget, for homes, farms and businesses. Book a free call.',
+  },
+  '/services/installation-community-projects/': {
+    keyword: 'community development projects Uganda',
+    title: 'Regenerative & Community Project Installation Uganda',
+    description: 'Earthworks, planting, water systems and community development projects delivered from assessment to handover across Uganda. Discuss your project.',
+  },
+  '/services/farm-solutions/': {
+    keyword: 'agroforestry Uganda',
+    title: 'Agroforestry & Regenerative Farm Solutions | Uganda',
+    description: 'Agroforestry, syntropic agroforestry, food forests and silvopasture plans that cut input costs and rebuild soil on Ugandan farms. Book a farm assessment.',
+  },
+  '/services/maintenance/': {
+    keyword: 'landscape maintenance Hoima',
+    title: 'Regenerative Landscape Maintenance in Hoima | Permavia',
+    description: 'Scheduled care, monitoring, plant health, soil and water management and yearly reviews for regenerative landscapes and farms. Get a maintenance plan.',
+  },
+  '/services/education/': {
+    keyword: 'regenerative design training Uganda',
+    title: 'Regenerative Design & Management Training | Permavia',
+    description: 'Courses, workshops, field days and team training in regenerative design and land management, linked to Permavia Academy. Explore ways to learn today.',
+  },
+  '/projects/': {
+    keyword: 'regenerative projects Uganda',
+    title: 'Our Projects | Million Trees, Permavia Farm & Academy',
+    description: 'What Permavia is building in Uganda: the Million Trees nursery, a regenerative demonstration farm and Permavia Academy, with honest progress updates.',
+  },
   '/million-trees/': {
     keyword: 'tree seedlings Hoima',
     title: 'Tree Seedlings in Hoima, Uganda | Million Trees Nursery',

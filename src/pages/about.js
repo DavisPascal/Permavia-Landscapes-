@@ -1,7 +1,7 @@
-const { img, icon, ctaBand, pageHero, sectionHead } = require('../components');
+const { img, icon, ctaBand, pageHero, sectionHead, site } = require('../components');
 
 const why = [
-  ['award', 'Years of Hands-On Experience', 'Our team has designed and built landscapes and farms across Uganda, from small compounds to large estates.'],
+  ['shovel', 'Hands-On, From Day One', 'Our designers work on the ground, from the first site walk to planting, not just at a desk.'],
   ['leaf', 'Eco-Friendly Methods Only', 'No synthetic fertilisers or pesticides. We work with natural processes, never against them.'],
   ['brain', 'Holistic Design Thinking', 'Water, soil, plants, animals and people are designed as one connected system.'],
   ['map', 'Rooted in East Africa', 'We know local climates, soils and species, and we design for the realities of African land.'],
@@ -37,24 +37,79 @@ const blocks = [
   },
 ];
 
+const values = [
+  ['globe', 'Earth Care', 'Every design has to leave the land healthier: more soil, more water held, more life.'],
+  ['heart-handshake', 'People Care', 'Landscapes that feed, shelter and support the people who live and work on them.'],
+  ['scale', 'Fair Share', 'Value is shared with communities, farmers and partners, not taken from them.'],
+  ['badge-check', 'Honesty', 'We only claim what we can show, and we report progress as it really is.'],
+  ['wrench', 'Practicality', 'Plans that work on real budgets, real soils and real seasons.'],
+  ['users', 'Partnership', 'Communities and farmers are active partners, not just beneficiaries.'],
+];
+
+const approach = [
+  ['search', 'Assess', 'Map the land and listen to the people who use it.'],
+  ['pen-tool', 'Design', 'A buildable plan that works with natural processes.'],
+  ['shovel', 'Implement', 'Build it with you and the community.'],
+  ['sprout', 'Manage', 'Care, monitoring and reviews after installation.'],
+  ['book-open', 'Build Knowledge', 'Training so the system lasts.'],
+];
+
 const body = `
 ${pageHero({
   eyebrow: 'About Permavia',
-  title: 'An East African Team Growing <em>Living Landscapes</em>',
-  lead: 'Permavia Landscapes is a regenerative design and build company serving East Africa from our base in Hoima City, Uganda. We help homes, farms, businesses and communities turn land into thriving, productive ecosystems.',
+  title: 'A Regenerative Development Company Growing <em>Living Landscapes</em>',
+  lead: 'Permavia Landscapes designs, implements and manages nature-positive landscapes and productive systems that restore ecosystems, strengthen livelihoods and create lasting value for communities. We are based in Hoima City, Uganda, serving East Africa.',
   image: img('01-home__07-inspiration__tile-4-agroforestry'),
   crumbs: [['About Us']],
   actions: `<a class="btn btn--primary btn--lg" href="/contact/">Book a Free Consultation ${icon('arrow-right')}</a><a class="btn btn--ghost-light btn--lg" href="#what-we-do">What We Do</a>`,
 })}
 
-<section class="section mission" aria-label="Our mission">
-  <div class="container" data-reveal>
-    <blockquote>${icon('quote')}“We help people <mark>grow abundance</mark>, build climate-resilient spaces, and live in harmony with nature through Design, Build, Maintain and Educate.”</blockquote>
-    <cite>Our Mission</cite>
+<section class="section" aria-labelledby="story-title">
+  <div class="container about-grid">
+    <div class="copy" data-reveal>
+      <p class="eyebrow">Our Story</p>
+      <h2 id="story-title">More Than a <em>Landscaping</em> Company</h2>
+      <p>Permavia Landscapes was started in Hoima City to show that land in East Africa can be healthy, productive and beautiful at the same time. Too much land is losing soil, water and trees, while the people who depend on it pay more each year for less.</p>
+      <p>We are not a lawn-care or purely ornamental garden business. We work where landscape design, regenerative agriculture, ecological restoration and community development meet: designing the system, building it, caring for it and teaching people to run it.</p>
+      <p>We are a young company. Alongside client work we are building three long-term initiatives, <a href="/million-trees/">Million Trees</a>, <a href="/permavia-farm/">Permavia Farm</a> and <a href="/permavia-academy/">Permavia Academy</a>, and we share their progress openly on our <a href="/projects/">Projects</a> page.</p>
+    </div>
+    <aside class="facts" data-reveal style="--d:.1s" aria-label="Mission and vision">
+      <h3>${icon('target')} Our Mission</h3>
+      <p>${site.mission}</p>
+      <h3 style="margin-top:22px">${icon('telescope')} Our Vision</h3>
+      <p>${site.vision}</p>
+      <p class="facts-tagline">${site.tagline}</p>
+    </aside>
   </div>
 </section>
 
-<section class="section section--sage" aria-labelledby="why-title">
+<section class="section mission" aria-label="Our central promise">
+  <div class="container" data-reveal>
+    <blockquote>${icon('quote')}“We turn regenerative ideas into <mark>functioning landscapes</mark>, productive systems and lasting capabilities.”</blockquote>
+    <cite>Our Promise</cite>
+  </div>
+</section>
+
+<section class="section section--sage" aria-labelledby="values-title">
+  <div class="container">
+    ${sectionHead({ eyebrow: 'Our Values', title: 'What We <em>Stand For</em>', id: 'values-title', text: 'Rooted in the three ethics of permaculture, and in how we choose to run a business.' })}
+    <div class="grid grid-3" data-stagger>
+      ${values.map(([ic, t, d]) => `<div class="feature-card"><span class="ic-soft">${icon(ic)}</span><h3>${t}</h3><p>${d}</p></div>`).join('')}
+    </div>
+  </div>
+</section>
+
+<section class="section section--deep how" id="approach" aria-labelledby="approach-title">
+  <div class="how-bg"><img src="${img('01-home__03-how-we-work__background')}" alt="" loading="lazy"></div>
+  <div class="container">
+    ${sectionHead({ eyebrow: 'Our Approach', title: 'Assess, Design, Implement, Manage, <em>Teach</em>', id: 'approach-title', text: 'Every project follows the same five steps, so nothing is left half-done.' })}
+    <ol class="steps steps--five" data-stagger>
+      ${approach.map(([ic, t, d], i) => `<li class="step"><span class="step-num">0${i + 1}</span><span class="step-ic">${icon(ic)}</span><h3>${t}</h3><p>${d}</p></li>`).join('')}
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="why-title">
   <div class="container">
     ${sectionHead({ eyebrow: 'Why Choose Us', title: "We Don't Just Design Landscapes. We Create <em>Living Systems.</em>", id: 'why-title' })}
     <div class="grid grid-3" data-stagger>
@@ -63,9 +118,9 @@ ${pageHero({
   </div>
 </section>
 
-<section class="section" id="what-we-do" aria-labelledby="wwd-title">
+<section class="section section--sage" id="what-we-do" aria-labelledby="wwd-title">
   <div class="container">
-    ${sectionHead({ eyebrow: 'What We Do', title: 'What Can We Do <em>For You?</em>', id: 'wwd-title', text: 'Five ways we transform land, each designed around your site, your goals and your budget.' })}
+    ${sectionHead({ eyebrow: 'What We Do', title: 'What Can We Do <em>For You?</em>', id: 'wwd-title', text: 'Five things we help land do, each designed around your site, your goals and your budget. See all <a href="/services/">five services</a>.' })}
     ${blocks.map((b, i) => `
     <div class="feature-row${i % 2 ? ' is-flip' : ''}">
       <div class="feature-media" data-reveal>
@@ -81,7 +136,7 @@ ${pageHero({
   </div>
 </section>
 
-<section class="section section--sage" aria-labelledby="team-title">
+<section class="section" aria-labelledby="team-title">
   <div class="container">
     ${sectionHead({ eyebrow: 'The People Behind Permavia', title: 'Meet the <em>Team</em>', id: 'team-title' })}
     <div class="team" data-reveal>
@@ -109,6 +164,6 @@ module.exports = {
   path: '/about-us/',
   active: 'about',
   title: 'About Us',
-  description: 'Meet Permavia Landscapes, an East African team from Hoima City, Uganda, designing water-holding, soil-building, food-producing landscapes for homes, farms and businesses.',
+  description: 'Permavia Landscapes is a regenerative development company in Hoima City, Uganda: our story, mission, vision, values, approach and team.',
   body,
 };

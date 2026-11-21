@@ -4,18 +4,18 @@ const { projects } = require('../data');
 
 const P = {
   'million-trees': {
-    summary: 'A community tree nursery propagating millions of trees to restore land, feed families and grow livelihoods across Africa.',
+    summary: 'A tree-growing and seedling initiative being established in Hoima City to supply farms, homes and restoration sites, with the ambition of millions of trees in the ground.',
     hero: img('04-million-trees__01-hero__background'),
     band: img('01-home__07-inspiration__tile-1-forest-gardens'), bandCap: 'Forest gardens: what millions of trees can become',
     stats: [['Millions', 'Of trees to plant'], ['8', 'Plant categories'], ['100%', 'Organic'], ['Africa', 'All climates']],
     stageLabel: 'Establishing',
     aboutTitle: 'Growing the Trees <em>Africa Needs</em>',
     about: [
-      'Million Trees is our community nursery in Western Uganda. We propagate fruit, indigenous, timber, medicinal and nitrogen-fixing trees from locally adapted seed and cuttings, so every seedling is ready for the conditions it will grow in.',
-      'Our seedlings supply Permavia design projects, farmers moving to agroforestry, schools, NGOs and restoration programmes. Every tree is grown organically, without synthetic fertilisers or pesticides.',
-      'The goal is simple and ambitious: millions of trees in the ground across East Africa, each one chosen for the right place and the right purpose.',
+      'Million Trees is the tree nursery we are establishing in Hoima City, Western Uganda. It is set up to propagate fruit, indigenous, timber, medicinal and nitrogen-fixing trees from locally adapted seed and cuttings, so every seedling is ready for the conditions it will grow in.',
+      'As the nursery grows, its seedlings will supply Permavia design and farm projects, farmers moving to agroforestry, homes, schools, NGOs and restoration programmes. Every tree is grown organically, without synthetic fertilisers or pesticides. Ask us which species are ready now.',
+      'The ambition is simple and big: millions of trees in the ground across East Africa, each one chosen for the right place and the right purpose. We will publish progress here as it happens.',
     ],
-    facts: [['Location', 'Hoima City, Uganda'], ['Climates', 'Tropical, highland and semi-arid'], ['Inputs', '100% organic, locally sourced seed'], ['Goal', 'Millions of trees planted']],
+    facts: [['Location', 'Hoima City, Uganda'], ['Climates', 'Tropical, highland and semi-arid'], ['Inputs', '100% organic, locally sourced seed'], ['Goal', 'Millions of trees planted'], ['Now', 'Setting up the nursery and first seedling beds']],
     cardsTitle: 'What We <em>Grow</em>',
     cardsText: 'Eight plant categories, each chosen for food, income, soil health or restoration.',
     cards: [
@@ -30,7 +30,7 @@ const P = {
     ],
     highlights: [
       ['Locally Propagated Stock', 'Seed and cuttings collected from healthy local trees, so seedlings are adapted from day one.', img('04-million-trees__05-highlights__highlight-1-locally-propagated-stock')],
-      ['Community & Restoration Focus', 'We partner with farmers, schools and community groups to plant trees where they matter most.', img('01-home__07-inspiration__tile-6-carbon-projects')],
+      ['Community & Restoration Focus', 'Built to work with farmers, schools and community groups, planting trees where they matter most.', img('01-home__07-inspiration__tile-6-carbon-projects')],
       ['A Living Seed Bank', 'Diverse mother trees preserve valuable local varieties for future generations.', img('04-million-trees__05-highlights__highlight-3-living-seed-bank')],
     ],
     cta: ['Order seedlings / request a price list', '/contact/?service=seedlings#enquiry'],
@@ -112,11 +112,11 @@ const { signupForm, inShort, faqSection, faqSchema, businessRef, site } = requir
 const pageUrl = (p) => (site.url ? site.url.replace(/\/$/, '') + p : p);
 const AEO = {
   'million-trees': {
-    short: 'Million Trees is Permavia Landscapes’ community tree nursery in Hoima City, Uganda. It grows organic, locally adapted seedlings in eight categories (fruit, indigenous, timber, medicinal, herbs and spices, grasses, ornamentals and nitrogen fixers) for farms, homes, schools, NGOs and restoration projects, with the goal of planting millions of trees across East Africa.',
+    short: 'Million Trees is the tree nursery Permavia Landscapes is establishing in Hoima City, Uganda. It is set up to grow organic, locally adapted seedlings in eight categories (fruit, indigenous, timber, medicinal, herbs and spices, grasses, ornamentals and nitrogen fixers) for farms, homes, schools, NGOs and restoration projects, with the goal of planting millions of trees across East Africa.',
     faqTitle: 'Questions About <em>Seedlings</em>',
     faqs: [
       ['Where can I buy tree seedlings in Hoima?',
-        'From the Million Trees nursery run by Permavia Landscapes in Hoima City. <a href="/contact/?service=seedlings#enquiry">Request a price list</a> or message us on WhatsApp.'],
+        'From the Million Trees nursery that Permavia Landscapes is establishing in Hoima City. The nursery is still being set up, so <a href="/contact/?service=seedlings#enquiry">request a price list</a> or message us on WhatsApp to hear which species are ready.'],
       ['What kinds of tree seedlings does Million Trees grow?',
         'Eight categories: fruit trees, indigenous trees, timber and woodlot trees, medicinal plants, herbs and spices, grasses and groundcover, ornamentals, and nitrogen-fixing trees.'],
       ['Are the seedlings organic?',
@@ -124,7 +124,7 @@ const AEO = {
       ['Who can order seedlings?',
         'Farmers moving to agroforestry, homeowners, schools, NGOs, restoration and carbon projects, and Permavia’s own design clients.'],
       ['Can Permavia help plan where to plant the trees?',
-        'Yes. Our <a href="/services/#farm">Farm Solutions</a> and <a href="/services/#design">Regenerative Design</a> services choose the right species for the right place on your land.'],
+        'Yes. Our <a href="/services/farm-solutions/">Farm Solutions</a> and <a href="/services/regenerative-design/">Regenerative Design</a> services choose the right species for the right place on your land.'],
     ],
     schema: () => [{
       '@context': 'https://schema.org', '@type': 'Product',
@@ -195,7 +195,7 @@ ${pageHero({
   title: meta.name,
   lead: d.summary,
   image: d.hero,
-  crumbs: [['Projects', '/#projects'], [meta.name]],
+  crumbs: [['Projects', '/projects/'], [meta.name]],
   size: 'is-tall',
   extra: `<div class="stage-wrap">${stageMeter(meta.stage, 5, d.stageLabel)}</div>
   <div class="p-stats">${d.stats.map(([n, l]) => `<div><strong>${n}</strong><span>${l}</span></div>`).join('')}</div>`,
@@ -287,7 +287,7 @@ ${ctaBand({ title: d.ctaTitle, text: 'Questions about this project, partnerships
 `;
   return {
     path: meta.path,
-    active: '',
+    active: 'projects',
     title: meta.name,
     description: `${meta.name}: ${d.summary}`,
     ogImage: d.hero,
@@ -296,4 +296,78 @@ ${ctaBand({ title: d.ctaTitle, text: 'Questions about this project, partnerships
   };
 }
 
-module.exports = Object.keys(projects).map(page);
+// ── Projects overview (/projects/) ────────────────────────────
+// Kept separate from Services: services are what clients hire us for; projects are what Permavia itself is building.
+const { projectCard } = require('../cards');
+const PHASES = [
+  ['badge-check', 'Completed', 'Finished and handed over, with verified results.', 'completed'],
+  ['hammer', 'Underway', 'Work has started on the ground.', 'underway'],
+  ['compass', 'Planning', 'Being designed, planned or developed.', 'planning'],
+];
+const all = Object.values(projects);
+const overview = {
+  path: '/projects/',
+  active: 'projects',
+  title: 'Projects',
+  description: 'The initiatives Permavia Landscapes is building in Uganda: Million Trees, Permavia Farm and Permavia Academy, with their current stage.',
+  schema: [{
+    '@context': 'https://schema.org', '@type': 'ItemList', name: 'Permavia Landscapes projects',
+    itemListElement: all.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.name, url: pageUrl(p.path) })),
+  }],
+  body: `
+${pageHero({
+  eyebrow: 'Our Projects',
+  title: 'What Permavia Is <em>Building</em>',
+  lead: 'Our services are what you can hire us to do. Our projects are the long-term initiatives we are building ourselves: a tree nursery, a demonstration farm and a learning platform.',
+  image: img('01-home__02-projects__card-2-permavia-farm'),
+  crumbs: [['Projects']],
+  actions: `<a class="btn btn--primary btn--lg" href="#project-list">Explore Our Projects ${icon('arrow-right')}</a><a class="btn btn--ghost-light btn--lg" href="/contact/?service=installation#enquiry">Discuss a Partnership</a>`,
+})}
+
+<section class="section" id="project-list" aria-labelledby="list-title">
+  <div class="container">
+    ${inShort('Permavia Landscapes is building three projects in Uganda: <strong>Million Trees</strong>, a tree nursery (underway); <strong>Permavia Farm</strong>, a regenerative demonstration farm (planning); and <strong>Permavia Academy</strong>, a learning platform for regenerative design and management (in development). None is complete yet, and each page shows its real stage.')}
+    ${sectionHead({ eyebrow: 'Three Initiatives', title: 'Our <em>Projects</em>', id: 'list-title', text: 'Each one supports the others: trees from the nursery, a farm to learn on, and an academy to share the skills.' })}
+    <div class="grid grid-3" data-stagger>${all.map(projectCard).join('')}</div>
+  </div>
+</section>
+
+<section class="section section--sage" aria-labelledby="status-title">
+  <div class="container">
+    ${sectionHead({ eyebrow: 'Honest Progress', title: 'Where Each Project <em>Stands</em>', id: 'status-title', text: 'We are a young company. We show clearly what is finished, what is underway and what is still being planned.' })}
+    <div class="phase-board" data-reveal>
+      ${PHASES.map(([ic, label, desc, key]) => {
+        const items = all.filter((p) => p.phase === key);
+        return `<div class="phase phase--${key}">
+        <h3>${icon(ic)} ${label}</h3>
+        <p class="phase-desc">${desc}</p>
+        ${items.length
+          ? `<ul>${items.map((p) => `<li><a href="${p.path}"><strong>${p.name}</strong></a><span>${p.now}</span></li>`).join('')}</ul>`
+          : '<p class="phase-empty">Nothing yet. Our first completed work will be listed here, with the starting challenge, what we did and verified results.</p>'}
+      </div>`;
+      }).join('')}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="future-title">
+  <div class="container">
+    <div class="reassure" data-reveal>
+      <div>
+        <p class="eyebrow">Future Initiatives</p>
+        <h2 id="future-title">Build the Next One <em>With Us</em></h2>
+        <p>New initiatives will be added here once they are confirmed. If you are an NGO, government body, school, business or community group with land or a regenerative idea, we would like to hear from you.</p>
+      </div>
+      <div class="hero-actions">
+        <a class="btn btn--primary" href="/contact/?service=installation#enquiry">Discuss a Project ${icon('arrow-right')}</a>
+        <a class="btn btn--secondary" href="/services/">Our Services</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+${ctaBand({ title: 'Partner With <em>Permavia</em>', text: 'Questions about our projects, a partnership or your own land? Tell us what you have in mind. Your first consultation is free.' })}
+`,
+};
+
+module.exports = [overview, ...Object.keys(projects).map(page)];

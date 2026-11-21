@@ -20,8 +20,11 @@ Original brief: `C:\Users\LENOVO\Desktop\Website_VScode\Permavia_Website_Develop
 ## Brand
 Colours: Harvest Gold `#F9A602` (primary), Sun Gold `#FEBF3A`, Forest Green `#255119` (secondary), Leaf Green `#89AD44` (accent), Fern `#3A8C47`, Deep Forest `#1A2E1A`, Pale Sage `#EEF2EA`, Mist `#E0EDD4`, Off White `#F9FDF3`. Gold text only on dark backgrounds.
 Fonts: Montserrat (headings/buttons), Poppins (body), Lora italic (highlighted words/quotes). Icons: Lucide only (no emoji). One H1 per page. Use CSS tokens, not new hex codes.
-Header menu order: Home, About Us (What We Do, Services), Products (Courses, Shop), Blog, Events, Contact.
+Header menu order: Home, About Us (Story & Values, What We Do, Our Approach), Services (5 service pages), Projects (Million Trees, Permavia Farm, Permavia Academy), Products (Courses, Shop), Blog, Events, Contact. Menu collapses to the phone menu below 1200px.
 Copy: "millions of trees" (never "1 million"); location stays Hoima City but say "serving East Africa".
+Positioning (Brand & Website Direction, Nov 2026): a **regenerative development company**, not a landscaping business. Brand expression "We Design. We Build. We Regenerate." (`site.tagline`); existing tagline "Your Vision, Our Green Touch." (`site.brandLine`). Five outcomes: healthier ecosystems, productive farms/food systems, stronger livelihoods, resilient communities, lasting skills.
+**No completed projects yet.** Never imply finished work, past clients, testimonials or results. Projects show their real stage (`phase`/`now` in data.js); "Completed" stays empty until there is verified work.
+Services: `services` in data.js (slug → `/services/<slug>/`, plus activities, journey, challenges, care, formats…); `src/pages/services.js` builds the overview and the 5 detail pages. `/projects/` overview lives in projects.js.
 
 ## Forms → HubSpot (live, working)
 - Portal 149777969 (EU account). Forms: contact, booking, waitlist, newsletter (IDs in `site.js`). Submitted from the browser to `api.hsforms.com/submissions/v3/integration/submit/…`.

@@ -18,7 +18,7 @@ const business = () => {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: site.name,
-    description: 'Regenerative landscape and farm design, installation, maintenance and training for homes, farms, businesses and NGOs across East Africa.',
+    description: 'A regenerative development company designing, implementing and managing nature-positive landscapes and productive systems for homes, farms, businesses, institutions and communities across East Africa.',
     slogan: site.tagline,
     telephone: site.phone,
     email: site.email,
@@ -41,7 +41,8 @@ const breadcrumbs = (p) => {
   const items = [['Home', '/']];
   if (p.path.startsWith('/blog/') && p.path !== '/blog/') items.push(['Journal', '/blog/']);
   if (/^\/(courses|shop)\/$/.test(p.path)) items.push(['Products', '/products/']);
-  if (p.path === '/services/') items.push(['About Us', '/about-us/']);
+  if (p.path.startsWith('/services/') && p.path !== '/services/') items.push(['Services', '/services/']);
+  if (/^\/(million-trees|permavia-farm|permavia-academy)\/$/.test(p.path)) items.push(['Projects', '/projects/']);
   items.push([p.title, p.path]);
   return {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
@@ -159,7 +160,7 @@ for (const file of fs.readdirSync(PAGES).filter((f) => f.endsWith('.js'))) {
 // ── sitemap.xml + robots.txt ─────────────────────────────────
 const today = new Date().toISOString().slice(0, 10);
 if (site.url) {
-  const prio = (u) => (u === '/' ? '1.0' : /^\/(services|contact|million-trees)\/$/.test(u) ? '0.9' : u.startsWith('/blog/') && u !== '/blog/' ? '0.6' : '0.7');
+  const prio = (u) => (u === '/' ? '1.0' : /^\/(services|services\/[a-z-]+|contact|million-trees|projects)\/$/.test(u) ? '0.9' : u.startsWith('/blog/') && u !== '/blog/' ? '0.6' : '0.7');
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${indexable.sort((a, b) => a.path.localeCompare(b.path)).map((p) => `  <url><loc>${abs(p.path)}</loc><lastmod>${p.updated || today}</lastmod><priority>${prio(p.path)}</priority></url>`).join('\n')}
@@ -180,7 +181,7 @@ ${site.url ? `\nSitemap: ${abs('/sitemap.xml')}\n` : ''}`);
   const link = (title, p, note) => `- [${title}](${abs(p)})${note ? `: ${note}` : ''}`;
   const llms = `# ${site.name}
 
-> ${site.name} is a regenerative landscape and farm design company based in ${site.location}, serving ${site.serviceAreas.join(', ')} and clients across East Africa. We design, build, maintain and teach landscapes that hold water, rebuild living soil, grow food and protect wildlife, using organic, nature-based methods only. The first 30-minute discovery call (on Webex) is free.
+> ${site.name} is a regenerative development company based in ${site.location}, serving ${site.serviceAreas.join(', ')} and clients across East Africa. We design, build and manage nature-positive landscapes and productive systems that restore ecosystems, strengthen livelihoods and create lasting value for communities, using organic, nature-based methods only. The first 30-minute discovery call (on Webex) is free.
 
 ## Key facts
 - Location: ${site.location} (serving ${site.serviceAreas.join(', ')} and East Africa)
@@ -192,9 +193,10 @@ ${site.url ? `\nSitemap: ${abs('/sitemap.xml')}\n` : ''}`);
 - Free discovery call: book at ${abs('/contact/#book')}
 
 ## Services
-${services.map((s) => link(s.title, `/services/#${s.key}`, s.short)).join('\n')}
+${services.map((s) => link(s.title, s.path, s.short)).join('\n')}
 
-## Projects
+## Projects (initiatives Permavia is building; none is complete yet)
+${link('All projects and their current stage', '/projects/')}
 ${Object.values(projects).map((p) => link(p.name, p.path, p.short)).join('\n')}
 
 ## Answers to common questions
@@ -204,7 +206,7 @@ ${link('FAQ: costs, areas covered, site visits, methods, timelines', '/faq/')}
 ${posts.map((p) => link(p.title, `/blog/${p.slug}/`, p.summary || p.excerpt)).join('\n')}
 
 ## Other pages
-${link('About Permavia Landscapes', '/about-us/')}
+${link('About Permavia Landscapes: story, mission, vision, values and approach', '/about-us/')}
 ${link('Courses and workshops', '/courses/')}
 ${link('Shop (seedlings, tools, guides)', '/shop/')}
 ${link('Events: workshops and farm tours', '/our-events/')}

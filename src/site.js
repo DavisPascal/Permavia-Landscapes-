@@ -4,10 +4,13 @@
 // ─────────────────────────────────────────────────────────────
 module.exports = {
   name: 'Permavia Landscapes',
-  tagline: 'Design | Build | Maintain | Educate',
-  brandLine: 'Rooted in nature. Growing with purpose.',
+  // Brand expression (Brand & Website Direction, Nov 2026) and the existing tagline.
+  tagline: 'We Design. We Build. We Regenerate.',
+  brandLine: 'Your Vision, Our Green Touch.',
   mission:
-    'We help people grow abundance, build climate-resilient spaces and live in harmony with nature through design, build, maintain and educate.',
+    'To design, implement and manage nature-positive landscapes and productive systems that restore ecosystems, strengthen livelihoods and create lasting value for communities.',
+  vision:
+    'An East Africa where land is healthy, productive and resilient, and where people have the skills to keep it that way.',
 
   // ── Maintenance mode ───────────────────────────────────────
   // on: true sends every visitor to the "We'll be back soon" page (temporary redirect, so
