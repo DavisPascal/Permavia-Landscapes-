@@ -53,7 +53,7 @@ const brandMark = () => `
       <span class="brand-text">
         <span class="brand-name">Permavia</span>
         <span class="brand-sub">Landscapes</span>
-        <span class="brand-tag">Design | Build | Maintain | Educate</span>
+        <span class="brand-tag">Design | Build | Regenerate</span>
       </span>`;
 
 function header(active) {

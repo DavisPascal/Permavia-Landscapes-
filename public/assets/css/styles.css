@@ -1117,6 +1117,7 @@ ol.steps { list-style: none; margin: 0; padding: 0; }
 .footer-contact a { display: inline-block; padding: 2px 0; }
 .link-arrow { padding-top: 4px; padding-bottom: 4px; }
 .card-title-link { display: inline-block; padding: 1px 0; }
-/* Phones: the small slogan under the logo is too tiny to read and wraps onto two lines, so hide it in the header */
-@media (max-width: 480px) { .site-header .brand-tag { display: none; } }
+/* Phones: logo slogan stays on one line; hidden only on the smallest phones so the call button keeps its size */
+@media (max-width: 480px) { .site-header .brand-tag { white-space: nowrap; } }
+@media (max-width: 359px) { .site-header .brand-tag { display: none; } }
 .side-card li a { display: inline-block; padding: 3px 0; }
