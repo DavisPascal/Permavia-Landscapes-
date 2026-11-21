@@ -49,7 +49,7 @@ const values = [
 // Careful Transition, organised by permaculture principles: from intervention to self-regeneration.
 const transition = [
   ['search', 'Observe First', 'Observe and interact', 'We read the land, its soil, water, slopes, vegetation and history, and agree goals with the people who depend on it, before choosing any tool.'],
-  ['tractor', 'Invest to Establish', 'Catch and store energy', 'Digging swales by hand across a large farm could take years. A few days of machine work builds swales, ponds and keyline channels that catch the rain that used to run off and store it in the soil, every season, for decades. The fuel is spent once; the water keeps coming back. Limited, targeted inputs may help first plantings establish in the same way.'],
+  ['tractor', 'Invest to Establish', 'Catch and store energy', 'Digging swales by hand could take years. A few days of machine work builds swales and ponds that catch rain and store it in the soil for decades.'],
   ['sprout', 'Hand Over to Biology', 'Use and value renewable resources', 'Pioneer plants, cover crops, mulch and nitrogen-fixing trees start doing the work. Machines step back and outside inputs are cut season by season.'],
   ['refresh-cw', 'Self-Regulation', 'Apply self-regulation and accept feedback', 'We monitor soil, water and plant health, adjust as the land responds, and phase out what is no longer needed, until the land can regenerate itself.'],
 ];
