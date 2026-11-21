@@ -119,7 +119,7 @@ const services = [
     care: [
       ['calendar-check', 'Scheduled care', 'Visits planned around the seasons: pruning, mulching, weeding and chop-and-drop.'],
       ['activity', 'Monitoring', 'Simple records of plant growth, soil cover and water, so you can see the change.'],
-      ['leaf', 'Plant health', 'Early checks for pests and disease, handled with natural, non-chemical methods.'],
+      ['leaf', 'Plant health', 'Early checks for pests and disease, handled with natural methods first.'],
       ['droplets', 'Soil & water management', 'Compost and mulch top-ups, and checks on swales, ponds, tanks and irrigation.'],
       ['sprout', 'Replacement planting', 'Replacing plants that fail and adding new layers as the system matures.'],
       ['clipboard-check', 'Performance reviews', 'A yearly review of what is working, what to change and what to plan next.'],

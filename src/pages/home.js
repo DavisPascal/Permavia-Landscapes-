@@ -102,7 +102,7 @@ const body = `
       </div>
       <div class="hero-trust">
         <span>${icon('globe')} Serving East Africa</span>
-        <span>${icon('leaf')} Organic, nature-based methods</span>
+        <span>${icon('leaf')} Nature-based methods first</span>
         <span>${icon('badge-check')} Free first consultation</span>
       </div>
     </div>
@@ -222,7 +222,7 @@ const body = `
 ${ctaBand({
   title: 'Have a Landscape, Farm or <em>Project</em> in Mind?',
   text: 'Tell us about your land or your regenerative development idea. We will walk you through what is possible, with no pressure and no jargon.',
-  ticks: ['Tailored to your land', 'No commitment required', 'Organic, nature-based methods'],
+  ticks: ['Tailored to your land', 'No commitment required', 'Nature-based methods first'],
   extra: `<a class="btn btn--ghost-light btn--lg" href="/contact/?service=installation#enquiry">Discuss a Project</a>`,
 })}
 `;

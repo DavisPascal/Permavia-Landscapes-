@@ -32,7 +32,7 @@ const groups = [
       ['How long does a project take?',
         'Small home gardens can often be designed and planted within a few weeks. Farms and large sites are usually phased over one or more seasons, with planting timed for the rains so young trees establish well.'],
       ['Do you use chemicals or synthetic fertilisers?',
-        'No. We use organic, nature-based methods only: compost, mulch, cover crops, nitrogen-fixing trees and natural pest balance. Healthy soil does the work that chemicals would otherwise do.'],
+        'Nature-based methods come first: compost, mulch, cover crops, nitrogen-fixing trees and natural pest balance. Regeneration is a process, though. On large or badly degraded land we may use machinery, and limited, targeted inputs where needed (for example to control invasive weeds or help first plantings establish), because doing that work by hand would take years. Each one has an exit plan and is phased out as the land starts to regenerate itself. <a href="/about-us/#transition">How we transition land</a>.'],
       ['Can you supply tree seedlings?',
         'Yes. Our Million Trees nursery in Hoima grows fruit, indigenous, timber, medicinal and nitrogen-fixing seedlings for farms, schools, NGOs and restoration projects. Ask us for a price list.'],
       ['Do you work with NGOs, schools and carbon projects?',

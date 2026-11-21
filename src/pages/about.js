@@ -2,7 +2,7 @@ const { img, icon, ctaBand, pageHero, sectionHead, site } = require('../componen
 
 const why = [
   ['shovel', 'Hands-On, From Day One', 'Our designers work on the ground, from the first site walk to planting, not just at a desk.'],
-  ['leaf', 'Eco-Friendly Methods Only', 'No synthetic fertilisers or pesticides. We work with natural processes, never against them.'],
+  ['leaf', 'Nature-Based First', 'Compost, mulch, cover crops and living soil do the work wherever they can. Any other input has a clear purpose and an exit plan.'],
   ['brain', 'Holistic Design Thinking', 'Water, soil, plants, animals and people are designed as one connected system.'],
   ['map', 'Rooted in East Africa', 'We know local climates, soils and species, and we design for the realities of African land.'],
   ['handshake', 'One Partner, Start to Finish', 'Design, build, maintenance and training from one accountable team.'],
@@ -43,7 +43,16 @@ const values = [
   ['scale', 'Fair Share', 'Value is shared with communities, farmers and partners, not taken from them.'],
   ['badge-check', 'Honesty', 'We only claim what we can show, and we report progress as it really is.'],
   ['wrench', 'Practicality', 'Plans that work on real budgets, real soils and real seasons.'],
+  ['route', 'Careful Transition', 'Regeneration is a process, not a switch. Where hand work alone would take years, we use machinery, and limited, targeted inputs where needed, to set up living systems, then phase them out as the land learns to regenerate itself.'],
   ['users', 'Partnership', 'Communities and farmers are active partners, not just beneficiaries.'],
+];
+
+// Careful Transition, organised by permaculture principles: from intervention to self-regeneration.
+const transition = [
+  ['search', 'Observe First', 'Observe and interact', 'We read the land, its soil, water, slopes, vegetation and history, and agree goals with the people who depend on it, before choosing any tool.'],
+  ['tractor', 'Invest to Establish', 'Catch and store energy', 'Clearing a square mile with slashers or digging swales by hand could take years. We use machinery, and limited, targeted inputs where needed, as a one-off investment to build systems that keep working: earthworks, water harvesting and first plantings.'],
+  ['sprout', 'Hand Over to Biology', 'Use and value renewable resources', 'Pioneer plants, cover crops, mulch and nitrogen-fixing trees start doing the work. Machines step back and outside inputs are cut season by season.'],
+  ['refresh-cw', 'Self-Regulation', 'Apply self-regulation and accept feedback', 'We monitor soil, water and plant health, adjust as the land responds, and phase out what is no longer needed, until the land can regenerate itself.'],
 ];
 
 const approach = [
@@ -93,9 +102,19 @@ ${pageHero({
 <section class="section section--sage" aria-labelledby="values-title">
   <div class="container">
     ${sectionHead({ eyebrow: 'Our Values', title: 'What We <em>Stand For</em>', id: 'values-title', text: 'Rooted in the three ethics of permaculture, and in how we choose to run a business.' })}
-    <div class="grid grid-3" data-stagger>
+    <div class="values-grid" data-stagger>
       ${values.map(([ic, t, d]) => `<div class="feature-card"><span class="ic-soft">${icon(ic)}</span><h3>${t}</h3><p>${d}</p></div>`).join('')}
     </div>
+  </div>
+</section>
+
+<section class="section" id="transition" aria-labelledby="transition-title">
+  <div class="container">
+    ${sectionHead({ eyebrow: 'Careful Transition', title: 'From Intervention to <em>Self-Regeneration</em>', id: 'transition-title', text: 'We do not switch land to regenerative methods overnight. It is a process, guided by permaculture principles, until the land can sustain and renew itself.' })}
+    <ol class="transition-steps" data-stagger>
+      ${transition.map(([ic, t, principle, d], i) => `<li class="feature-card"><div class="transition-top"><span class="ic-soft">${icon(ic)}</span><span class="transition-num">0${i + 1}</span></div><h3>${t}</h3><p class="transition-principle">${icon('leaf')} Principle: ${principle}</p><p>${d}</p></li>`).join('')}
+    </ol>
+    <p class="transition-note" data-reveal>${icon('info')} Every machine hour and every outside input is planned with an exit: it is there to set up a living system, and it is reduced as that system takes over.</p>
   </div>
 </section>
 

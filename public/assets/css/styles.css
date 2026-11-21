@@ -1121,3 +1121,19 @@ ol.steps { list-style: none; margin: 0; padding: 0; }
 @media (max-width: 480px) { .site-header .brand-tag { white-space: nowrap; } }
 @media (max-width: 359px) { .site-header .brand-tag { display: none; } }
 .side-card li a { display: inline-block; padding: 3px 0; }
+/* About: values (odd number of cards, last row centred) */
+.values-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+.values-grid > * { flex: 0 1 calc((100% - 48px) / 3); min-width: 0; }
+@media (max-width: 1024px) { .values-grid > * { flex-basis: calc((100% - 24px) / 2); } }
+@media (max-width: 767px) { .values-grid > * { flex-basis: 100%; } }
+/* About: careful transition (four stages) */
+ol.transition-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: none; }
+.transition-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.transition-top .ic-soft { margin-bottom: 0 !important; }
+.transition-num { font: 800 34px/1 var(--f-head); color: transparent; -webkit-text-stroke: 1.2px var(--antique); }
+.transition-principle { display: inline-flex; gap: 6px; align-items: flex-start; font: 600 12.5px/1.4 var(--f-head); color: var(--fern) !important; margin: 0 0 10px !important; }
+.transition-principle .ic { width: 14px; height: 14px; flex: none; margin-top: 2px; }
+.transition-note { display: flex; gap: 10px; align-items: flex-start; max-width: 820px; margin: 32px auto 0; padding: 16px 20px; border-radius: 16px; background: var(--sage); font-size: 15px; }
+.transition-note .ic { color: var(--fern); flex: none; margin-top: 3px; }
+@media (max-width: 1100px) { ol.transition-steps { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { ol.transition-steps { grid-template-columns: 1fr; } }

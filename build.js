@@ -184,13 +184,13 @@ ${site.url ? `\nSitemap: ${abs('/sitemap.xml')}\n` : ''}`);
   const link = (title, p, note) => `- [${title}](${abs(p)})${note ? `: ${note}` : ''}`;
   const llms = `# ${site.name}
 
-> ${site.name} is a regenerative development company based in ${site.location}, serving ${site.serviceAreas.join(', ')} and clients across East Africa. We design, build and manage nature-positive landscapes and productive systems that restore ecosystems, strengthen livelihoods and create lasting value for communities, using organic, nature-based methods only. The first 30-minute discovery call (on Webex) is free.
+> ${site.name} is a regenerative development company based in ${site.location}, serving ${site.serviceAreas.join(', ')} and clients across East Africa. We design, build and manage nature-positive landscapes and productive systems that restore ecosystems, strengthen livelihoods and create lasting value for communities, putting nature-based methods first. The first 30-minute discovery call (on Webex) is free.
 
 ## Key facts
 - Location: ${site.location} (serving ${site.serviceAreas.join(', ')} and East Africa)
 - Services: ${services.map((s) => s.title).join('; ')}
 - Projects: ${Object.values(projects).map((p) => `${p.name} (${p.type}, ${p.status})`).join('; ')}
-- Methods: organic and nature-based only; no synthetic fertilisers or pesticides
+- Methods: nature-based first. Regeneration is treated as a process: machinery and limited, targeted inputs may be used to establish systems on large or degraded land, then phased out as the land regenerates itself
 - Opening hours: ${site.hours} (EAT)
 - Contact: phone/WhatsApp ${site.phone}; email ${site.email}; website ${abs('/')}
 - Free discovery call: book at ${abs('/contact/#book')}

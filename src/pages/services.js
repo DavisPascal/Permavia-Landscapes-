@@ -43,7 +43,7 @@ const faqs = [
   ['Do you work with NGOs, government and development partners?',
     'Yes. Our <a href="/services/installation-community-projects/">Installation of Regenerative &amp; Community Development Projects</a> service is built for this: we plan and deliver environmental and livelihood projects with communities as active partners, and train local people to manage them.'],
   ['Do you use chemicals or synthetic fertilisers?',
-    'No. All our services use organic, nature-based methods only: compost, mulch, cover crops, nitrogen-fixing trees and natural pest balance.'],
+    'Nature-based methods come first: compost, mulch, cover crops, nitrogen-fixing trees and natural pest balance. Regeneration is a process, though. On large or badly degraded land we may use machinery, and limited, targeted inputs where needed (for example to control invasive weeds or help first plantings establish), because doing that work by hand would take years. Each one has an exit plan and is phased out as the land starts to regenerate itself. <a href="/about-us/#transition">How we transition land</a>.'],
 ];
 
 const overviewBody = `
@@ -59,7 +59,7 @@ ${pageHero({
 
 <section class="section">
   <div class="container">
-    ${inShort('Permavia Landscapes offers five regenerative services to clients across Uganda and East Africa: <strong>regenerative design</strong>, <strong>installation of regenerative and community development projects</strong>, <strong>farm solutions</strong> such as agroforestry, syntropic agroforestry and food forests, <strong>maintenance</strong> and <strong>education for regenerative design and management</strong>. Every project uses organic, nature-based methods, and every client can start with a free 30-minute discovery call.')}
+    ${inShort('Permavia Landscapes offers five regenerative services to clients across Uganda and East Africa: <strong>regenerative design</strong>, <strong>installation of regenerative and community development projects</strong>, <strong>farm solutions</strong> such as agroforestry, syntropic agroforestry and food forests, <strong>maintenance</strong> and <strong>education for regenerative design and management</strong>. Every project puts nature-based methods first, and every client can start with a free 30-minute discovery call.')}
     ${services.map((s, i) => `
     <article class="svc${i % 2 ? ' is-flip' : ''}" id="${s.key}" aria-labelledby="svc-${s.key}">
       <a class="svc-media" href="${s.path}" data-reveal tabindex="-1" aria-hidden="true"><img src="${s.image}" alt="" loading="lazy"></a>
@@ -243,7 +243,7 @@ ${pageHero({
     <div class="copy" data-reveal>
       <p class="eyebrow">About This Service</p>
       <h2 id="about-title">What It <em>Involves</em></h2>
-      ${inShort(`<strong>${s.title}</strong> from Permavia Landscapes. ${s.purpose} Available in ${areas} and across East Africa, using organic, nature-based methods only.`)}
+      ${inShort(`<strong>${s.title}</strong> from Permavia Landscapes. ${s.purpose} Available in ${areas} and across East Africa, putting nature-based methods first.`)}
       <p>${s.desc}</p>
       ${s.activities ? `<h3 class="copy-h3">Typical Activities</h3>${checks(s.activities)}` : ''}
     </div>
@@ -252,7 +252,7 @@ ${pageHero({
       <dl>
         <div><dt>Ideal for</dt><dd>${s.for}</dd></div>
         <div><dt>Where</dt><dd>${areas} and across East Africa</dd></div>
-        <div><dt>Methods</dt><dd>Organic and nature-based only</dd></div>
+        <div><dt>Methods</dt><dd>Nature-based first; machinery or other inputs only where they speed up regeneration, then phased out</dd></div>
         ${s.receive ? `<div><dt>You receive</dt><dd>${s.receive.join('<br>')}</dd></div>` : ''}
         <div><dt>First step</dt><dd>A free 30-minute discovery call</dd></div>
       </dl>
