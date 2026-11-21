@@ -17,6 +17,22 @@
 
 **After the fixes marked 🔧 below, the expected score is about 92/100.**
 
+> ### ✅ Update, 21 Nov 2026: security fixes applied
+> **Security 72% → 90%. Overall 77 → 83/100.**
+> | Fix | Status | Verified |
+> |---|---|---|
+> | S1 Security headers (`public/_headers`: CSP, X-Frame-Options, nosniff, Referrer-Policy, Permissions-Policy, HSTS, COOP) | ✅ Done | All pages send 6/6 headers in the preview; HubSpot tracking, Google Maps, Cal.com times, HubSpot and Cal.com submissions all work under the policy |
+> | S2 Crafted links can't break the page | ✅ Done | `/contact/?service="]<b>#%E0%A4%A` loads and the booking form works |
+> | S3 Spam traps on all forms + bookings | ✅ Done | Trap filled → nothing sent; sent within 3 s → nothing sent; real person → sent to HubSpot |
+> | S6 Version history (Git) | ✅ Done | 2 commits on branch `main`; nothing uncommitted |
+> | S7 No inline scripts | ✅ Done | 0 inline scripts on 21 pages |
+> | S8 Preview server hardened | ✅ Done | Malformed address returns "400 Bad request" instead of crashing |
+> | Found during testing: HubSpot tracking loaded over `//` (protocol-relative) | ✅ Fixed | Now explicitly `https://` |
+> | S4 Cookie banner · S5 Email required on 3 HubSpot forms | ⏳ **Yours** (in HubSpot) | |
+> | Placeholder phone number | ⏳ **Yours** (`src/site.js`) | |
+>
+> **Still to do:** a private GitHub copy for off-site backup (needs your GitHub account), the performance items, and the content items below.
+
 ---
 
 ## 1. Security & privacy: 72%
