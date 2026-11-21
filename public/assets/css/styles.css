@@ -1100,3 +1100,5 @@ ol.steps { list-style: none; margin: 0; padding: 0; }
 .tag-link:hover { border-color: var(--leaf); color: var(--forest); }
 .filter-clear { border: 0; background: none; padding: 0; color: var(--fern); font: inherit; text-decoration: underline; cursor: pointer; }
 .filter-clear:hover { color: var(--forest); }
+/* Footer email: wrap only after the @, never mid-word */
+.footer-contact a.footer-email { word-break: normal; overflow-wrap: normal; }

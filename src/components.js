@@ -128,9 +128,9 @@ function footer() {
         <ul class="footer-contact">
           <li>${icon('map-pin')}<span>${site.location}</span></li>
           <li>${icon('phone')}<a href="tel:${site.phoneHref}">${site.phone}</a></li>
-          <li>${icon('mail')}<a href="mailto:${site.email}">${site.email}</a></li>
+          <li>${icon('mail')}<a class="footer-email" href="mailto:${site.email}">${site.email.replace('@', '@<wbr>')}</a></li>
           <li>${icon('clock')}<span>${site.hours}</span></li>
-          <li>${icon('map')}<span>Serving ${site.serviceAreas.join(', ')} and across East Africa</span></li>
+          <li>${icon('map')}<span>Serving East Africa</span></li>
         </ul>
       </div>
     </div>
