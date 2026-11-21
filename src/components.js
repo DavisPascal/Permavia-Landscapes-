@@ -42,10 +42,7 @@ const NAV = () => {
       { label: 'Shop', href: '/shop/', desc: 'Seeds, seedlings, tools and guides', icon: 'shopping-bag' },
     ],
   },
-  {
-    label: 'Blog', href: '/blog/', key: 'blog',
-    children: require('./data').blogCategories.map((c) => ({ label: c.name, href: `/blog/?category=${c.slug}#browse`, desc: c.covers.split(', ').slice(0, 3).join(', '), icon: c.icon })),
-  },
+  { label: 'Blog', href: '/blog/', key: 'blog' },
   { label: 'Events', href: '/our-events/', key: 'events' },
   { label: 'Contact', href: '/contact/', key: 'contact' },
   ];

@@ -68,9 +68,9 @@ ${pageHero({
   <div class="container about-grid">
     <div class="copy" data-reveal>
       <p class="eyebrow">Our Story</p>
-      <h2 id="story-title">More Than a <em>Landscaping</em> Company</h2>
+      <h2 id="story-title">A Regenerative <em>Development</em> Company</h2>
       <p>Permavia Landscapes was started to show that land can be healthy, productive and beautiful at the same time. Too much land is losing soil, water and trees, while the people who depend on it pay more each year for less.</p>
-      <p>We are not a lawn-care or purely ornamental garden business. We work where landscape design, regenerative agriculture, ecological restoration and community development meet: designing the system, building it, caring for it and teaching people to run it.</p>
+      <p>We are a regenerative development company, not a landscaping or garden business. We work where landscape design, regenerative agriculture, ecological restoration and community development meet: designing the system, building it, caring for it and teaching people to run it.</p>
       <p>We are a young company. Alongside client work we are building three long-term initiatives, <a href="/million-trees/">Million Trees</a>, <a href="/permavia-farm/">Permavia Farm</a> and <a href="/permavia-academy/">Permavia Academy</a>, and we share their progress openly on our <a href="/projects/">Projects</a> page.</p>
     </div>
     <aside class="facts" data-reveal style="--d:.1s" aria-label="Mission and vision">

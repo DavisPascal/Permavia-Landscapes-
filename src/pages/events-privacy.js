@@ -69,7 +69,7 @@ ${pageHero({ eyebrow: 'Legal', title: 'Privacy <em>Policy</em>', lead: 'How we c
   <div class="container legal">
     <span class="updated">Last updated: ${updated}</span>
     <h2>Who we are</h2>
-    <p>Permavia Landscapes ("we", "us") is a regenerative landscape design company based in ${site.location}. We are responsible for the personal data collected through this website. We process personal data in line with the Uganda Data Protection and Privacy Act, 2019 and its Regulations.</p>
+    <p>Permavia Landscapes ("we", "us") is a regenerative development company based in ${site.location}. We are responsible for the personal data collected through this website. We process personal data in line with the Uganda Data Protection and Privacy Act, 2019 and its Regulations.</p>
     <h2>What we collect</h2>
     <ul>
       <li><strong>Enquiry form:</strong> your name, phone number, email, location, land size, project type, service, budget range and message.</li>

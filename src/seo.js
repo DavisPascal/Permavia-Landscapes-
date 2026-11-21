@@ -8,18 +8,18 @@
 // ─────────────────────────────────────────────────────────────
 module.exports = {
   '/': {
-    keyword: 'landscaping company Uganda',
-    title: 'Permavia Landscapes | Landscaping Company in Uganda',
-    description: 'Regenerative landscape design and build for homes, farms and businesses in Hoima and across East Africa. Food forests, water and soil. Book a free call.',
+    keyword: 'regenerative development company Uganda',
+    title: 'Permavia Landscapes | Regenerative Development Company',
+    description: 'A regenerative development company designing, building and managing landscapes and farms for homes, businesses and communities. Book a free call.',
   },
   '/about-us/': {
-    keyword: 'landscapers Hoima',
-    title: 'About Permavia | Regenerative Landscapers in Hoima',
+    keyword: 'regenerative development company Hoima',
+    title: 'About Permavia | Regenerative Development Company',
     description: 'Permavia is a regenerative development company in Hoima, Uganda. Read our story, mission, values and approach, then book a free consultation.',
   },
   '/services/': {
     keyword: 'permaculture consultant Uganda',
-    title: 'Permaculture & Landscape Design Services in Uganda',
+    title: 'Regenerative Design & Development Services in Uganda',
     description: 'Regenerative design, community projects, farm solutions like agroforestry and food forests, maintenance and training in Uganda. Book a free call.',
   },
   '/services/regenerative-design/': {
@@ -93,13 +93,13 @@ module.exports = {
     description: 'Hands-on permaculture workshops, farm tours and team trainings in Uganda with Permavia Landscapes. See upcoming dates or join the events list today.',
   },
   '/contact/': {
-    keyword: 'landscape designer Hoima',
-    title: 'Contact a Landscape Designer in Hoima | Permavia',
-    description: 'Book a free 30-minute call, chat on WhatsApp or request a site visit from a landscape designer in Hoima, serving all of East Africa. We reply within hours.',
+    keyword: 'regenerative design Hoima',
+    title: 'Contact Permavia | Regenerative Development, Hoima',
+    description: 'Book a free 30-minute call, chat on WhatsApp or request a site visit from Permavia, a regenerative development company serving East Africa. Quick replies.',
   },
   '/faq/': {
-    keyword: 'landscaping cost Uganda',
-    title: 'Landscaping & Permaculture FAQs | Costs, Areas, Visits',
+    keyword: 'regenerative design cost Uganda',
+    title: 'Regenerative Design & Permaculture FAQs | Costs, Visits',
     description: 'What does landscape design cost in Uganda, which areas do we cover and how do site visits work? Straight answers from Permavia. Book a free call today.',
   },
   '/privacy-policy/': {

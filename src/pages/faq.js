@@ -58,7 +58,7 @@ const linkify = (t) => t
 const body = `
 ${pageHero({
   eyebrow: 'Frequently Asked Questions',
-  title: 'Landscaping &amp; Permaculture <em>Questions</em>, Answered',
+  title: 'Regenerative Design &amp; Permaculture <em>Questions</em>, Answered',
   lead: 'Costs, areas we cover, site visits, timelines and methods: straight answers to what clients ask us most.',
   image: img('01-home__07-inspiration__tile-3-soil-life'),
   crumbs: [['FAQ']],
@@ -100,7 +100,7 @@ module.exports = {
   path: '/faq/',
   active: '',
   title: 'FAQ',
-  description: 'Answers about landscaping and permaculture costs, areas covered, site visits and methods.',
+  description: 'Answers about regenerative design and permaculture costs, areas covered, site visits and methods.',
   schema: {
     '@context': 'https://schema.org', '@type': 'FAQPage',
     mainEntity: groups.flatMap((g) => g.items.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))),
