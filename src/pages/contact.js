@@ -1,11 +1,11 @@
 const { img, icon, waIcon, waLink, pageHero, signupForm, sectionHead, site } = require('../components');
 
 const services = [
-  ['design', 'Regenerative Landscape Design'],
-  ['installation', 'Installation & Regenerative Projects'],
-  ['farm', 'Farm & Agroforestry Solutions'],
-  ['maintenance', 'Landscape Maintenance'],
-  ['education', 'Education & Training'],
+  ['design', 'Regenerative Design'],
+  ['installation', 'Installation of Regenerative & Community Development Projects'],
+  ['farm', 'Farm Solutions'],
+  ['maintenance', 'Maintenance'],
+  ['education', 'Education for Regenerative Design & Management'],
   ['seedlings', 'Seedlings / Million Trees price list'],
   ['other', 'Not sure yet'],
 ];

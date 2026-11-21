@@ -82,11 +82,11 @@ function footer() {
     ['Products', '/products/'], ['Blog', '/blog/'], ['Events', '/our-events/'], ['FAQ', '/faq/'], ['Contact', '/contact/'],
   ];
   const services = [
-    ['Regenerative Landscape Design', '/services/#design'],
-    ['Installation & Regenerative Projects', '/services/#installation'],
-    ['Farm & Agroforestry Solutions', '/services/#farm'],
-    ['Landscape Maintenance', '/services/#maintenance'],
-    ['Education & Training', '/services/#education'],
+    ['Regenerative Design', '/services/#design'],
+    ['Installation & Community Projects', '/services/#installation'],
+    ['Farm Solutions', '/services/#farm'],
+    ['Maintenance', '/services/#maintenance'],
+    ['Education for Regenerative Design', '/services/#education'],
   ];
   const projects = [
     ['Million Trees', '/million-trees/'], ['Permavia Farm', '/permavia-farm/'], ['Permavia Academy', '/permavia-academy/'],

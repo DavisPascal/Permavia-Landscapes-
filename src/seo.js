@@ -20,7 +20,7 @@ module.exports = {
   '/services/': {
     keyword: 'permaculture consultant Uganda',
     title: 'Permaculture & Landscape Design Services in Uganda',
-    description: 'Landscape design, installation, agroforestry, maintenance and training from a permaculture consultant in Uganda. Find your service and book a free call.',
+    description: 'Regenerative design, community projects, farm solutions like agroforestry and food forests, maintenance and training in Uganda. Book a free call.',
   },
   '/million-trees/': {
     keyword: 'tree seedlings Hoima',

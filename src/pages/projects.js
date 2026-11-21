@@ -124,7 +124,7 @@ const AEO = {
       ['Who can order seedlings?',
         'Farmers moving to agroforestry, homeowners, schools, NGOs, restoration and carbon projects, and Permavia’s own design clients.'],
       ['Can Permavia help plan where to plant the trees?',
-        'Yes. Our <a href="/services/#farm">Farm &amp; Agroforestry</a> and <a href="/services/#design">Landscape Design</a> services choose the right species for the right place on your land.'],
+        'Yes. Our <a href="/services/#farm">Farm Solutions</a> and <a href="/services/#design">Regenerative Design</a> services choose the right species for the right place on your land.'],
     ],
     schema: () => [{
       '@context': 'https://schema.org', '@type': 'Product',

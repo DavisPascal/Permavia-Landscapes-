@@ -1,7 +1,7 @@
 const { img, icon, ctaBand, pageHero, inShort, faqSection, faqSchema, businessRef, site } = require('../components');
 const { services } = require('../data');
 
-const short = { design: 'Design', installation: 'Installation', farm: 'Farm & Agroforestry', maintenance: 'Maintenance', education: 'Education' };
+const short = { design: 'Design', installation: 'Installation', farm: 'Farm Solutions', maintenance: 'Maintenance', education: 'Education' };
 const areas = site.serviceAreas.join(', ');
 
 // Questions people ask before choosing a service (also published as FAQPage data for AI assistants).
@@ -9,13 +9,13 @@ const faqs = [
   ['What does a regenerative landscape designer do?',
     'A regenerative landscape designer plans land so that it improves over time: catching and storing rainwater, rebuilding living soil, and combining trees, food plants and animals so they support each other. At Permavia we assess your site, produce a buildable design, and can install, maintain and train your team on it.'],
   ['Which service should I start with?',
-    'Most clients start with <a href="/services/#design">Regenerative Landscape Design</a>, because a good plan saves money on everything that follows. If you are unsure, book a free 30-minute <a href="/contact/#book">discovery call on Webex</a> and we will recommend the right first step.'],
+    'Most clients start with <a href="/services/#design">Regenerative Design</a>, because a good plan saves money on everything that follows. If you are unsure, book a free 30-minute <a href="/contact/#book">discovery call on Webex</a> and we will recommend the right first step.'],
   ['Do you only design, or do you also build and look after the landscape?',
     'We do all four: design, build (earthworks, planting, irrigation), maintain (seasonal care and annual health checks) and educate (hands-on training). You can use one service or all of them as one accountable team.'],
   ['Which areas of Uganda do you work in?',
     `We are based in Hoima City and work regularly in ${areas}. For larger projects we travel across Uganda and East Africa, and we can design remotely using maps, photos and video calls.`],
   ['Can you help a farm move to agroforestry or regenerative farming?',
-    'Yes. Our <a href="/services/#farm">Farm &amp; Agroforestry Solutions</a> service plans a phased move away from costly inputs, protecting your income while trees, crops and animals are integrated to rebuild soil fertility.'],
+    'Yes. Our <a href="/services/#farm">Farm Solutions</a> service plans a phased move away from costly inputs, protecting your income while agroforestry, syntropic agroforestry, food forests or silvopasture rebuild soil fertility, all in line with permaculture.'],
   ['Do you use chemicals or synthetic fertilisers?',
     'No. All our services use organic, nature-based methods only: compost, mulch, cover crops, nitrogen-fixing trees and natural pest balance.'],
 ];
@@ -33,7 +33,7 @@ ${pageHero({
 
 <section class="section">
   <div class="container">
-    ${inShort(`Permavia Landscapes offers five regenerative services to clients across Uganda and East Africa: <strong>landscape design</strong>, <strong>installation</strong>, <strong>farm and agroforestry solutions</strong>, <strong>landscape maintenance</strong> and <strong>education and training</strong>. Every project uses organic, nature-based methods, and every client can start with a free 30-minute discovery call.`)}
+    ${inShort(`Permavia Landscapes offers five regenerative services to clients across Uganda and East Africa: <strong>regenerative design</strong>, <strong>installation of regenerative and community development projects</strong>, <strong>farm solutions</strong> such as agroforestry, syntropic agroforestry and food forests, <strong>maintenance</strong> and <strong>education for regenerative design and management</strong>. Every project uses organic, nature-based methods, and every client can start with a free 30-minute discovery call.`)}
     ${services.map((s, i) => `
     <article class="svc${i % 2 ? ' is-flip' : ''}" id="${s.key}" aria-labelledby="svc-${s.key}">
       <div class="svc-media" data-reveal><img src="${s.image}" alt="${s.title}" loading="lazy"></div>
@@ -79,7 +79,7 @@ module.exports = {
   path: '/services/',
   active: 'about',
   title: 'Services',
-  description: 'Regenerative landscape design, installation, farm and agroforestry solutions, landscape maintenance and training across East Africa.',
+  description: 'Regenerative design, installation of regenerative and community projects, farm solutions, maintenance and education across East Africa.',
   schema: [
     // Each service as machine-readable data, so AI assistants can answer "who offers … in Uganda?"
     ...services.map((s) => ({

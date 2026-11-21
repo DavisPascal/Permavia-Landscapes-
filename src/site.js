@@ -85,11 +85,12 @@ module.exports = {
     // Find internal values in HubSpot → Settings → Properties → (property) → Field type → options.
     values: {
       service_interest: {
-        'Regenerative Landscape Design': 'Regenerative landscape design',
-        'Installation & Regenerative Projects': 'Installation of regenerative projects',
-        'Farm & Agroforestry Solutions': 'Farm and regenerative soltuions', // HubSpot spelling, keep as-is
-        'Landscape Maintenance': 'Landscape maintenance',
-        'Education & Training': 'Education and training',
+        // Website wording changed Nov 2026; HubSpot options kept as they were.
+        'Regenerative Design': 'Regenerative landscape design',
+        'Installation of Regenerative & Community Development Projects': 'Installation of regenerative projects',
+        'Farm Solutions': 'Farm and regenerative soltuions', // HubSpot spelling, keep as-is
+        'Maintenance': 'Landscape maintenance',
+        'Education for Regenerative Design & Management': 'Education and training',
         'Seedlings / Million Trees price list': 'Seedlings',
         'Not sure yet': 'Not sure yet',
       },
