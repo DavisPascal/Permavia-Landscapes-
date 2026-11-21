@@ -24,6 +24,7 @@ Header menu order: Home, About Us (Story & Values, What We Do, Our Approach), Se
 Copy: "millions of trees" (never "1 million"); location stays Hoima City but say "serving East Africa".
 Positioning (Brand & Website Direction, Nov 2026): a **regenerative development company**, not a landscaping business. Brand expression "We Design. We Build. We Regenerate." (`site.tagline`); existing tagline "Your Vision, Our Green Touch." (`site.brandLine`). Five outcomes: healthier ecosystems, productive farms/food systems, stronger livelihoods, resilient communities, lasting skills.
 **No completed projects yet.** Never imply finished work, past clients, testimonials or results. Projects show their real stage (`phase`/`now` in data.js); "Completed" stays empty until there is verified work.
+Blog: 7 categories (`blogCategories`, the blog's main navigation + Blog menu dropdown) and 12 tags (`blogTags`) in data.js. Each post has one `category` and a few `tags` by name; the build stops if a name is unknown. Filters on /blog/ via `?category=<slug>&tag=<slug>` (main.js).
 Services: `services` in data.js (slug → `/services/<slug>/`, plus activities, journey, challenges, care, formats…); `src/pages/services.js` builds the overview and the 5 detail pages. `/projects/` overview lives in projects.js.
 
 ## Forms → HubSpot (live, working)

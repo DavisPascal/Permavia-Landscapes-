@@ -1,8 +1,11 @@
 const { img, icon, pageHero, signupForm, inShort, faqSchema } = require('../components');
-const { posts, fmtDate } = require('../data');
+const { posts, blogCategories, blogTags, fmtDate } = require('../data');
 const { postCard } = require('../cards');
 
-const CATS = ['Water', 'Soil', 'Food Forests', 'Agroforestry', 'Community', 'Carbon'];
+const catOf = (p) => blogCategories.find((c) => c.name === p.category);
+const tagOf = (name) => blogTags.find((t) => t.name === name);
+const count = (fn) => posts.filter(fn).length;
+const tagLinks = (p, cls = '') => (p.tags || []).map((t) => `<a class="tag-link ${cls}" href="/blog/?tag=${tagOf(t).slug}">#${t}</a>`).join('');
 
 const newsletter = `
 <section class="section" aria-labelledby="nl-title">
@@ -22,7 +25,7 @@ const [first, ...rest] = posts;
 
 const index = {
   path: '/blog/', active: 'blog', title: 'The Regenerative Journal',
-  description: 'Practical guides on water harvesting, living soils, food forests, agroforestry and carbon projects from the Permavia Landscapes team in Uganda.',
+  description: 'Practical guides on regenerative design, agroforestry and farm solutions, ecological restoration, project implementation, land management and education.',
   body: `
 ${pageHero({
   eyebrow: 'Permaculture | Design | Regeneration',
@@ -45,31 +48,45 @@ ${pageHero({
       </div>
     </a>
 
-    <div class="filters" data-filter-group role="group" aria-label="Filter articles by category">
-      <button class="filter-btn" data-filter="all" aria-pressed="true">All</button>
-      ${CATS.map((c) => `<button class="filter-btn" data-filter="${c}" aria-pressed="false">${c}</button>`).join('')}
+    <div class="blog-browse" id="browse" data-blog-filter>
+      <h2 class="blog-browse-h">Browse by <em>Category</em></h2>
+      <div class="filters" role="group" aria-label="Filter articles by category">
+        <button class="filter-btn" data-cat="all" aria-pressed="true">All <span class="filter-n">${posts.length}</span></button>
+        ${blogCategories.map((c) => `<button class="filter-btn" data-cat="${c.slug}" aria-pressed="false">${c.name} <span class="filter-n">${count((p) => p.category === c.name)}</span></button>`).join('')}
+      </div>
+      <div class="cat-intro" data-cat-intro hidden>
+        ${blogCategories.map((c) => `<p data-for="${c.slug}" hidden>${icon(c.icon)}<span><strong>${c.name}:</strong> ${c.covers}</span></p>`).join('')}
+      </div>
+      <div class="tag-cloud" role="group" aria-label="Filter articles by tag">
+        <span class="tag-cloud-label">${icon('tag')} Tags</span>
+        ${blogTags.map((t) => { const n = count((p) => (p.tags || []).includes(t.name)); return `<button class="tag-btn" data-tag="${t.slug}" aria-pressed="false"${n ? '' : ' data-empty-tag'}>#${t.name}${n ? ` <span class="filter-n">${n}</span>` : ''}</button>`; }).join('')}
+      </div>
+      <p class="filter-status" data-filter-status aria-live="polite"></p>
     </div>
     <div class="grid grid-3">${posts.map(postCard).join('')}</div>
-    <div class="empty-note" data-empty hidden>${icon('sprout')}<p class="mb-0">New articles in this category are on the way. Subscribe below to get them first.</p></div>
+    <div class="empty-note" data-empty hidden>${icon('sprout')}<p class="mb-0">No articles here yet. New articles are on the way. Subscribe below to get them first.</p></div>
   </div>
 </section>
 ${newsletter}`,
 };
 
 const single = posts.map((p) => {
-  const related = posts.filter((x) => x.slug !== p.slug).slice(0, 3);
+  // Related: same category first, then most shared tags, then newest.
+  const score = (x) => (x.category === p.category ? 10 : 0) + (x.tags || []).filter((t) => (p.tags || []).includes(t)).length;
+  const related = posts.filter((x) => x.slug !== p.slug).sort((a, b) => score(b) - score(a)).slice(0, 3);
+  const cat = catOf(p);
   return {
     path: `/blog/${p.slug}/`, active: 'blog', title: p.title, seoTitle: p.seoTitle, description: p.excerpt, ogImage: p.image,
     schema: [
-      { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, datePublished: p.date, abstract: p.summary, author: { '@type': 'Organization', name: 'Permavia Landscapes' } },
+      { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, datePublished: p.date, abstract: p.summary, articleSection: p.category, keywords: (p.tags || []).join(', '), author: { '@type': 'Organization', name: 'Permavia Landscapes' } },
       ...(p.faqs ? [faqSchema(p.faqs)] : []),
     ],
     body: `
 <section class="page-hero article-hero is-short">
   <div class="page-hero-bg"><img src="${p.image}" alt="" fetchpriority="high"></div>
   <div class="container page-hero-inner" style="padding-bottom:120px">
-    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Journal</a><span>/</span><span aria-current="page">${p.category}</span></nav>
-    <span class="badge badge--dark" style="margin-bottom:18px">${p.category}</span>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/blog/">Journal</a><span>/</span><a href="/blog/?category=${cat.slug}#browse">${p.category}</a></nav>
+    <a class="badge badge--dark badge-link" href="/blog/?category=${cat.slug}#browse" style="margin-bottom:18px">${p.category}</a>
     <h1>${p.title}</h1>
     <div class="post-meta"><span>${icon('pen-line')} Permavia Team</span><span>${icon('calendar')} ${fmtDate(p.date)}</span><span>${icon('clock')} ${p.read} min read</span></div>
   </div>
@@ -80,6 +97,10 @@ const single = posts.map((p) => {
       <div class="feature-img"><img src="${p.image}" alt="${p.title}"></div>
       ${p.summary ? inShort(p.summary) : ''}
       <div class="prose">${p.body}</div>
+      <div class="post-tags" aria-label="Filed under">
+        <span class="post-tags-label">${icon('folder-open')} Filed under <a href="/blog/?category=${cat.slug}#browse">${p.category}</a></span>
+        ${p.tags && p.tags.length ? `<div class="post-tags-list">${tagLinks(p)}</div>` : ''}
+      </div>
       ${p.faqs ? `<div class="post-faq"><h2>Frequently asked questions</h2>${p.faqs.map(([q, a], i) => `<details class="faq-item"${i === 0 ? ' open' : ''}><summary>${q}<span class="faq-ic">${icon('plus')}</span></summary><div class="faq-a"><p>${a}</p></div></details>`).join('')}</div>` : ''}
       <div class="author-box"><span class="av">${icon('leaf')}</span><div><strong>Written by the Permavia Team</strong><p>Regenerative designers and builders serving East Africa from Hoima City, Uganda.</p></div></div>
       <div class="post-cta">

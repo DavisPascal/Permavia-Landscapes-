@@ -128,23 +128,48 @@
     par(); window.addEventListener('scroll', par, { passive: true });
   }
 
-  // Blog filter
-  $$('[data-filter-group]').forEach((group) => {
-    const btns = $$('.filter-btn', group);
-    const cards = $$('[data-category]');
-    const empty = $('[data-empty]');
-    btns.forEach((b) => b.addEventListener('click', () => {
-      btns.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
-      const cat = b.dataset.filter;
+  // Blog filter: one category (main navigation) and/or one tag. Mirrors ?category= & ?tag= in the address bar.
+  $$('[data-blog-filter]').forEach((box) => {
+    const catBtns = $$('[data-cat]', box);
+    const tagBtns = $$('[data-tag]', box);
+    const cards = $$('.post-card[data-category]', box.parentElement);
+    const empty = $('[data-empty]', box.parentElement);
+    const intro = $('[data-cat-intro]', box);
+    const status = $('[data-filter-status]', box);
+    const state = { cat: 'all', tag: '' };
+    const label = (btn) => btn ? btn.childNodes[0].textContent.trim() : '';
+    const apply = (push) => {
+      catBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === state.cat)));
+      tagBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tag === state.tag)));
       let shown = 0;
-      cards.forEach((c) => { const ok = cat === 'all' || c.dataset.category === cat; c.hidden = !ok; if (ok) shown++; });
+      cards.forEach((c) => {
+        const ok = (state.cat === 'all' || c.dataset.category === state.cat) && (!state.tag || c.dataset.tags.split(' ').includes(state.tag));
+        c.hidden = !ok; if (ok) shown++;
+      });
       if (empty) empty.hidden = shown > 0;
-    }));
+      if (intro) {
+        intro.hidden = state.cat === 'all';
+        $$('[data-for]', intro).forEach((p) => { p.hidden = p.dataset.for !== state.cat; });
+      }
+      if (status) {
+        const parts = [];
+        if (state.cat !== 'all') parts.push(label(catBtns.find((b) => b.dataset.cat === state.cat)));
+        if (state.tag) parts.push(label(tagBtns.find((b) => b.dataset.tag === state.tag)));
+        status.textContent = parts.length ? `Showing ${shown} article${shown === 1 ? '' : 's'} in ${parts.join(' + ')}` : '';
+      }
+      if (push && window.history && history.replaceState) {
+        const q = new URLSearchParams();
+        if (state.cat !== 'all') q.set('category', state.cat);
+        if (state.tag) q.set('tag', state.tag);
+        history.replaceState(null, '', `${location.pathname}${q.toString() ? `?${q}` : ''}#browse`);
+      }
+    };
+    catBtns.forEach((b) => b.addEventListener('click', () => { state.cat = b.dataset.cat; apply(true); }));
+    tagBtns.forEach((b) => b.addEventListener('click', () => { state.tag = state.tag === b.dataset.tag ? '' : b.dataset.tag; apply(true); }));
+    if (catBtns.some((b) => b.dataset.cat === params.get('category'))) state.cat = params.get('category');
+    if (tagBtns.some((b) => b.dataset.tag === params.get('tag'))) state.tag = params.get('tag');
+    apply(false);
   });
-  if (params.get('category')) {
-    const b = $$('.filter-btn').find((x) => x.dataset.filter === params.get('category'));
-    if (b) b.click();
-  }
 
   // Contact: prefill from ?service= & ?type=
   // (values from the address bar are compared as plain text, never used to build selectors, so odd links can't break the page)

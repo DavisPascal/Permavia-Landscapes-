@@ -13,7 +13,7 @@ const projectCard = (p) => `
 </a>`;
 
 const postCard = (p) => `
-<a class="card post-card" href="/blog/${p.slug}/" data-category="${p.category}">
+<a class="card post-card" href="/blog/${p.slug}/" data-category="${p.categorySlug}" data-tags="${(p.tagSlugs || []).join(' ')}">
   <div class="media"><img src="${p.image}" alt="" loading="lazy"><span class="badge badge--dark">${p.category}</span></div>
   <div class="body">
     <div class="post-meta"><span>${icon('calendar')} ${fmtDate(p.date)}</span><span>${icon('clock')} ${p.read} min read</span></div>

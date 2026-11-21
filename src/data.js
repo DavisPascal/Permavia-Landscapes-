@@ -154,10 +154,26 @@ const services = [
 ];
 services.forEach((s) => { s.path = `/services/${s.slug}/`; });
 
+// Blog: seven main categories (the blog's main navigation) and tags that organise articles further.
+// To file an article: give it one `category` (a name below) and a few `tags` (names below).
+const slugify = (t) => t.toLowerCase().replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const blogCategories = [
+  ['Regenerative Design', 'pen-tool', 'Landscape design, permaculture, food forests, ecological planning, sustainable gardens and nature-based design.'],
+  ['Agroforestry & Farm Solutions', 'tractor', 'Agroforestry, farm planning, soil health, water management, integrated farming and productive landscapes.'],
+  ['Ecological Restoration', 'trees', 'Tree growing, biodiversity, degraded land restoration, reforestation and community-based environmental projects.'],
+  ['Project Implementation', 'shovel', 'Practical project delivery, installation processes, community development, field experiences and lessons from implementation.'],
+  ['Landscape & Farm Management', 'sprout', 'Landscape maintenance, tree care, farm management, monitoring, plant health and long-term sustainability.'],
+  ['Regenerative Education', 'graduation-cap', 'Training, practical guides, regenerative skills, workshops, research and professional development.'],
+  ['Projects & Field Stories', 'map', "Updates, milestones, case studies and stories from Permavia's own projects and activities."],
+].map(([name, icon, covers]) => ({ name, icon, covers, slug: slugify(name) }));
+const blogTags = ['Permavia Farm', 'Million Trees', 'Permavia Academy', 'Permaculture', 'Food Forests', 'Soil Health', 'Water Management',
+  'Tree Growing', 'Community Development', 'Sustainable Agriculture', 'Biodiversity', 'East Africa'].map((name) => ({ name, slug: slugify(name) }));
+
 // Blog: published posts only. Newest first.
 const posts = [
   {
-    slug: 'harvesting-rain-water-systems', category: 'Water',
+    slug: 'harvesting-rain-water-systems', category: 'Agroforestry & Farm Solutions',
+    tags: ['Water Management', 'Soil Health', 'Permaculture', 'Sustainable Agriculture', 'East Africa'],
     title: 'Harvesting Rain: Simple Water Systems for Ugandan Homes and Farms',
     seoTitle: 'Rainwater Harvesting for Homes & Farms in Uganda',
     summary: "To get water through the dry season in Uganda, slow rainwater down, spread it out and sink it into the soil. Start with roof catchment (a 100 m² roof collects about 1,000 litres for every 10 mm of rain), add swales dug on contour to store water in the soil, and use ponds or infiltration basins where the land allows.",
@@ -182,7 +198,8 @@ const posts = [
 <p>Observe your land in the next heavy rain. Where does water run, pool or cut channels? Those are the places to act first. If you would like a water plan for your site, our team can walk it with you and design a system matched to your slope, soil and budget.</p>`,
   },
   {
-    slug: 'why-landscaping-is-more-than-just-beauty', category: 'Food Forests',
+    slug: 'why-landscaping-is-more-than-just-beauty', category: 'Regenerative Design',
+    tags: ['Food Forests', 'Permaculture', 'Biodiversity', 'Soil Health'],
     title: 'Why Landscaping Is More Than Just Beauty',
     seoTitle: 'Why Landscaping Is More Than Just Beauty | Permavia',
     summary: "Regenerative landscaping keeps the beauty of a garden but makes it work for you: fruit trees, perennial vegetables and herbs feed your family, well-placed trees cool your home and block wind, and mulch and groundcover protect the soil, which lowers water, fertiliser and food costs over time.",
@@ -205,7 +222,8 @@ const posts = [
 <p>Whether you have a small compound or many acres, we can help you design a landscape that is as productive as it is beautiful.</p>`,
   },
   {
-    slug: 'transforming-spaces-the-art-of-green-design', category: 'Agroforestry',
+    slug: 'transforming-spaces-the-art-of-green-design', category: 'Regenerative Design',
+    tags: ['Permaculture', 'Tree Growing', 'Food Forests', 'Sustainable Agriculture'],
     title: 'Transforming Spaces: The Art of Green Design',
     seoTitle: 'Green Design: Transforming Spaces in Uganda | Permavia',
     summary: "Good green design starts by observing a site (sun, wind, water and how people move) before changing anything. Permaculture then organises the land into zones by how often you visit them, and agroforestry uses trees as the backbone, providing shade, fruit, fodder, timber and mulch while feeding and holding the soil.",
@@ -230,6 +248,16 @@ const posts = [
   },
 ];
 
+// Check every article uses a known category and known tags (the build stops with a clear message if not).
+const catBySlug = Object.fromEntries(blogCategories.map((c) => [c.name, c]));
+const tagByName = Object.fromEntries(blogTags.map((t) => [t.name, t]));
+posts.forEach((p) => {
+  if (!catBySlug[p.category]) throw new Error(`Blog post "${p.slug}": unknown category "${p.category}". Use one of: ${blogCategories.map((c) => c.name).join(', ')}`);
+  (p.tags || []).forEach((t) => { if (!tagByName[t]) throw new Error(`Blog post "${p.slug}": unknown tag "${t}". Add it to blogTags in src/data.js first.`); });
+  p.categorySlug = catBySlug[p.category].slug;
+  p.tagSlugs = (p.tags || []).map((t) => tagByName[t].slug);
+});
+
 const fmtDate = (d) => new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
-module.exports = { projects, services, posts, fmtDate };
+module.exports = { projects, services, posts, blogCategories, blogTags, fmtDate };
