@@ -33,7 +33,7 @@ ${pageHero({
 
 <section class="section">
   <div class="container">
-    ${inShort(`Permavia Landscapes offers five regenerative services from Hoima City to clients across Uganda and East Africa: <strong>landscape design</strong>, <strong>installation</strong>, <strong>farm and agroforestry solutions</strong>, <strong>landscape maintenance</strong> and <strong>education and training</strong>. Every project uses organic, nature-based methods, and every client can start with a free 30-minute discovery call.`)}
+    ${inShort(`Permavia Landscapes offers five regenerative services to clients across Uganda and East Africa: <strong>landscape design</strong>, <strong>installation</strong>, <strong>farm and agroforestry solutions</strong>, <strong>landscape maintenance</strong> and <strong>education and training</strong>. Every project uses organic, nature-based methods, and every client can start with a free 30-minute discovery call.`)}
     ${services.map((s, i) => `
     <article class="svc${i % 2 ? ' is-flip' : ''}" id="${s.key}" aria-labelledby="svc-${s.key}">
       <div class="svc-media" data-reveal><img src="${s.image}" alt="${s.title}" loading="lazy"></div>
