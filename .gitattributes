@@ -1,0 +1,8 @@
+# Keep files exactly as written (LF), so Netlify files like _headers/_redirects are never rewritten
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.png binary
+*.webp binary
+*.jpg binary
+*.ico binary
+*.woff2 binary
