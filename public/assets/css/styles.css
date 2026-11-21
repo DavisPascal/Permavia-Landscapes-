@@ -742,7 +742,7 @@ body.is-plain .site-header { background: rgba(37,81,25,.97); }
 .site-footer { position: relative; background: var(--deep); color: rgba(255,255,255,.72); padding: 88px 0 0; overflow: hidden; font-size: 15px; }
 .footer-contour { opacity: .06; }
 .site-footer .container { position: relative; }
-.footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1.25fr 1.2fr; gap: 48px; padding-bottom: 56px; }
+.footer-top { display: grid; grid-template-columns: 1.3fr .9fr 1.2fr 1.4fr; gap: 48px; padding-bottom: 56px; }
 .footer-line { font: italic 400 20px/1.4 var(--f-quote); color: var(--gold-2); margin-bottom: 12px; }
 .footer-brand p:not(.footer-line) { font-size: 14.5px; margin-bottom: 24px; }
 .footer-h { font: 700 13px/1 var(--f-head); letter-spacing: 2.5px; text-transform: uppercase; color: #fff; margin-bottom: 22px; }
@@ -757,7 +757,7 @@ body.is-plain .site-header { background: rgba(37,81,25,.97); }
 .footer-bottom p { margin: 0; display: flex; gap: 10px; flex-wrap: wrap; }
 .footer-bottom a { color: rgba(255,255,255,.85); }
 .footer-bottom a:hover { color: var(--gold-2); }
-@media (max-width: 1024px) { .footer-top { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 1200px) { .footer-top { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .footer-top { grid-template-columns: 1fr; gap: 36px; } .site-footer { padding-top: 64px; } }
 
 /* Floating WhatsApp */
@@ -1101,4 +1101,4 @@ ol.steps { list-style: none; margin: 0; padding: 0; }
 .filter-clear { border: 0; background: none; padding: 0; color: var(--fern); font: inherit; text-decoration: underline; cursor: pointer; }
 .filter-clear:hover { color: var(--forest); }
 /* Footer email: wrap only after the @, never mid-word */
-.footer-contact a.footer-email { word-break: normal; overflow-wrap: normal; }
+.footer-contact a.footer-email { word-break: normal; overflow-wrap: normal; white-space: nowrap; }
