@@ -43,7 +43,6 @@ const values = [
   ['scale', 'Fair Share', 'Value is shared with communities, farmers and partners, not taken from them.'],
   ['badge-check', 'Honesty', 'We only claim what we can show, and we report progress as it really is.'],
   ['wrench', 'Practicality', 'Plans that work on real budgets, real soils and real seasons.'],
-  ['route', 'Careful Transition', 'Regeneration is a process, not a switch. Where hand work alone would take years, we use machinery, and limited, targeted inputs where needed, to set up living systems, then phase them out as the land learns to regenerate itself.'],
   ['users', 'Partnership', 'Communities and farmers are active partners, not just beneficiaries.'],
 ];
 
