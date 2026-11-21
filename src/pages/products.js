@@ -1,10 +1,23 @@
 // Courses, Shop and Products: "Coming Soon" pages that collect waitlist sign-ups.
-const { img, icon, pageHero, sectionHead, signupForm } = require('../components');
+const { img, icon, pageHero, sectionHead, signupForm, businessRef } = require('../components');
+
+// Planned courses as machine-readable Course data (AI assistants answer "permaculture courses in Uganda" from this).
+const courseData = [
+  ['Permaculture Design Certificate (72-hour PDC)', 'The internationally recognised 72-hour Permaculture Design Certificate, adapted for African climates, soils and markets.', ['onsite'], 'PT72H'],
+  ['Weekend Workshops', 'Focused, practical weekend workshops on composting, water harvesting, food forests and soil.', ['onsite'], 'P2D'],
+  ['Online Learning', 'Self-paced video lessons and guides on regenerative land management, available from anywhere.', ['online'], null],
+  ['Site-Specific Training', 'Training for your team on your own land, built around your project and goals.', ['onsite'], null],
+].map(([name, description, mode, workload]) => ({
+  '@context': 'https://schema.org', '@type': 'Course', name, description,
+  provider: businessRef(), inLanguage: 'en',
+  hasCourseInstance: { '@type': 'CourseInstance', courseMode: mode, location: 'Uganda', ...(workload ? { courseWorkload: workload } : {}) },
+}));
 
 const soon = '<p class="soon-pill"><i></i>Coming Soon</p>';
 
 const courses = {
   path: '/courses/', active: 'products', title: 'Courses',
+  schema: courseData,
   description: 'Permaculture courses and workshops from Permavia Landscapes: 72-hour PDC, weekend workshops, online learning and site-specific training. Join the waitlist.',
   body: `
 ${pageHero({

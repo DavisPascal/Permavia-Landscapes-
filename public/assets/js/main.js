@@ -522,6 +522,17 @@
       });
     }
 
+    // Phone as typed by the visitor → international format for Cal.com.
+    // "0772 123 456" → "+256772123456"; "256 772…" → "+256772…"; "+254 7…" stays as entered (spaces removed).
+    function intlPhone(raw) {
+      let p = String(raw || '').replace(/[^\d+]/g, '');
+      if (!p) return '';
+      if (p.startsWith('00')) p = `+${p.slice(2)}`;
+      else if (p.startsWith('0')) p = `+256${p.slice(1)}`;
+      else if (!p.startsWith('+')) p = p.startsWith('256') ? `+${p}` : `+256${p}`;
+      return /^\+\d{8,15}$/.test(p) ? p : '';
+    }
+
     // Book the chosen slot in Cal.com. Returns 'booked', 'taken' or 'failed'.
     async function bookInCal(data) {
       const [h, m] = chosenTime.split(':').map(Number);
@@ -542,13 +553,21 @@
             start,
             eventTypeSlug: CAL.slug,
             username: CAL.user,
-            attendee: { name: data.name, email: data.email, timeZone: 'Africa/Kampala', language: 'en' },
+            // Cal.com's Discovery Call event requires a phone number, in international format (+256…).
+            attendee: { name: data.name, email: data.email, timeZone: 'Africa/Kampala', language: 'en', ...(intlPhone(data.phone) ? { phoneNumber: intlPhone(data.phone) } : {}) },
             bookingFieldsResponses: { notes },
             metadata: { source: 'permavialandscapes.com' },
           }),
         });
         if (res.ok) return 'booked';
-        console.error('Cal.com did not accept the booking:', res.status, await res.text());
+        const errText = await res.text();
+        console.error('Cal.com did not accept the booking:', res.status, errText);
+        // Problems the visitor can fix themselves (e.g. an email that can't receive mail, a bad phone number).
+        if (res.status === 400) {
+          let msg = ''; try { msg = (JSON.parse(errText).error || {}).message || ''; } catch (e) { /* ignore */ }
+          if (/email/i.test(msg)) return 'bad-email';
+          if (/phone/i.test(msg)) return 'bad-phone';
+        }
       } catch (e) {
         console.error('Could not reach Cal.com:', e);
       }
@@ -578,6 +597,21 @@
         if (result === 'taken') {
           status.classList.add('is-error');
           status.textContent = 'Sorry, that time was just taken. Please choose another time.';
+          btn.disabled = false; drawIcons();
+          return;
+        }
+        if (result === 'bad-email' || result === 'bad-phone') {
+          // Send the visitor back to step 1 with a clear message; their answers and chosen time are kept.
+          const field = form.elements[result === 'bad-email' ? 'email' : 'phone'];
+          show(0);
+          const wrap = field.closest('.field');
+          const old = wrap.querySelector('.err'); if (old) old.remove();
+          wrap.classList.add('is-invalid');
+          const m = document.createElement('span'); m.className = 'err';
+          m.textContent = result === 'bad-email'
+            ? 'We couldn’t book with this email address. Please check it, so your Webex invite reaches you.'
+            : 'Please enter a full phone number, e.g. +256 772 123 456.';
+          wrap.appendChild(m); field.focus();
           btn.disabled = false; drawIcons();
           return;
         }

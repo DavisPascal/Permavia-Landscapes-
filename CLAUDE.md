@@ -32,6 +32,7 @@ Copy: "millions of trees" (never "1 million"); location stays Hoima City but say
 ## Discovery-call booking (Contact page, 3-step wizard)
 - Step 3 = own calendar fed by **Cal.com** live slots (`booking` link in site.js: `cal.com/info-permavialandscapes.com/30min`, Webex, connected via CalDAV to Namecheap Private Email info@). Only days/times in `callDays` / `callSlots` (currently Thu–Fri, 09:00–14:30 starts, 30 min) AND free in Cal.com are shown.
 - Confirm → POST `api.cal.com/v2/bookings` → then HubSpot booking form → `/thank-you/?booked=1&confirmed=1`. If Cal.com fails → request-only flow. Calls are **Webex only**.
+- The Cal.com event **requires `attendee.phoneNumber`** (sent as +256… via `intlPhone()` in main.js) and **rejects emails that can't receive mail** (e.g. @example.com). A 400 about email/phone sends the visitor back to step 1 with a message. Real end-to-end test confirmed 21 Nov 2026: booking accepted, Webex link created, event written to the Private Email calendar via CalDAV.
 - Don't make real Cal.com bookings without asking (they land in the user's calendar).
 
 ## Still open (as of Nov 2026)

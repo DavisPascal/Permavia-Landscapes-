@@ -213,4 +213,31 @@ function signupForm({ id, kind = 'waitlist', button = 'Join the Waitlist', inter
 </form>`;
 }
 
-module.exports = { img, icon, waIcon, waLink, header, footer, ctaBand, pageHero, sectionHead, stageMeter, signupForm, site };
+// ── Answer-engine (AEO) helpers ──────────────────────────────
+// "In short" box: a self-contained 2–3 sentence answer that AI assistants and search snippets can quote.
+const inShort = (text) => `<div class="in-short" data-reveal><strong>${icon('sparkles')} In short</strong><p>${text}</p></div>`;
+
+// FAQ section: visible questions + answers. Pair it with faqSchema() so the same Q&As are machine-readable.
+// items: [[question, answer], …]; answers may contain simple links.
+const faqSection = ({ eyebrow = 'Questions', title, items, id = 'faq', sage = false }) => `
+<section class="section${sage ? ' section--sage' : ''}" id="${id}" aria-labelledby="${id}-title">
+  <div class="container faq-wrap">
+    ${sectionHead({ eyebrow, title, id: `${id}-title` })}
+    ${items.map(([q, a], i) => `
+    <details class="faq-item"${i === 0 ? ' open' : ''} data-reveal>
+      <summary>${q}<span class="faq-ic">${icon('plus')}</span></summary>
+      <div class="faq-a"><p>${a}</p></div>
+    </details>`).join('')}
+  </div>
+</section>`;
+
+const stripTags = (s) => String(s).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+const faqSchema = (items) => ({
+  '@context': 'https://schema.org', '@type': 'FAQPage',
+  mainEntity: items.map(([q, a]) => ({ '@type': 'Question', name: stripTags(q), acceptedAnswer: { '@type': 'Answer', text: stripTags(a) } })),
+});
+
+// Reference to the business entity (defined in build.js) for "provider" fields.
+const businessRef = () => (site.url ? { '@id': `${site.url.replace(/\/$/, '')}/#business` } : { '@type': 'LocalBusiness', name: site.name });
+
+module.exports = { img, icon, waIcon, waLink, header, footer, ctaBand, pageHero, sectionHead, stageMeter, signupForm, inShort, faqSection, faqSchema, businessRef, site };

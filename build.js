@@ -104,7 +104,7 @@ ${p.ogImage ? `<meta property="og:image" content="${abs(p.ogImage)}">\n<meta nam
 <meta name="description" content="${esc(description)}">
 ${p.noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}
 ${og}
-<meta property="og:type" content="${p.schema && p.schema['@type'] === 'BlogPosting' ? 'article' : 'website'}">
+<meta property="og:type" content="${[].concat(p.schema || []).some((s) => s['@type'] === 'BlogPosting') ? 'article' : 'website'}">
 <meta property="og:locale" content="en_UG">
 <meta property="og:site_name" content="${site.name}">
 <meta property="og:title" content="${esc(title)}">
@@ -172,6 +172,46 @@ ${indexable.sort((a, b) => a.path.localeCompare(b.path)).map((p) => `  <url><loc
 fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *
 Allow: /
 ${site.url ? `\nSitemap: ${abs('/sitemap.xml')}\n` : ''}`);
+
+// ── llms.txt: a plain-language summary for AI assistants (https://llmstxt.org) ──
+// Built from site.js and data.js, so it stays in sync. Contact details come straight from site.js.
+{
+  const { projects, posts } = require('./src/data');
+  const link = (title, p, note) => `- [${title}](${abs(p)})${note ? `: ${note}` : ''}`;
+  const llms = `# ${site.name}
+
+> ${site.name} is a regenerative landscape and farm design company based in ${site.location}, serving ${site.serviceAreas.join(', ')} and clients across East Africa. We design, build, maintain and teach landscapes that hold water, rebuild living soil, grow food and protect wildlife, using organic, nature-based methods only. The first 30-minute discovery call (on Webex) is free.
+
+## Key facts
+- Location: ${site.location} (serving ${site.serviceAreas.join(', ')} and East Africa)
+- Services: ${services.map((s) => s.title).join('; ')}
+- Projects: ${Object.values(projects).map((p) => `${p.name} (${p.type}, ${p.status})`).join('; ')}
+- Methods: organic and nature-based only; no synthetic fertilisers or pesticides
+- Opening hours: ${site.hours} (EAT)
+- Contact: phone/WhatsApp ${site.phone}; email ${site.email}; website ${abs('/')}
+- Free discovery call: book at ${abs('/contact/#book')}
+
+## Services
+${services.map((s) => link(s.title, `/services/#${s.key}`, s.short)).join('\n')}
+
+## Projects
+${Object.values(projects).map((p) => link(p.name, p.path, p.short)).join('\n')}
+
+## Answers to common questions
+${link('FAQ: costs, areas covered, site visits, methods, timelines', '/faq/')}
+
+## Guides (Regenerative Journal)
+${posts.map((p) => link(p.title, `/blog/${p.slug}/`, p.summary || p.excerpt)).join('\n')}
+
+## Other pages
+${link('About Permavia Landscapes', '/about-us/')}
+${link('Courses and workshops', '/courses/')}
+${link('Shop (seedlings, tools, guides)', '/shop/')}
+${link('Events: workshops and farm tours', '/our-events/')}
+${link('Contact and booking', '/contact/')}
+`;
+  fs.writeFileSync(path.join(OUT, 'llms.txt'), llms);
+}
 
 // ── Netlify files ────────────────────────────────────────────
 // Netlify shows /404.html for any address that doesn't exist.

@@ -106,7 +106,82 @@ const P = {
   },
 };
 
-const { signupForm } = require('../components');
+const { signupForm, inShort, faqSection, faqSchema, businessRef, site } = require('../components');
+
+// ── Answer-engine content: a quotable summary + real questions per project (facts from this page only) ──
+const pageUrl = (p) => (site.url ? site.url.replace(/\/$/, '') + p : p);
+const AEO = {
+  'million-trees': {
+    short: 'Million Trees is Permavia Landscapes’ community tree nursery in Hoima City, Uganda. It grows organic, locally adapted seedlings in eight categories (fruit, indigenous, timber, medicinal, herbs and spices, grasses, ornamentals and nitrogen fixers) for farms, homes, schools, NGOs and restoration projects, with the goal of planting millions of trees across East Africa.',
+    faqTitle: 'Questions About <em>Seedlings</em>',
+    faqs: [
+      ['Where can I buy tree seedlings in Hoima?',
+        'From the Million Trees nursery run by Permavia Landscapes in Hoima City. <a href="/contact/?service=seedlings#enquiry">Request a price list</a> or message us on WhatsApp.'],
+      ['What kinds of tree seedlings does Million Trees grow?',
+        'Eight categories: fruit trees, indigenous trees, timber and woodlot trees, medicinal plants, herbs and spices, grasses and groundcover, ornamentals, and nitrogen-fixing trees.'],
+      ['Are the seedlings organic?',
+        'Yes. Every seedling is grown without synthetic fertilisers or pesticides, from seed and cuttings collected from healthy local trees, so it is adapted to local conditions from day one.'],
+      ['Who can order seedlings?',
+        'Farmers moving to agroforestry, homeowners, schools, NGOs, restoration and carbon projects, and Permavia’s own design clients.'],
+      ['Can Permavia help plan where to plant the trees?',
+        'Yes. Our <a href="/services/#farm">Farm &amp; Agroforestry</a> and <a href="/services/#design">Landscape Design</a> services choose the right species for the right place on your land.'],
+    ],
+    schema: () => [{
+      '@context': 'https://schema.org', '@type': 'Product',
+      name: 'Tree seedlings: Million Trees nursery',
+      description: 'Organic, locally propagated seedlings for farms, homes, schools, NGOs and restoration projects in Uganda and East Africa.',
+      category: 'Tree seedlings',
+      brand: { '@type': 'Brand', name: 'Permavia Landscapes' },
+      additionalProperty: ['Fruit Trees', 'Indigenous Trees', 'Timber & Woodlot', 'Medicinal Plants', 'Herbs & Spices', 'Grasses & Groundcover', 'Ornamentals', 'Nitrogen Fixers']
+        .map((v) => ({ '@type': 'PropertyValue', name: 'Seedling category', value: v })),
+      url: pageUrl('/million-trees/'),
+      manufacturer: businessRef(),
+    }],
+  },
+  'permavia-farm': {
+    short: 'Permavia Farm is a planned 5-acre regenerative demonstration farm in Western Uganda, run by Permavia Landscapes. It will show water harvesting, a multi-storey food forest, working gardens and animal systems with zero synthetic inputs, and will offer farm tours, workshops, a farm-to-table restaurant and simple eco-stays. It is currently in the planning stage (stage 2 of 5).',
+    faqTitle: 'Questions About <em>Permavia Farm</em>',
+    faqs: [
+      ['Can I visit Permavia Farm?',
+        'Not yet. The farm is in the planning stage (stage 2 of 5). <a href="#waitlist">Join the visitor waitlist</a> to hear first when tours, dining and stays open.'],
+      ['What will visitors be able to do at the farm?',
+        'Take guided farm tours, join workshops and field days, eat at a farm-to-table restaurant, stay overnight in simple eco-stays, and see water systems, compost and soil labs, working gardens and animal systems in action.'],
+      ['How big is Permavia Farm?',
+        'Five acres, planned in five or more zones: kitchen gardens, a food forest, water-harvesting earthworks, animal systems, and the restaurant and stays.'],
+      ['Does the farm use chemical fertilisers or pesticides?',
+        'No. Permavia Farm is designed to run on zero synthetic inputs.'],
+    ],
+    schema: () => [],
+  },
+  'permavia-academy': {
+    short: 'Permavia Academy is Permavia Landscapes’ training programme in regenerative design and land management for Africa. It will combine online lessons with hands-on, on-farm sessions across eight skill areas, from landscape design and water harvesting to carbon markets and leadership. Courses are in development; learners can join the waitlist for early access.',
+    faqTitle: 'Questions About <em>Permavia Academy</em>',
+    faqs: [
+      ['What will Permavia Academy teach?',
+        'Eight skill areas: landscape design, geomatics and mapping, carbon markets, programme design, leadership and facilitation, food forests and agroforestry, water harvesting, and permaculture design.'],
+      ['Are the courses online or in person?',
+        'Both. Theory is taught online so you can learn from anywhere, and practical skills are taught in person on a working farm.'],
+      ['Who are the courses for?',
+        'Farmers, landscape designers, NGO and carbon project staff, government and corporate teams, and anyone starting out in regenerative land management in Africa.'],
+      ['When do courses start?',
+        'The curriculum is in development (stage 2 of 5). <a href="#waitlist">Join the course waitlist</a> for early access and founding-learner pricing. Shorter workshops are listed on our <a href="/courses/">Courses</a> page.'],
+    ],
+    schema: () => [{
+      '@context': 'https://schema.org', '@type': 'ItemList',
+      name: 'Permavia Academy skill areas',
+      itemListElement: ['Landscape Design', 'Geomatics & Mapping', 'Carbon Markets', 'Programme Design', 'Leadership & Facilitation', 'Food Forest & Agroforestry', 'Water Harvesting', 'Permaculture Design']
+        .map((n, i) => ({
+          '@type': 'ListItem', position: i + 1,
+          item: {
+            '@type': 'Course', name: `${n} (Permavia Academy)`,
+            description: `${n} training for regenerative land management in Africa, taught online and on-farm by Permavia Academy.`,
+            provider: businessRef(),
+            hasCourseInstance: { '@type': 'CourseInstance', courseMode: ['online', 'onsite'], courseWorkload: 'Flexible' },
+          },
+        })),
+    }],
+  },
+};
 
 function page(key) {
   const meta = projects[key];
@@ -136,6 +211,7 @@ ${pageHero({
     <div class="copy" data-reveal>
       <p class="eyebrow">About the Project</p>
       <h2 id="about-title">${d.aboutTitle}</h2>
+      ${inShort(AEO[key].short)}
       ${d.about.map((p) => `<p>${p}</p>`).join('')}
       <a class="btn btn--primary" href="${d.cta[1]}" style="margin-top:12px">${d.cta[0]} ${icon('arrow-right')}</a>
     </div>
@@ -187,7 +263,9 @@ ${d.waitlist ? `
   </div>
 </section>` : ''}
 
-<section class="section${d.waitlist ? ' section--sage' : ''}" aria-labelledby="other-title">
+${faqSection({ eyebrow: 'Questions', title: AEO[key].faqTitle, items: AEO[key].faqs, id: 'project-faq', sage: true })}
+
+<section class="section" aria-labelledby="other-title">
   <div class="container">
     ${sectionHead({ eyebrow: 'Keep Exploring', title: 'Explore Our Other <em>Projects</em>', id: 'other-title' })}
     <div class="grid grid-2" data-stagger>
@@ -213,6 +291,7 @@ ${ctaBand({ title: d.ctaTitle, text: 'Questions about this project, partnerships
     title: meta.name,
     description: `${meta.name}: ${d.summary}`,
     ogImage: d.hero,
+    schema: [...AEO[key].schema(), faqSchema(AEO[key].faqs)],
     body,
   };
 }

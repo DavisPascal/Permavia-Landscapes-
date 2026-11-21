@@ -1,4 +1,4 @@
-const { img, icon, pageHero, signupForm } = require('../components');
+const { img, icon, pageHero, signupForm, inShort, faqSchema } = require('../components');
 const { posts, fmtDate } = require('../data');
 const { postCard } = require('../cards');
 
@@ -60,7 +60,10 @@ const single = posts.map((p) => {
   const related = posts.filter((x) => x.slug !== p.slug).slice(0, 3);
   return {
     path: `/blog/${p.slug}/`, active: 'blog', title: p.title, seoTitle: p.seoTitle, description: p.excerpt, ogImage: p.image,
-    schema: { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, datePublished: p.date, author: { '@type': 'Organization', name: 'Permavia Landscapes' } },
+    schema: [
+      { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: p.title, datePublished: p.date, abstract: p.summary, author: { '@type': 'Organization', name: 'Permavia Landscapes' } },
+      ...(p.faqs ? [faqSchema(p.faqs)] : []),
+    ],
     body: `
 <section class="page-hero article-hero is-short">
   <div class="page-hero-bg"><img src="${p.image}" alt="" fetchpriority="high"></div>
@@ -75,7 +78,9 @@ const single = posts.map((p) => {
   <div class="container">
     <article class="article">
       <div class="feature-img"><img src="${p.image}" alt="${p.title}"></div>
+      ${p.summary ? inShort(p.summary) : ''}
       <div class="prose">${p.body}</div>
+      ${p.faqs ? `<div class="post-faq"><h2>Frequently asked questions</h2>${p.faqs.map(([q, a], i) => `<details class="faq-item"${i === 0 ? ' open' : ''}><summary>${q}<span class="faq-ic">${icon('plus')}</span></summary><div class="faq-a"><p>${a}</p></div></details>`).join('')}</div>` : ''}
       <div class="author-box"><span class="av">${icon('leaf')}</span><div><strong>Written by the Permavia Team</strong><p>Regenerative designers and builders serving East Africa from Hoima City, Uganda.</p></div></div>
       <div class="post-cta">
         <div><h2>Want this on your land?</h2><p>Book a free consultation and we'll show you what's possible.</p></div>
