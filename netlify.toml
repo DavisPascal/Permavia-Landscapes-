@@ -1,0 +1,10 @@
+# Netlify settings (used when the site is connected to GitHub; drag-and-drop deploys ignore this).
+[build]
+  command = "npm run build"   # change to "npm run build:maintenance" to deploy maintenance mode
+  publish = "public"
+
+# Cache images, fonts, CSS and JS for a week (the site loads faster for returning visitors).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

@@ -1,0 +1,12 @@
+# Dependencies and logs
+node_modules/
+npm-debug.log*
+*.log
+
+# Personal Claude Code settings (shared ones like .claude/launch.json are kept)
+.claude/settings.local.json
+
+# OS clutter
+Thumbs.db
+desktop.ini
+.DS_Store
