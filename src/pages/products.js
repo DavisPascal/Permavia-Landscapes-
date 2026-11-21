@@ -6,7 +6,7 @@ const courseData = [
   ['Permaculture Design Certificate (72-hour PDC)', 'The internationally recognised 72-hour Permaculture Design Certificate, adapted for African climates, soils and markets.', ['onsite'], 'PT72H'],
   ['Weekend Workshops', 'Focused, practical weekend workshops on composting, water harvesting, food forests and soil.', ['onsite'], 'P2D'],
   ['Online Learning', 'Self-paced video lessons and guides on regenerative land management, available from anywhere.', ['online'], null],
-  ['Site-Specific Training', 'Training for your team on your own land, built around your project and goals.', ['onsite'], null],
+  ['Site-Specific Training', 'Hands-on training on Permavia Farm (once it opens) or on your own farm, built around your land, project and goals.', ['onsite'], null],
 ].map(([name, description, mode, workload]) => ({
   '@context': 'https://schema.org', '@type': 'Course', name, description,
   provider: businessRef(), inLanguage: 'en',
@@ -35,7 +35,7 @@ ${pageHero({
       <div class="card offer-card"><span class="ic-soft">${icon('award')}</span><span class="badge badge--gold">72 hours</span><h3>Permaculture Design Certificate</h3><p>The internationally recognised 72-hour PDC, adapted for African climates, soils and markets.</p></div>
       <div class="card offer-card"><span class="ic-soft">${icon('calendar-days')}</span><span class="badge">2 days</span><h3>Weekend Workshops</h3><p>Focused, practical weekends on composting, water harvesting, food forests and more.</p></div>
       <div class="card offer-card"><span class="ic-soft">${icon('monitor-play')}</span><span class="badge badge--fern">Self-paced</span><h3>Online Learning</h3><p>Video lessons and guides you can follow from anywhere, at your own pace.</p></div>
-      <div class="card offer-card"><span class="ic-soft">${icon('map-pin')}</span><span class="badge">On your land</span><h3>Site-Specific Training</h3><p>We train your team on your own site, built around your project and goals.</p></div>
+      <div class="card offer-card"><span class="ic-soft">${icon('map-pin')}</span><span class="badge">Our farm or yours</span><h3>Site-Specific Training</h3><p>Hands-on training on Permavia Farm (once it opens) or on your own farm, built around your land, project and goals.</p></div>
     </div>
     <div class="link-panel" data-reveal>
       <p><strong>Looking for professional training?</strong> Our in-depth skills programmes live at Permavia Academy.</p>
