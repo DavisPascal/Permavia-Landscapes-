@@ -138,6 +138,8 @@
     const status = $('[data-filter-status]', box);
     const state = { cat: 'all', tag: '' };
     const label = (btn) => btn ? btn.childNodes[0].textContent.trim() : '';
+    // Tags have no buttons on the page; they arrive from an article's tag links (?tag=…).
+    let tagNames = {}; try { tagNames = JSON.parse(box.dataset.tagNames || '{}'); } catch (e) { /* ignore */ }
     const apply = (push) => {
       catBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.cat === state.cat)));
       tagBtns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tag === state.tag)));
@@ -154,8 +156,14 @@
       if (status) {
         const parts = [];
         if (state.cat !== 'all') parts.push(label(catBtns.find((b) => b.dataset.cat === state.cat)));
-        if (state.tag) parts.push(label(tagBtns.find((b) => b.dataset.tag === state.tag)));
+        if (state.tag) parts.push(`#${tagNames[state.tag] || state.tag}`);
         status.textContent = parts.length ? `Showing ${shown} article${shown === 1 ? '' : 's'} in ${parts.join(' + ')}` : '';
+        if (state.tag) {
+          const clear = document.createElement('button');
+          clear.type = 'button'; clear.className = 'filter-clear'; clear.textContent = 'Clear tag';
+          clear.addEventListener('click', () => { state.tag = ''; apply(true); });
+          status.append(' · ', clear);
+        }
       }
       if (push && window.history && history.replaceState) {
         const q = new URLSearchParams();
@@ -167,7 +175,7 @@
     catBtns.forEach((b) => b.addEventListener('click', () => { state.cat = b.dataset.cat; apply(true); }));
     tagBtns.forEach((b) => b.addEventListener('click', () => { state.tag = state.tag === b.dataset.tag ? '' : b.dataset.tag; apply(true); }));
     if (catBtns.some((b) => b.dataset.cat === params.get('category'))) state.cat = params.get('category');
-    if (tagBtns.some((b) => b.dataset.tag === params.get('tag'))) state.tag = params.get('tag');
+    if (tagNames[params.get('tag')] || tagBtns.some((b) => b.dataset.tag === params.get('tag'))) state.tag = params.get('tag');
     apply(false);
   });
 

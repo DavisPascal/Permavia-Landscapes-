@@ -48,7 +48,7 @@ ${pageHero({
       </div>
     </a>
 
-    <div class="blog-browse" id="browse" data-blog-filter>
+    <div class="blog-browse" id="browse" data-blog-filter data-tag-names='${JSON.stringify(Object.fromEntries(blogTags.map((t) => [t.slug, t.name]))).replace(/'/g, '&#39;')}'>
       <h2 class="blog-browse-h">Browse by <em>Category</em></h2>
       <div class="filters" role="group" aria-label="Filter articles by category">
         <button class="filter-btn" data-cat="all" aria-pressed="true">All <span class="filter-n">${posts.length}</span></button>
@@ -56,10 +56,6 @@ ${pageHero({
       </div>
       <div class="cat-intro" data-cat-intro hidden>
         ${blogCategories.map((c) => `<p data-for="${c.slug}" hidden>${icon(c.icon)}<span><strong>${c.name}:</strong> ${c.covers}</span></p>`).join('')}
-      </div>
-      <div class="tag-cloud" role="group" aria-label="Filter articles by tag">
-        <span class="tag-cloud-label">${icon('tag')} Tags</span>
-        ${blogTags.map((t) => { const n = count((p) => (p.tags || []).includes(t.name)); return `<button class="tag-btn" data-tag="${t.slug}" aria-pressed="false"${n ? '' : ' data-empty-tag'}>#${t.name}${n ? ` <span class="filter-n">${n}</span>` : ''}</button>`; }).join('')}
       </div>
       <p class="filter-status" data-filter-status aria-live="polite"></p>
     </div>
