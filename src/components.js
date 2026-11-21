@@ -18,7 +18,7 @@ const NAV = () => {
   {
     label: 'About Us', href: '/about-us/', key: 'about',
     children: [
-      { label: 'Our Story & Values', href: '/about-us/', desc: 'Mission, vision, values and team', icon: 'heart-handshake' },
+      { label: 'Our Story & Values', href: '/about-us/', desc: 'Mission, vision and values', icon: 'heart-handshake' },
       { label: 'What We Do', href: '/about-us/#what-we-do', desc: 'Water, soil, food forests and more', icon: 'sprout' },
       { label: 'Our Approach', href: '/about-us/#approach', desc: 'Assess, design, implement, manage, teach', icon: 'route' },
     ],

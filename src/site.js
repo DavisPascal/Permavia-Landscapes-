@@ -12,6 +12,10 @@ module.exports = {
   vision:
     'An East Africa where land is healthy, productive and resilient, and where people have the skills to keep it that way.',
 
+  // "Meet the Team" section on the About page. Hidden while the team is being built;
+  // set to true (and add the founder photo/name in src/pages/about.js) to show it again.
+  showTeam: false,
+
   // ── Maintenance mode ───────────────────────────────────────
   // on: true sends every visitor to the "We'll be back soon" page (temporary redirect, so
   // Google keeps your pages). You can also switch it on without editing this file:

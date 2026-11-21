@@ -15,7 +15,7 @@ module.exports = {
   '/about-us/': {
     keyword: 'landscapers Hoima',
     title: 'About Permavia | Regenerative Landscapers in Hoima',
-    description: 'Meet the Hoima-based team designing water-holding, soil-building, food-producing landscapes across Uganda. See how we work and book a free consultation.',
+    description: 'Permavia is a regenerative development company in Hoima, Uganda. Read our story, mission, values and approach, then book a free consultation.',
   },
   '/services/': {
     keyword: 'permaculture consultant Uganda',

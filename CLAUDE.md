@@ -40,7 +40,7 @@ Services: `services` in data.js (slug → `/services/<slug>/`, plus activities, 
 
 ## Still open (as of Nov 2026)
 - Phone/WhatsApp still placeholder `+256 700 000 000` (`phone`, `phoneHref`, `whatsapp` in site.js); confirm info@ mailbox.
-- Founder photo/name (About → team block TODO). Optional GA4 ID (`analytics`).
+- Team section on About is hidden (`showTeam: false` in site.js) while the team is being built; turn on once founder photo/name are ready. Optional GA4 ID (`analytics`).
 - Cal.com availability should be set to Thu–Fri 9–3 to match the site.
 - Deploy to Netlify, connect the Namecheap domain, submit the sitemap in Search Console.
 
