@@ -47,6 +47,11 @@
     li.classList.toggle('is-open', open);
     b.setAttribute('aria-expanded', String(open));
   }));
+  // Touch screens (e.g. tablets in landscape): tapping anywhere outside an open dropdown closes it.
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.has-sub')) return;
+    $$('.has-sub.is-open').forEach((x) => { x.classList.remove('is-open'); const t = $('.sub-toggle', x); if (t) t.setAttribute('aria-expanded', 'false'); });
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
     $$('.has-sub.is-open').forEach((x) => x.classList.remove('is-open'));
