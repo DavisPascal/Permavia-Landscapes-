@@ -57,9 +57,9 @@
   <p class="ok" id="status" aria-live="polite"></p>
 
   <div class="note">
-    <strong>About the logo:</strong> when you copy, the logo points to
-    <code>https://www.permavialandscapes.com/email/permavia-logo@2x.png</code>, so it appears for everyone you email once the website is
-    <strong>public on your domain</strong>. Until then, use the image version (2) or insert the logo file by hand (see below).
+    <strong>About the logo:</strong> when you copy, the logo is loaded from a public copy on GitHub, so it shows for everyone you email
+    right away. Once the website is live on www.permavialandscapes.com, it can be switched to the website's own copy.
+    If you pasted the signature before, delete it and paste it again.
   </div>
 
   <h2>How to add it in Namecheap Private Email (webmail)</h2>
@@ -70,7 +70,7 @@
     <li>Name it <em>Permavia</em>, click in the big box and press <strong>Ctrl + V</strong>. Choose to use it for <strong>new messages</strong> and <strong>replies</strong>, then <strong>Save</strong>.</li>
     <li>Send yourself a test email to check it.</li>
   </ol>
-  <p><strong>If the logo doesn't show yet</strong> (site not public): in the signature editor, delete the empty logo box, click the <strong>insert image</strong> button and choose <code>permavia-logo@2x.png</code> from this folder. Set its width to <strong>186</strong>.</p>
+  <p><strong>If the logo still doesn't show</strong>: in the signature editor, delete the empty logo box, click the <strong>insert image</strong> button and choose <code>permavia-logo@2x.png</code> from this folder. Set its width to <strong>186</strong>.</p>
 
   <h2>2. Image version</h2>
   <p>A single picture of the signature (<code>permavia-email-signature.png</code> in this folder). Insert it with the editor's <strong>insert image</strong> button and set the width to <strong>600</strong>. Note: links in a picture can't be clicked, and some email apps hide pictures until the reader allows them, so the copyable version (1) is better.</p>
@@ -86,7 +86,10 @@ Hoima City, Uganda · Serving East Africa</pre>
 
 <script>
 (function () {
-  var LOGO_URL = 'https://www.permavialandscapes.com/email/permavia-logo@2x.png';
+  // Logo address used in sent emails. For now it's served from GitHub (public) because the website isn't
+  // public on the domain yet. Once www.permavialandscapes.com is live, switch to:
+  // 'https://www.permavialandscapes.com/email/permavia-logo@2x.png'
+  var LOGO_URL = 'https://raw.githubusercontent.com/DavisPascal/Permavia-Landscapes-/Development/public/email/permavia-logo@2x.png';
   var status = document.getElementById('status');
   var sig = document.getElementById('sig');
   var say = function (t) { status.textContent = t; };
