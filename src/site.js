@@ -31,10 +31,10 @@ module.exports = {
   // Live domain, used for canonical links and social previews. Leave '' until known.
   url: 'https://www.permavialandscapes.com',
 
-  // TODO (priority 1): replace these PLACEHOLDERS with the real details.
-  phone: '+256 700 000 000',
-  phoneHref: '+256700000000',
-  whatsapp: '256700000000', // digits only, country code first, no "+"
+  // Contact details (real, confirmed Nov 2026). Shown site-wide and in Google's business data.
+  phone: '+256 394 777 418',
+  phoneHref: '+256394777418',
+  whatsapp: '256394777418', // digits only, country code first, no "+"
   email: 'info@permavialandscapes.com',
 
   location: 'Hoima City, Uganda',

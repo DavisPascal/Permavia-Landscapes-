@@ -49,7 +49,7 @@ Services: `services` in data.js (slug → `/services/<slug>/`, plus activities, 
 - Don't make real Cal.com bookings without asking (they land in the user's calendar).
 
 ## Still open (as of Nov 2026)
-- Phone/WhatsApp still placeholder `+256 700 000 000` (`phone`, `phoneHref`, `whatsapp` in site.js); confirm info@ mailbox.
+- Phone/WhatsApp set to real `+256 394 777 418` (Nov 2026); owner to confirm WhatsApp works on it. Email info@ confirmed.
 - Team section on About is hidden (`showTeam: false` in site.js) while the team is being built; turn on once founder photo/name are ready. Optional GA4 ID (`analytics`).
 - Cal.com availability should be set to Thu–Fri 9–3 to match the site.
 - Deploy to Netlify, connect the Namecheap domain, submit the sitemap in Search Console.
