@@ -29,6 +29,9 @@ logo_url: /assets/img/logo-mark.png
 media_folder: public/uploads
 public_folder: /uploads
 
+# Photo size limit (1.5 MB) is set on each image field below (media_library → config → max_file_size):
+# large phone photos time out on slow connections and load slowly for visitors.
+
 slug:
   encoding: ascii
   clean_accents: true
@@ -91,7 +94,7 @@ collections:
           - Sustainable Agriculture
           - Biodiversity
           - East Africa
-      - { label: Featured image, name: image, widget: image, choose_url: false, hint: "A landscape-shaped photo, ideally 1600 px wide or less (JPG or WebP) so pages load fast on phones." }
+      - { label: Featured image, name: image, widget: image, choose_url: false, media_library: { config: { max_file_size: 1572864 } }, hint: "A landscape-shaped photo, at most 1.5 MB and about 1600 px wide (JPG or WebP). Large phone photos must be resized first." }
       - { label: Featured image description (alt text), name: image_alt, widget: string, hint: "Describe what the photo shows, for people who can't see it and for Google, e.g. 'Swales on contour holding rainwater on a farm'." }
       - { label: Excerpt, name: excerpt, widget: text, hint: "1–2 sentences shown on the article cards and the blog page." }
       - { label: SEO title, name: seo_title, widget: string, required: false, hint: "Optional. The title shown in Google, up to 60 characters. Leave empty to use the article title." }
@@ -141,7 +144,7 @@ collections:
           - { label: Upcoming, value: upcoming }
           - { label: Completed, value: completed }
           - { label: Cancelled, value: cancelled }
-      - { label: Featured image, name: image, widget: image, required: false, choose_url: false, hint: "Optional. A landscape-shaped photo, ideally 1600 px wide or less." }
+      - { label: Featured image, name: image, widget: image, required: false, choose_url: false, media_library: { config: { max_file_size: 1572864 } }, hint: "Optional. A landscape-shaped photo, at most 1.5 MB and about 1600 px wide." }
       - { label: Featured image description (alt text), name: image_alt, widget: string, required: false, hint: "Describe what the photo shows." }
       - { label: Start date, name: start_date, widget: datetime, format: "YYYY-MM-DD", date_format: "D MMM YYYY", time_format: false, picker_utc: true }
       - { label: Start time, name: start_time, widget: datetime, required: false, format: "HH:mm", date_format: false, time_format: "HH:mm", picker_utc: true, hint: "East Africa Time (EAT)." }

@@ -18,7 +18,7 @@ Notes:
 - **Drafts:** untick **Published** on an article to keep it as a draft. It's saved but never shown.
 - **Upcoming events** show automatically. After the end date, an event hides itself from the list (even before the next rebuild) and moves to "Previous Events" at the next build. Set the status to **Completed** or **Cancelled** to change its label.
 - **URL slug:** this is the page address. Don't change it after publishing, or links to the old address will break.
-- **Photos:** upload landscape photos at most about 1600 px wide (JPG or WebP), and always fill in the image description (alt text).
+- **Photos:** upload landscape photos of **at most 1.5 MB**, about 1600 px wide (JPG or WebP), and always fill in the image description (alt text). Larger photos are refused with a "file too large" message: they time out on slow connections and load slowly for visitors. To shrink a phone photo, use an app or a site like squoosh.app (resize to 1600 px wide, quality about 75%).
 
 ## One-time setup on GitHub and Netlify (about 10 minutes)
 
