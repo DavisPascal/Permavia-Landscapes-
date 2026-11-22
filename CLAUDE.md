@@ -4,6 +4,14 @@ Static marketing site for **Permavia Landscapes** (regenerative landscape & farm
 Live domain: **https://www.permavialandscapes.com** (to be hosted on **Netlify**, domain from **Namecheap**). Not deployed yet.
 Original brief: `C:\Users\LENOVO\Desktop\Website_VScode\Permavia_Website_Developer_Page_Plan.pdf`; SEO strategy: `…\Permavia_Landscapes_SEO_Strategy.docx`.
 
+## Git & deployment workflow (owner's rules, Nov 2026)
+- `main` = production branch, connected to the live Netlify site. **Never change, merge into, push to or publish `main` without the owner's explicit approval.**
+- All work happens on the **`Development`** branch (GitHub name, capital D; the owner's rules say "development", same branch). Before every push, confirm `git branch --show-current` is `Development`.
+- After a task: review changed files, build and test locally (desktop + 375px phone), commit to `Development`, push to GitHub.
+- Don't trigger production deploys or change Netlify production/build settings, environment variables or domain setup without approval.
+- Keep existing design, structure and functionality unless the owner asks for changes.
+- Publishing: only when the owner explicitly says so, prepare approved changes for merging `Development` → `main`.
+
 ## Run
 - `start.cmd` (double-click) or `npm run dev` → preview at http://localhost:4321. Edits in `src/` rebuild automatically.
 - `npm run build` → normal site into `public/`. `npm run build:maintenance` → maintenance mode (see MAINTENANCE.md).
