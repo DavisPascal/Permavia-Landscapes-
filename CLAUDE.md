@@ -54,6 +54,7 @@ Services: `services` in data.js (slug → `/services/<slug>/`, plus activities, 
 - Team section on About is hidden (`showTeam: false` in site.js) while the team is being built; turn on once founder photo/name are ready. Optional GA4 ID (`analytics`).
 - Cal.com availability should be set to Thu–Fri 9–3 to match the site.
 - Deploy to Netlify, connect the Namecheap domain, submit the sitemap in Search Console.
+- Email signature (`brand/email-signature/`): owner hasn't installed it yet. Logo currently loads from raw.githubusercontent.com (Development branch); after the domain is live, switch `LOGO_URL` in email-signature.html to `https://www.permavialandscapes.com/email/permavia-logo@2x.png` and have the owner re-paste.
 
 ## Working with the owner
 Non-developer; explain in plain language, step by step. Verify changes in the browser preview (desktop + 375px phone) before reporting.
