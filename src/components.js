@@ -126,7 +126,7 @@ function footer() {
       <div class="footer-col">
         <h2 class="footer-h">Get in Touch</h2>
         <ul class="footer-contact">
-          <li>${icon('map-pin')}<span>Based in Uganda</span></li>
+          <li>${icon('map-pin')}<span>${site.location}</span></li>
           <li>${icon('phone')}<a href="tel:${site.phoneHref}">${site.phone}</a></li>
           <li>${icon('mail')}<a class="footer-email" href="mailto:${site.email}">${site.email}</a></li>
           <li>${icon('clock')}<span>${site.hours}</span></li>
