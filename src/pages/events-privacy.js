@@ -1,18 +1,17 @@
-const { img, icon, pageHero, sectionHead, signupForm, site } = require('../components');
+const { img, icon, pageHero, sectionHead, signupForm, ctaBand, site } = require('../components');
+const { events: ALL } = require('../data');
+const { eventCard, eventWhen, h } = require('../cards');
 
-// Upcoming events. Add one object per event and rebuild; the empty state shows while this is empty.
-// { date: '2027-01-18', title: 'Food Forest Weekend', location: 'Permavia Farm', price: 'UGX 150,000', register: 'https://...' }
-const EVENTS = [];
+// Events are edited in Decap CMS (/admin → Events) and stored in content/events/*.md.
+// Upcoming = not marked "completed" and not yet ended when the site was built. The page also hides
+// events that end after the last build (see main.js), so the list never shows a past event.
+const today = new Date().toISOString().slice(0, 10);
+const upcoming = ALL.filter((e) => e.status !== 'completed' && e.endDate >= today);
+const past = ALL.filter((e) => !upcoming.includes(e)).reverse();
+const abs = (p) => (site.url && p && p.startsWith('/') ? site.url.replace(/\/$/, '') + p : p);
 
-const eventList = EVENTS.length
-  ? `<div class="grid grid-3" data-stagger>${EVENTS.map((e) => `
-    <article class="card post-card"><div class="body">
-      <div class="post-meta"><span>${icon('calendar')} ${new Date(e.date + 'T00:00:00').toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' })}</span><span>${icon('map-pin')} ${e.location}</span></div>
-      <h3>${e.title}</h3><p><strong>${e.price}</strong></p>
-      <a class="btn btn--primary btn--sm" href="${e.register}">Register ${icon('arrow-right')}</a>
-    </div></article>`).join('')}</div>`
-  : `
-  <div class="event-empty" data-reveal>
+const emptyState = (hidden) => `
+  <div class="event-empty" data-reveal data-events-empty${hidden ? ' hidden' : ''}>
     <div class="media"><img src="${img('05-permavia-farm__04-cards__card-1-farm-tours')}" alt="Smiling farmers in a green field during a farm visit" loading="lazy"></div>
     <div class="body">
       <p class="eyebrow">Upcoming Events</p>
@@ -23,15 +22,34 @@ const eventList = EVENTS.length
     </div>
   </div>`;
 
+const eventList = `
+    ${upcoming.length ? `<div class="grid grid-3 event-grid" data-stagger data-upcoming-list>${upcoming.map(eventCard).join('')}</div>` : ''}
+    ${emptyState(upcoming.length > 0)}`;
+
+const pastList = past.length ? `
+<section class="section section--sage" aria-labelledby="past-title">
+  <div class="container">
+    ${sectionHead({ eyebrow: 'Past Events', title: 'Previous <em>Events</em>', id: 'past-title' })}
+    <ul class="past-events">${past.map((e) => `<li><a href="/our-events/${e.slug}/"><strong>${h(e.title)}</strong><span>${eventWhen(e).date}${e.venue ? ` · ${h(e.venue)}` : ''}</span><span class="badge${e.status === 'cancelled' ? ' badge--gold' : ''}">${e.status === 'cancelled' ? 'Cancelled' : 'Completed'}</span></a></li>`).join('')}</ul>
+  </div>
+</section>` : '';
+
+const eventSchema = (e) => ({
+  '@context': 'https://schema.org', '@type': 'Event', name: e.title, description: e.excerpt,
+  startDate: e.startDate + (e.startTime ? `T${e.startTime}:00+03:00` : ''),
+  endDate: e.endDate + (e.endTime ? `T${e.endTime}:00+03:00` : ''),
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  eventStatus: e.status === 'cancelled' ? 'https://schema.org/EventCancelled' : 'https://schema.org/EventScheduled',
+  ...(e.venue ? { location: { '@type': 'Place', name: e.venue, address: e.venue } } : {}),
+  ...(e.image ? { image: abs(e.image) } : {}),
+  organizer: { '@type': 'Organization', name: site.name, url: site.url || undefined },
+  ...(e.registration ? { offers: { '@type': 'Offer', url: e.registration, availability: 'https://schema.org/InStock', ...(e.price && /\d/.test(e.price) ? { price: String(e.price).replace(/[^0-9.]/g, ''), priceCurrency: 'UGX' } : {}) } } : {}),
+  url: abs(`/our-events/${e.slug}/`),
+});
+
 const events = {
   path: '/our-events/', active: 'events', title: 'Events',
-  schema: EVENTS.map((e) => ({
-    '@context': 'https://schema.org', '@type': 'Event', name: e.title, startDate: e.date,
-    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode', eventStatus: 'https://schema.org/EventScheduled',
-    location: { '@type': 'Place', name: e.location, address: { '@type': 'PostalAddress', addressLocality: e.location, addressCountry: 'UG' } },
-    organizer: { '@type': 'Organization', name: 'Permavia Landscapes' },
-    offers: { '@type': 'Offer', price: String(e.price).replace(/[^0-9.]/g, '') || '0', priceCurrency: 'UGX', url: e.register, availability: 'https://schema.org/InStock' },
-  })),
+  schema: upcoming.map(eventSchema),
   description: 'Workshops, farm tours and trainings in regenerative design, water harvesting and food forests with Permavia Landscapes in Uganda.',
   body: `
 ${pageHero({
@@ -56,7 +74,55 @@ ${pageHero({
       <a class="btn btn--secondary" href="/contact/?service=education#enquiry">Plan a Group Event ${icon('arrow-right')}</a>
     </div>
   </div>
-</section>`,
+</section>
+${pastList}`,
+};
+
+// One page per event: /our-events/<slug>/
+const eventPage = (e) => {
+  const w = eventWhen(e);
+  const isPast = !upcoming.includes(e);
+  const statusLabel = e.status === 'cancelled' ? 'Cancelled' : isPast ? 'This event has ended' : 'Upcoming';
+  const register = e.registration && !isPast && e.status !== 'cancelled'
+    ? `<a class="btn btn--primary btn--lg" href="${h(e.registration)}" target="_blank" rel="noopener">Register ${icon('arrow-right')}</a>` : '';
+  return {
+    path: `/our-events/${e.slug}/`, active: 'events', title: e.title,
+    // Google description: what, when, where, then the short description (trimmed to 160 characters).
+    description: ((d) => (d.length > 160 ? d.slice(0, 157).replace(/\s+\S*$/, '') + '…' : d))(
+      `${e.title}: ${e.status === 'cancelled' ? 'cancelled event' : 'an event by Permavia Landscapes'} on ${w.date}${e.venue ? ` at ${e.venue}` : ''}. ${e.excerpt || 'Hands-on learning in regenerative design and land management.'}`.replace(/\s+/g, ' ').trim()),
+    ogImage: e.image || undefined, updated: e.startDate,
+    schema: [eventSchema(e)],
+    body: `
+${pageHero({
+  eyebrow: `Event · ${statusLabel}`,
+  title: h(e.title),
+  lead: `${w.date}${w.time ? ` · ${w.time}` : ''}${e.venue ? ` · ${h(e.venue)}` : ''}`,
+  image: e.image || img('01-home__07-inspiration__tile-5-community-development'),
+  crumbs: [['Events', '/our-events/'], [h(e.title)]],
+  size: 'is-short',
+  actions: register,
+})}
+<section class="section">
+  <div class="container about-grid">
+    <div class="copy" data-reveal>
+      ${e.status === 'cancelled' ? `<p class="event-notice">${icon('circle-alert')} This event has been cancelled. <a href="/our-events/">See other events</a>.</p>` : isPast ? `<p class="event-notice">${icon('info')} This event has already taken place. <a href="/our-events/">See upcoming events</a>.</p>` : ''}
+      <div class="prose prose--event">${e.body || `<p>${h(e.excerpt)}</p>`}</div>
+    </div>
+    <aside class="facts" data-reveal style="--d:.1s" aria-label="Event details">
+      <h3>${icon('calendar-days')} Event Details</h3>
+      <dl>
+        <div><dt>Date</dt><dd>${w.date}</dd></div>
+        ${w.time ? `<div><dt>Time</dt><dd>${w.time} (EAT)</dd></div>` : ''}
+        ${e.venue ? `<div><dt>Venue</dt><dd>${h(e.venue)}</dd></div>` : ''}
+        ${e.price ? `<div><dt>Price</dt><dd>${h(e.price)}</dd></div>` : ''}
+        <div><dt>Status</dt><dd>${statusLabel}</dd></div>
+      </dl>
+      ${register ? `<div class="svc-actions" style="margin-top:20px">${register.replace('btn--lg', 'btn--block')}</div>` : ''}
+    </aside>
+  </div>
+</section>
+${ctaBand({ title: 'Want a Training for Your <em>Group?</em>', text: 'We run private workshops, field days and trainings for NGOs, schools, companies and community groups. Tell us what you need.' })}`,
+  };
 };
 
 const updated = '12 November 2026';
@@ -106,4 +172,4 @@ ${pageHero({ eyebrow: 'Legal', title: 'Privacy <em>Policy</em>', lead: 'How we c
 </section>`,
 };
 
-module.exports = [events, privacy];
+module.exports = [events, ...ALL.map(eventPage), privacy];

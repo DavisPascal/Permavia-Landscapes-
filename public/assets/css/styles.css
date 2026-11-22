@@ -1161,3 +1161,24 @@ ol.transition-steps { list-style: none; margin: 0; padding: 0; display: grid; gr
   ol.steps > .step > h3 { margin-top: 18px; }
   ol.steps > .step > p { max-width: 34ch; justify-self: center; }
 }
+
+/* ==========================================================
+   CMS content: events list, event pages, blog empty state
+   ========================================================== */
+.event-grid { margin-bottom: 40px; }
+.event-card .event-venue { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--muted); margin: -4px 0 10px; }
+.event-card .event-venue .ic { width: 16px; height: 16px; color: var(--fern); flex: none; margin-top: 3px; }
+.event-card .media .badge { position: absolute; top: 16px; left: 16px; }
+.event-card[hidden], [data-upcoming-list][hidden] { display: none; }
+.past-events { list-style: none; margin: 0 auto; padding: 0; max-width: 820px; display: grid; gap: 12px; }
+.past-events a { display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; align-items: center; padding: 18px 22px; border-radius: 16px; background: var(--white); border: 1px solid var(--mist); text-decoration: none; color: var(--text); transition: border-color .2s, transform .2s; }
+.past-events a:hover { border-color: var(--leaf); transform: translateY(-2px); }
+.past-events strong { font: 600 16px/1.35 var(--f-head); color: var(--forest); }
+.past-events span:not(.badge) { grid-column: 1; font-size: 14px; color: var(--muted); }
+.past-events .badge { grid-column: 2; grid-row: 1 / span 2; }
+.event-notice { display: flex; gap: 10px; align-items: flex-start; padding: 14px 18px; border-radius: 14px; background: var(--sage); font-size: 15px; margin-bottom: 24px; }
+.event-notice .ic { color: var(--fern); flex: none; margin-top: 3px; }
+.copy .prose h2 { font-size: clamp(22px, 2.4vw, 28px); margin-top: 32px; }
+.blog-empty { margin-bottom: 0; }
+@media (max-width: 600px) { .past-events a { grid-template-columns: 1fr; } .past-events .badge { grid-column: 1; grid-row: auto; justify-self: start; margin-top: 6px; } }
+.prose--event > p:first-of-type::first-letter { float: none; font: inherit; color: inherit; margin: 0; }

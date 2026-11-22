@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<!-- The CMS needs Decap's editor (unpkg.com), GitHub (to save content) and Netlify (to sign in).
+     This policy applies to /admin only; the website pages keep their own stricter policy. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; media-src 'self' data: blob:; connect-src 'self' https://api.github.com https://api.netlify.com https://unpkg.com http://localhost:8081; frame-src 'self' blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'">
+<title>Content Manager | Permavia Landscapes</title>
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link href="/admin/config.yml" type="text/yaml" rel="cms-config-url">
+</head>
+<body>
+<!-- Decap CMS 3 (pinned version; to upgrade, change the number and test on the Development branch first). -->
+<script src="https://unpkg.com/decap-cms@3.17.3/dist/decap-cms.js"></script>
+<script src="/admin/cms.js"></script>
+</body>
+</html>

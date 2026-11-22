@@ -1,0 +1,159 @@
+# Decap CMS settings for Permavia Landscapes.
+# The CMS edits ONLY the blog and events. Every save is a commit to the Development branch;
+# the live site (main) changes only after Development is approved and merged.
+# Content is stored as Markdown files with front matter in content/blog and content/events,
+# and build.js turns them into pages. See CMS_SETUP.md.
+
+backend:
+  name: github
+  repo: DavisPascal/Permavia-Landscapes-
+  branch: Development          # the development branch on GitHub (capital D)
+  base_url: https://api.netlify.com   # sign-in through Netlify's GitHub OAuth
+  auth_endpoint: auth
+  commit_messages:
+    create: 'CMS: add {{collection}} "{{slug}}"'
+    update: 'CMS: update {{collection}} "{{slug}}"'
+    delete: 'CMS: delete {{collection}} "{{slug}}"'
+    uploadMedia: 'CMS: upload "{{path}}"'
+    deleteMedia: 'CMS: delete "{{path}}"'
+
+# Local testing: run "npx decap-server" in the project folder, then open http://localhost:4321/admin/
+# (saves go straight to the files on your computer, no sign-in needed). Ignored on the live site.
+local_backend: true
+
+site_url: https://www.permavialandscapes.com
+display_url: https://www.permavialandscapes.com
+logo_url: /assets/img/logo-mark.png
+
+# Uploaded images are stored in public/uploads and served at /uploads/...
+media_folder: public/uploads
+public_folder: /uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  # ── Blog & Insights ─────────────────────────────────────────
+  - name: blog
+    label: Blog & Insights
+    label_singular: Article
+    description: Articles for the Regenerative Journal (/blog/). Untick "Published" to keep an article as a draft.
+    folder: content/blog
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    summary: "{{title}}  ·  {{date}}"
+    sortable_fields: [date, title, category]
+    view_filters:
+      - { label: Published, field: published, pattern: true }
+      - { label: Drafts, field: published, pattern: false }
+    preview_path: "blog/{{fields.slug}}/"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - label: URL slug
+        name: slug
+        widget: string
+        hint: "The article's web address: /blog/your-slug/. Lowercase letters, numbers and hyphens only. Don't change it after publishing."
+        pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only, e.g. harvesting-rain-water']
+      - { label: Published, name: published, widget: boolean, default: true, hint: "Switch off to keep this article as a draft. Drafts are saved but never shown on the website." }
+      - { label: Publication date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "D MMM YYYY", time_format: false, picker_utc: true }
+      - { label: Author, name: author, widget: string, default: Permavia Team }
+      - label: Category
+        name: category
+        widget: select
+        options:
+          - Regenerative Design
+          - Agroforestry & Farm Solutions
+          - Ecological Restoration
+          - Project Implementation
+          - Landscape & Farm Management
+          - Regenerative Education
+          - Projects & Field Stories
+      - label: Tags
+        name: tags
+        widget: select
+        multiple: true
+        required: false
+        options:
+          - Permavia Farm
+          - Million Trees
+          - Permavia Academy
+          - Permaculture
+          - Food Forests
+          - Soil Health
+          - Water Management
+          - Tree Growing
+          - Community Development
+          - Sustainable Agriculture
+          - Biodiversity
+          - East Africa
+      - { label: Featured image, name: image, widget: image, choose_url: false, hint: "A landscape-shaped photo, ideally 1600 px wide or less (JPG or WebP) so pages load fast on phones." }
+      - { label: Featured image description (alt text), name: image_alt, widget: string, hint: "Describe what the photo shows, for people who can't see it and for Google, e.g. 'Swales on contour holding rainwater on a farm'." }
+      - { label: Excerpt, name: excerpt, widget: text, hint: "1–2 sentences shown on the article cards and the blog page." }
+      - { label: SEO title, name: seo_title, widget: string, required: false, hint: "Optional. The title shown in Google, up to 60 characters. Leave empty to use the article title." }
+      - { label: SEO description, name: seo_description, widget: text, required: false, hint: "Optional. The text under the title in Google, 110–160 characters. Leave empty to use the excerpt." }
+      - { label: In short (optional summary box), name: summary, widget: text, required: false, hint: "Optional 2–3 sentence answer shown in a box at the top of the article." }
+      - label: Frequently asked questions (optional)
+        name: faqs
+        widget: list
+        required: false
+        collapsed: true
+        summary: "{{fields.question}}"
+        fields:
+          - { label: Question, name: question, widget: string }
+          - { label: Answer, name: answer, widget: text }
+      - { label: Article body, name: body, widget: markdown, hint: "Use Heading 2 for section headings. Images added here are uploaded to /uploads." }
+
+  # ── Events ──────────────────────────────────────────────────
+  - name: events
+    label: Events
+    label_singular: Event
+    description: Workshops, field days, farm tours and trainings (/our-events/). Upcoming events appear automatically and disappear after their end date.
+    folder: content/events
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{fields.slug}}"
+    identifier_field: title
+    summary: "{{title}}  ·  {{start_date}}  ·  {{status}}"
+    sortable_fields: [start_date, title, status]
+    view_filters:
+      - { label: Upcoming, field: status, pattern: upcoming }
+      - { label: Completed, field: status, pattern: completed }
+      - { label: Cancelled, field: status, pattern: cancelled }
+    preview_path: "our-events/{{fields.slug}}/"
+    fields:
+      - { label: Event title, name: title, widget: string }
+      - label: URL slug
+        name: slug
+        widget: string
+        hint: "The event's web address: /our-events/your-slug/. Lowercase letters, numbers and hyphens only."
+        pattern: ['^[a-z0-9]+(-[a-z0-9]+)*$', 'Use lowercase letters, numbers and hyphens only, e.g. food-forest-field-day-2027']
+      - label: Event status
+        name: status
+        widget: select
+        default: upcoming
+        options:
+          - { label: Upcoming, value: upcoming }
+          - { label: Completed, value: completed }
+          - { label: Cancelled, value: cancelled }
+      - { label: Featured image, name: image, widget: image, required: false, choose_url: false, hint: "Optional. A landscape-shaped photo, ideally 1600 px wide or less." }
+      - { label: Featured image description (alt text), name: image_alt, widget: string, required: false, hint: "Describe what the photo shows." }
+      - { label: Start date, name: start_date, widget: datetime, format: "YYYY-MM-DD", date_format: "D MMM YYYY", time_format: false, picker_utc: true }
+      - { label: Start time, name: start_time, widget: datetime, required: false, format: "HH:mm", date_format: false, time_format: "HH:mm", picker_utc: true, hint: "East Africa Time (EAT)." }
+      - { label: End date, name: end_date, widget: datetime, required: false, format: "YYYY-MM-DD", date_format: "D MMM YYYY", time_format: false, picker_utc: true, hint: "Leave empty for a one-day event." }
+      - { label: End time, name: end_time, widget: datetime, required: false, format: "HH:mm", date_format: false, time_format: "HH:mm", picker_utc: true }
+      - { label: Venue, name: venue, widget: string, hint: "Place name and town, e.g. 'Permavia Farm' or 'Online (Webex)'." }
+      - label: Registration URL
+        name: registration_url
+        widget: string
+        required: false
+        hint: "Optional link where people register (HubSpot form, Google Form, Eventbrite…). The Register button only shows for upcoming events."
+        pattern: ['^(https?://.+)?$', 'Start the link with https://']
+      - { label: Price (optional), name: price, widget: string, required: false, hint: "e.g. 'UGX 150,000' or 'Free'." }
+      - { label: Short description (optional), name: excerpt, widget: text, required: false, hint: "1–2 sentences for the event card. Leave empty to use the start of the description." }
+      - { label: Event description, name: body, widget: markdown }

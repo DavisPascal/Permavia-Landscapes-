@@ -169,84 +169,11 @@ const blogCategories = [
 const blogTags = ['Permavia Farm', 'Million Trees', 'Permavia Academy', 'Permaculture', 'Food Forests', 'Soil Health', 'Water Management',
   'Tree Growing', 'Community Development', 'Sustainable Agriculture', 'Biodiversity', 'East Africa'].map((name) => ({ name, slug: slugify(name) }));
 
-// Blog: published posts only. Newest first.
-const posts = [
-  {
-    slug: 'harvesting-rain-water-systems', category: 'Agroforestry & Farm Solutions',
-    tags: ['Water Management', 'Soil Health', 'Permaculture', 'Sustainable Agriculture', 'East Africa'],
-    title: 'Harvesting Rain: Simple Water Systems for Ugandan Homes and Farms',
-    seoTitle: 'Rainwater Harvesting for Homes & Farms in Uganda',
-    summary: "To get water through the dry season in Uganda, slow rainwater down, spread it out and sink it into the soil. Start with roof catchment (a 100 m² roof collects about 1,000 litres for every 10 mm of rain), add swales dug on contour to store water in the soil, and use ponds or infiltration basins where the land allows.",
-    faqs: [["How much water can a roof collect in Uganda?","About 1,000 litres for every 10 mm of rain on a 100 m² roof. Gutters, a first-flush diverter and a covered tank turn that into clean water for the house, kitchen garden and young trees."],["What is a swale?","A shallow ditch dug exactly along the contour, with the soil piled on the downhill side as a mound. It catches rain running down the slope and lets it soak in; trees planted on the mound use that moisture long after the rain stops."],["How do I lay out a swale on contour?","Use a simple A-frame or a water level, never by eye, and always build a safe, stable spillway for heavy storms."],["Where should I start with water harvesting?","Watch your land during the next heavy rain: where water runs, pools or cuts channels is where to act first. Permavia can walk your site and design a water plan for your slope, soil and budget."]],
-    excerpt: 'Two rainy seasons, two dry ones. Swales, ponds and roof catchment turn that rhythm into year-round water for your land.',
-    date: '2026-10-20', read: 6, image: img('01-home__07-inspiration__tile-2-water-systems'),
-    body: `
-<p>Much of East Africa receives generous rain, yet many homes and farms still run short of water in the dry months. The problem is rarely how much rain falls. It is how quickly that water leaves the land. Regenerative design slows it down, spreads it out and sinks it into the soil, where plants can use it for months.</p>
-<h2>How much rain can your roof collect?</h2>
-<p>A typical 100 square metre roof collects about 1,000 litres for every 10 mm of rain. Gutters, a first-flush diverter and a covered tank turn that into clean water for the house, the kitchen garden and young trees. Overflow is then directed into the landscape rather than onto the road.</p>
-<h2>What is a swale, and how does it store water?</h2>
-<p>A swale is a shallow ditch dug exactly along the contour, with the soil piled on the downhill side to form a mound. Rain running down the slope is caught, spreads along the swale and soaks in. Trees planted on the mound tap into that moisture long after the rain stops.</p>
-<ul>
-<li>Lay out swales with a simple A-frame or water level, never by eye.</li>
-<li>Plant the mound immediately with fruit trees, nitrogen fixers and groundcover.</li>
-<li>Always build a safe, stable spillway for heavy storms.</li>
-</ul>
-<h2>Ponds and infiltration basins</h2>
-<p>Where the land allows, a pond stores surface water for animals, irrigation and fish, and it cools the area around it. Smaller infiltration basins near the house catch runoff from paths and yards and recharge the groundwater.</p>
-<blockquote>The cheapest place to store water is in healthy, living soil. Every 1% increase in organic matter helps a hectare hold tens of thousands of extra litres.</blockquote>
-<h2>Where should you begin?</h2>
-<p>Observe your land in the next heavy rain. Where does water run, pool or cut channels? Those are the places to act first. If you would like a water plan for your site, our team can walk it with you and design a system matched to your slope, soil and budget.</p>`,
-  },
-  {
-    slug: 'why-landscaping-is-more-than-just-beauty', category: 'Regenerative Design',
-    tags: ['Food Forests', 'Permaculture', 'Biodiversity', 'Soil Health'],
-    title: 'Why Landscaping Is More Than Just Beauty',
-    seoTitle: 'Why Landscaping Is More Than Just Beauty | Permavia',
-    summary: "Regenerative landscaping keeps the beauty of a garden but makes it work for you: fruit trees, perennial vegetables and herbs feed your family, well-placed trees cool your home and block wind, and mulch and groundcover protect the soil, which lowers water, fertiliser and food costs over time.",
-    faqs: [["What is regenerative landscaping?","A way of designing gardens and land so that they improve over time: producing food, holding water, building healthy soil and supporting wildlife, instead of needing ever more water, fertiliser and labour."],["What is a food forest?","A garden planted in layers like a natural forest (tall canopy trees, smaller fruit trees, shrubs, herbs, groundcover and root crops) that produces food year after year with little digging once established."],["Can a productive garden still look beautiful?","Yes. Fruit trees, perennial vegetables, herbs and climbing beans can be arranged as attractively as any ornamental garden, with shaded paths, blossom and moving water."],["How does landscaping lower costs?","Over time you buy less water, fertiliser and food, because the garden produces food, stores rain and feeds its own soil through mulch and diverse roots."]],
-    excerpt: 'A well-designed landscape can feed your family, cool your home, hold water and lower your costs, while still looking beautiful.',
-    date: '2026-09-12', read: 5, image: img('10-blog__posts__featured-why-landscaping-is-more-than-beauty'),
-    body: `
-<p>For a long time, landscaping meant lawns, hedges and flower beds that looked good and asked a lot in return: water, fertiliser, labour. Regenerative landscaping keeps the beauty but changes the deal. Your garden starts working for you.</p>
-<h2>Can a garden be beautiful and feed you?</h2>
-<p>Fruit trees, perennial vegetables, herbs and climbing beans can be arranged as attractively as any ornamental garden. In a food forest, layers of plants grow together the way they do in a natural forest: tall canopy trees, smaller fruit trees, shrubs, herbs, groundcover and roots. Once established, this system produces food year after year with little digging.</p>
-<h2>A landscape that cools and protects</h2>
-<p>Well-placed trees shade walls and roofs, cutting indoor temperatures. Windbreaks shelter homes and crops from wind and sun. Groundcover protects soil from the hard rains that otherwise wash it away.</p>
-<ul>
-<li><strong>Lower costs:</strong> less bought-in water, fertiliser and food over time.</li>
-<li><strong>Healthier soil:</strong> mulch and diverse roots feed soil life instead of depleting it.</li>
-<li><strong>More life:</strong> birds, bees and beneficial insects return and keep pests in balance.</li>
-</ul>
-<h2>Beauty with purpose</h2>
-<p>None of this means giving up on beauty. The most memorable landscapes are the ones that feel alive: shaded paths, the scent of fruit blossom, water moving through the land. That is the kind of beauty that grows richer with every season.</p>
-<p>Whether you have a small compound or many acres, we can help you design a landscape that is as productive as it is beautiful.</p>`,
-  },
-  {
-    slug: 'transforming-spaces-the-art-of-green-design', category: 'Regenerative Design',
-    tags: ['Permaculture', 'Tree Growing', 'Food Forests', 'Sustainable Agriculture'],
-    title: 'Transforming Spaces: The Art of Green Design',
-    seoTitle: 'Green Design: Transforming Spaces in Uganda | Permavia',
-    summary: "Good green design starts by observing a site (sun, wind, water and how people move) before changing anything. Permaculture then organises the land into zones by how often you visit them, and agroforestry uses trees as the backbone, providing shade, fruit, fodder, timber and mulch while feeding and holding the soil.",
-    faqs: [["What are permaculture zones?","A way of placing things by how often you use them: herbs and vegetables you pick daily sit closest to the kitchen, fruit trees come next, then woodlots and wilder areas further out. It saves time, water and energy every day."],["Why are trees important in agroforestry?","Trees provide shade, fruit, fodder, timber and mulch, fix nitrogen and hold the soil together, so crops and animals woven around them do better."],["Which trees should I plant first?","Indigenous and well-adapted species first, with nitrogen-fixing trees mixed among fruit and timber trees. Always plan for each tree’s mature size, not its size at planting."],["What should I do before designing my garden or farm?","Observe it: how the sun moves through the day and year, where the wind comes from, where water flows and pools, and how people move through the space."]],
-    excerpt: 'How careful observation, smart placement and the right plants transform tired, bare ground into thriving green spaces.',
-    date: '2026-08-04', read: 5, image: img('10-blog__posts__featured-transforming-spaces-green-design'),
-    body: `
-<p>Every site has a story written in its slopes, soils and shade. Green design begins by reading that story before changing anything. The result is a space that fits its place, rather than one that fights it.</p>
-<h2>Observe before you design</h2>
-<p>We spend time understanding how sun moves across a site through the day and the year, where wind comes from, where water flows and pools, and how people actually move through the space. Those observations shape every decision that follows.</p>
-<h2>What are permaculture zones?</h2>
-<p>Permaculture design organises a site into zones by how often you visit them. Herbs and vegetables you use daily sit closest to the kitchen. Fruit trees come next, then larger woodlots and wilder areas further out. This simple idea saves time, water and energy every single day.</p>
-<h2>Why are trees the backbone of agroforestry?</h2>
-<p>In agroforestry, trees are the backbone of the design. They provide shade, fruit, fodder, timber and mulch, fix nitrogen and hold the soil together. Crops and animals are woven around them so that each element supports several others.</p>
-<ul>
-<li>Choose indigenous and well-adapted species first.</li>
-<li>Mix nitrogen-fixing trees among fruit and timber trees.</li>
-<li>Plan for the mature size of each tree, not its size at planting.</li>
-</ul>
-<h2>Designing for change</h2>
-<p>A green space is never finished. It grows, matures and changes over decades. Good design anticipates that journey, so the landscape becomes more productive and more beautiful with time, and needs less from you as it does.</p>`,
-  },
-];
+// Blog posts and events are edited in Decap CMS (/admin) and stored as Markdown files in content/blog and content/events.
+// Only published posts are included, newest first. Events are sorted by start date.
+const { loadPosts, loadEvents } = require('./content');
+const posts = loadPosts();
+const events = loadEvents();
 
 // Check every article uses a known category and known tags (the build stops with a clear message if not).
 const catBySlug = Object.fromEntries(blogCategories.map((c) => [c.name, c]));
@@ -260,4 +187,4 @@ posts.forEach((p) => {
 
 const fmtDate = (d) => new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
-module.exports = { projects, services, posts, blogCategories, blogTags, fmtDate };
+module.exports = { projects, services, posts, events, blogCategories, blogTags, fmtDate };

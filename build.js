@@ -12,6 +12,26 @@ const abs = (p) => (site.url ? site.url.replace(/\/$/, '') + p : p);
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const warnings = [];
 
+// ── Security policy for site pages ───────────────────────────
+// Allows only what the site uses: its own files, HubSpot (forms + tracking), Cal.com (booking times),
+// Google Maps (Contact page) and Google Analytics if an ID is set. Everything else is blocked.
+// It is placed in each page as a <meta> tag, so the CMS at /admin (which needs Decap's editor
+// from unpkg.com, GitHub and Netlify login) can have its own policy in public/admin/index.html.
+// Rules a <meta> tag can't carry (frame-ancestors, upgrade-insecure-requests) stay in public/_headers.
+const PAGE_CSP = [
+  "default-src 'self'",
+  "script-src 'self' https://*.hs-scripts.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hscollectedforms.net https://*.hsadspixel.net https://*.hs-ads.net https://*.usemessages.com https://*.hubspot.com https://*.hsforms.net https://www.googletagmanager.com",
+  "connect-src 'self' https://api.hsforms.com https://*.hsforms.com https://*.hubspot.com https://*.hubapi.com https://*.hscollectedforms.net https://*.hs-banner.com https://*.hs-analytics.net https://api.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
+  "img-src 'self' data: https:",
+  "font-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "frame-src https://www.google.com https://maps.google.com https://cal.com https://app.cal.com https://*.hubspot.com",
+  "manifest-src 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+].join('; ');
+
 // ── Structured data (schema.org) ─────────────────────────────
 const business = () => {
   const b = {
@@ -102,6 +122,7 @@ ${p.ogImage ? `<meta property="og:image" content="${abs(p.ogImage)}">\n<meta nam
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="${PAGE_CSP}">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 ${p.noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}
@@ -164,6 +185,7 @@ const heroOf = (body) => (body.match(/<img src="([^"]+)" alt="[^"]*" fetchpriori
 
 let count = 0;
 const indexable = [];
+const built = new Set();
 for (const file of fs.readdirSync(PAGES).filter((f) => f.endsWith('.js'))) {
   delete require.cache[require.resolve(path.join(PAGES, file))];
   const mod = require(path.join(PAGES, file));
@@ -174,8 +196,23 @@ for (const file of fs.readdirSync(PAGES).filter((f) => f.endsWith('.js'))) {
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'index.html'), responsiveImages(layout(p)));
     if (!p.noindex) indexable.push(p);
+    built.add(p.path);
     count++;
     console.log('  built', p.path);
+  }
+}
+
+// CMS pages: remove article/event pages that no longer exist (deleted, unpublished or renamed in the CMS),
+// so old addresses don't linger. Only touches folders inside /blog/ and /our-events/.
+for (const section of ['blog', 'our-events']) {
+  const base = path.join(OUT, section);
+  if (!fs.existsSync(base)) continue;
+  for (const d of fs.readdirSync(base, { withFileTypes: true })) {
+    const p = `/${section}/${d.name}/`;
+    if (d.isDirectory() && !built.has(p) && fs.existsSync(path.join(base, d.name, 'index.html'))) {
+      fs.rmSync(path.join(base, d.name), { recursive: true, force: true });
+      console.log('  removed old page', p);
+    }
   }
 }
 
@@ -194,6 +231,7 @@ ${indexable.sort((a, b) => a.path.localeCompare(b.path)).map((p) => `  <url><loc
 }
 fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *
 Allow: /
+Disallow: /admin/
 ${site.url ? `\nSitemap: ${abs('/sitemap.xml')}\n` : ''}`);
 
 // ── llms.txt: a plain-language summary for AI assistants (https://llmstxt.org) ──
@@ -242,32 +280,20 @@ ${link('Contact and booking', '/contact/')}
 fs.copyFileSync(path.join(OUT, '404', 'index.html'), path.join(OUT, '404.html'));
 
 // Security headers (Netlify reads public/_headers; the local preview applies them too).
-// Allows only what the site uses: its own files, HubSpot (forms + tracking), Cal.com (booking times),
-// Google Maps (Contact page) and Google Analytics if an ID is set. Everything else is blocked.
-const CSP = [
-  "default-src 'self'",
-  "script-src 'self' https://*.hs-scripts.com https://*.hs-analytics.net https://*.hs-banner.com https://*.hscollectedforms.net https://*.hsadspixel.net https://*.hs-ads.net https://*.usemessages.com https://*.hubspot.com https://*.hsforms.net https://www.googletagmanager.com",
-  "connect-src 'self' https://api.hsforms.com https://*.hsforms.com https://*.hubspot.com https://*.hubapi.com https://*.hscollectedforms.net https://*.hs-banner.com https://*.hs-analytics.net https://api.cal.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com",
-  "img-src 'self' data: https:",
-  "font-src 'self'",
-  "style-src 'self' 'unsafe-inline'",
-  "frame-src https://www.google.com https://maps.google.com https://cal.com https://app.cal.com https://*.hubspot.com",
-  "manifest-src 'self'",
-  "frame-ancestors 'none'",
-  "base-uri 'self'",
-  "form-action 'self'",
-  "object-src 'none'",
-  'upgrade-insecure-requests',
-].join('; ');
+// The detailed page policy is in each page's <meta> tag (PAGE_CSP above).
 fs.writeFileSync(path.join(OUT, '_headers'), `# Security headers, applied by Netlify to every page (generated by build.js; edit there, not here)
 /*
-  Content-Security-Policy: ${CSP}
+  Content-Security-Policy: frame-ancestors 'none'; object-src 'none'; base-uri 'self'; upgrade-insecure-requests
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Strict-Transport-Security: max-age=31536000
-  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
+
+# CMS: never cache the editor's settings, so changes to config.yml show up straight away
+/admin/*
+  Cache-Control: no-cache
 `);
 
 // Maintenance mode: `npm run build:maintenance`, or `maintenance.on: true` in src/site.js.
@@ -277,6 +303,8 @@ const MAINTENANCE = process.argv.includes('--maintenance') || !!(site.maintenanc
 fs.writeFileSync(path.join(OUT, '_redirects'), MAINTENANCE
   ? `# MAINTENANCE MODE ON (built ${new Date().toISOString()})
 /assets/*        /assets/:splat              200
+/admin/*         /admin/:splat               200
+/uploads/*       /uploads/:splat             200
 /maintenance/    /maintenance/index.html     200
 /*               /maintenance/               302!
 `

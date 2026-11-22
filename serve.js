@@ -10,6 +10,8 @@ const TYPES = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript',
   '.webp': 'image/webp', '.png': 'image/png', '.svg': 'image/svg+xml', '.jpg': 'image/jpeg',
   '.woff2': 'font/woff2', '.ico': 'image/x-icon', '.json': 'application/json', '.xml': 'application/xml', '.txt': 'text/plain',
+  '.jpeg': 'image/jpeg', '.gif': 'image/gif', '.avif': 'image/avif', '.pdf': 'application/pdf', '.mp4': 'video/mp4',
+  '.yml': 'text/yaml; charset=utf-8', '.yaml': 'text/yaml; charset=utf-8', '.md': 'text/markdown; charset=utf-8', '.webmanifest': 'application/manifest+json',
 };
 
 // Rebuild automatically when anything in src/ (or build.js) is saved.
@@ -33,6 +35,9 @@ const rebuild = (why) => {
 rebuild('startup');
 fs.watch(path.join(__dirname, 'src'), { recursive: true }, (_, f) => rebuild(`src/${f}`));
 fs.watch(path.join(__dirname, 'build.js'), () => rebuild('build.js'));
+// Blog posts and events saved from the CMS (or by hand) in content/ also rebuild the site.
+const CONTENT = path.join(__dirname, 'content');
+if (fs.existsSync(CONTENT)) fs.watch(CONTENT, { recursive: true }, (_, f) => rebuild(`content/${f}`));
 
 // Apply the same security headers Netlify will use (the "/*" block of public/_headers),
 // so problems show up here first. HSTS is skipped locally (no HTTPS on localhost).
@@ -60,7 +65,7 @@ http.createServer((req, res) => {
   // Behave like Netlify in maintenance mode: send every page to /maintenance/.
   const redirects = path.join(ROOT, '_redirects');
   if (fs.existsSync(redirects) && fs.readFileSync(redirects, 'utf8').startsWith('# MAINTENANCE MODE ON')
-      && !p.startsWith('/assets/') && !p.startsWith('/maintenance/')) {
+      && !p.startsWith('/assets/') && !p.startsWith('/maintenance/') && !p.startsWith('/admin/') && !p.startsWith('/uploads/')) {
     res.writeHead(302, { Location: '/maintenance/' }); return res.end();
   }
   let file = path.normalize(path.join(ROOT, p));

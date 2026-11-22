@@ -133,6 +133,16 @@
     par(); window.addEventListener('scroll', par, { passive: true });
   }
 
+  // Events page: hide events that have ended since the site was last built, and show the
+  // "no events" message if none are left.
+  $$('[data-upcoming-list]').forEach((list) => {
+    const now = new Date(); const pad = (n) => String(n).padStart(2, '0');
+    const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+    let shown = 0;
+    $$('[data-ends]', list).forEach((card) => { const over = card.dataset.ends < today; card.hidden = over; if (!over) shown++; });
+    if (!shown) { list.hidden = true; const empty = $('[data-events-empty]'); if (empty) empty.hidden = false; }
+  });
+
   // Blog filter: one category (main navigation) and/or one tag. Mirrors ?category= & ?tag= in the address bar.
   $$('[data-blog-filter]').forEach((box) => {
     const catBtns = $$('[data-cat]', box);

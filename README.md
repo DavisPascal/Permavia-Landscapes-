@@ -15,10 +15,10 @@ Then open http://localhost:4321. You only need Node.js; there is nothing else to
 | What | Where |
 |---|---|
 | Phone, WhatsApp, email, hours, form endpoints | `src/site.js` |
-| Projects, services, blog posts | `src/data.js` |
+| Blog articles and events | **Content manager at `/admin/`** (Decap CMS). Files in `content/blog/` and `content/events/`. See [CMS_SETUP.md](CMS_SETUP.md) |
+| Projects, services, blog categories and tags | `src/data.js` |
 | Header, footer, CTA band | `src/components.js` |
 | Each page | `src/pages/*.js` |
-| Upcoming events | `EVENTS` list at the top of `src/pages/events-privacy.js` |
 | Colours, fonts, layout | `public/assets/css/styles.css` (tokens at the top) |
 
 After any change, run `npm run build`, which regenerates every page in `public/`.
