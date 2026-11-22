@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Permavia Email Signature</title>
+<style>
+  :root { --forest:#255119; --fern:#3A8C47; --leaf:#89AD44; --gold:#F9A602; --sage:#EEF2EA; --mist:#E0EDD4; --bg:#F9FDF3; --text:#333; --muted:#66746a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.6 Poppins, Arial, sans-serif; padding: 32px 16px 64px; }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 { font: 800 26px/1.2 Montserrat, Arial, sans-serif; color: var(--forest); margin: 0 0 6px; }
+  h2 { font: 700 18px/1.3 Montserrat, Arial, sans-serif; color: var(--forest); margin: 32px 0 10px; }
+  p.lead { color: var(--muted); margin: 0 0 24px; }
+  .box { background: #fff; border: 1px solid var(--mist); border-radius: 16px; padding: 24px; overflow-x: auto; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; }
+  button { font: 600 14px/1 Montserrat, Arial, sans-serif; border: 0; border-radius: 50px; padding: 12px 20px; cursor: pointer; background: var(--gold); color: #1A2E1A; }
+  button.alt { background: #fff; border: 1.5px solid var(--forest); color: var(--forest); }
+  .ok { color: var(--fern); font-weight: 600; min-height: 1.4em; margin: 10px 0 0; }
+  ol { padding-left: 20px; } li { margin-bottom: 6px; }
+  pre { background: #fff; border: 1px solid var(--mist); border-radius: 12px; padding: 16px; white-space: pre-wrap; font: 14px/1.6 Consolas, monospace; margin: 0; }
+  .note { background: var(--sage); border-radius: 12px; padding: 14px 16px; font-size: 14px; }
+  img.preview { max-width: 100%; height: auto; border: 1px solid var(--mist); border-radius: 12px; background: #fff; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Permavia Landscapes email signature</h1>
+  <p class="lead">Three versions: a copyable signature with clickable links (best), an image, and plain text.</p>
+
+  <h2>1. Copyable signature (recommended)</h2>
+  <div class="box">
+    <div id="sig">
+<!-- SIGNATURE START (email-safe: tables + inline styles; logo hosted on the website) -->
+<table cellpadding="0" cellspacing="0" border="0" role="presentation" style="border-collapse:collapse;font-family:Arial,Helvetica,sans-serif;color:#333333;">
+  <tr>
+    <td style="vertical-align:middle;padding:0 16px 0 0;">
+      <a href="https://www.permavialandscapes.com" style="text-decoration:none;"><img data-logo src="permavia-logo@2x.png" width="186" height="54" alt="Permavia Landscapes" style="display:block;border:0;width:186px;height:54px;"></a>
+    </td>
+    <td style="width:3px;background-color:#F9A602;padding:0;font-size:0;line-height:0;">&nbsp;</td>
+    <td style="vertical-align:middle;padding:2px 0 2px 16px;">
+      <div style="font-family:Montserrat,Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#255119;line-height:20px;">Permavia Landscapes</div>
+      <div style="font-size:12px;color:#3A8C47;line-height:18px;font-style:italic;">Regenerative development &middot; We Design. We Build. We Regenerate.</div>
+      <div style="font-size:12px;line-height:20px;padding-top:6px;color:#333333;"><span style="color:#89AD44;font-weight:bold;">T</span>&nbsp;<a href="tel:+256394777418" style="color:#333333;text-decoration:none;">+256 394 777 418</a>&nbsp; <span style="color:#C9D6C0;">|</span>&nbsp; <span style="color:#89AD44;font-weight:bold;">WhatsApp</span>&nbsp;<a href="https://wa.me/256394777418" style="color:#333333;text-decoration:none;">Chat with us</a></div>
+      <div style="font-size:12px;line-height:20px;color:#333333;"><span style="color:#89AD44;font-weight:bold;">E</span>&nbsp;<a href="mailto:info@permavialandscapes.com" style="color:#333333;text-decoration:none;">info@permavialandscapes.com</a>&nbsp; <span style="color:#C9D6C0;">|</span>&nbsp; <span style="color:#89AD44;font-weight:bold;">W</span>&nbsp;<a href="https://www.permavialandscapes.com" style="color:#255119;text-decoration:none;font-weight:bold;">permavialandscapes.com</a></div>
+      <div style="font-size:12px;line-height:20px;color:#66746a;">Hoima City, Uganda &middot; Serving East Africa</div>
+    </td>
+  </tr>
+</table>
+<!-- SIGNATURE END -->
+    </div>
+  </div>
+  <div class="btns">
+    <button type="button" id="copy-sig">Copy signature</button>
+    <button type="button" class="alt" id="copy-text">Copy plain-text version</button>
+  </div>
+  <p class="ok" id="status" aria-live="polite"></p>
+
+  <div class="note">
+    <strong>About the logo:</strong> when you copy, the logo points to
+    <code>https://www.permavialandscapes.com/email/permavia-logo@2x.png</code>, so it appears for everyone you email once the website is
+    <strong>public on your domain</strong>. Until then, use the image version (2) or insert the logo file by hand (see below).
+  </div>
+
+  <h2>How to add it in Namecheap Private Email (webmail)</h2>
+  <ol>
+    <li>Click <strong>Copy signature</strong> above.</li>
+    <li>Open <strong>privateemail.com</strong> and sign in to info@permavialandscapes.com.</li>
+    <li>Go to <strong>Settings</strong> (gear icon) &rarr; <strong>Mail</strong> &rarr; <strong>Signatures</strong> &rarr; <strong>Add new signature</strong>.</li>
+    <li>Name it <em>Permavia</em>, click in the big box and press <strong>Ctrl + V</strong>. Choose to use it for <strong>new messages</strong> and <strong>replies</strong>, then <strong>Save</strong>.</li>
+    <li>Send yourself a test email to check it.</li>
+  </ol>
+  <p><strong>If the logo doesn't show yet</strong> (site not public): in the signature editor, delete the empty logo box, click the <strong>insert image</strong> button and choose <code>permavia-logo@2x.png</code> from this folder. Set its width to <strong>186</strong>.</p>
+
+  <h2>2. Image version</h2>
+  <p>A single picture of the signature (<code>permavia-email-signature.png</code> in this folder). Insert it with the editor's <strong>insert image</strong> button and set the width to <strong>600</strong>. Note: links in a picture can't be clicked, and some email apps hide pictures until the reader allows them, so the copyable version (1) is better.</p>
+  <img class="preview" src="permavia-email-signature.png" alt="Image version of the Permavia Landscapes email signature" width="600">
+
+  <h2>3. Plain-text version</h2>
+  <pre id="plain">Permavia Landscapes
+Regenerative development · We Design. We Build. We Regenerate.
+T  +256 394 777 418  |  WhatsApp  wa.me/256394777418
+E  info@permavialandscapes.com  |  W  www.permavialandscapes.com
+Hoima City, Uganda · Serving East Africa</pre>
+</div>
+
+<script>
+(function () {
+  var LOGO_URL = 'https://www.permavialandscapes.com/email/permavia-logo@2x.png';
+  var status = document.getElementById('status');
+  var sig = document.getElementById('sig');
+  var say = function (t) { status.textContent = t; };
+
+  // Copy the signature as rich content. The copied logo uses the website address so it works in emails.
+  document.getElementById('copy-sig').addEventListener('click', function () {
+    var img = sig.querySelector('[data-logo]');
+    var localSrc = img.getAttribute('src');
+    img.setAttribute('src', LOGO_URL);
+    var html = sig.innerHTML;
+    var text = document.getElementById('plain').textContent;
+    var done = function () { img.setAttribute('src', localSrc); say('Signature copied. Paste it into your email signature box with Ctrl + V.'); };
+    if (navigator.clipboard && window.ClipboardItem) {
+      navigator.clipboard.write([new ClipboardItem({
+        'text/html': new Blob([html], { type: 'text/html' }),
+        'text/plain': new Blob([text], { type: 'text/plain' })
+      })]).then(done, fallback);
+    } else { fallback(); }
+    function fallback() {
+      var range = document.createRange(); range.selectNodeContents(sig);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+      sel.removeAllRanges(); img.setAttribute('src', localSrc);
+      say(ok ? 'Signature copied. Paste it into your email signature box with Ctrl + V.' : 'Copy was blocked by the browser: select the signature above with your mouse, press Ctrl + C, then paste.');
+    }
+  });
+
+  document.getElementById('copy-text').addEventListener('click', function () {
+    var text = document.getElementById('plain').textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(text) : Promise.reject()).then(
+      function () { say('Plain-text signature copied.'); },
+      function () { say('Select the plain-text box below, press Ctrl + C, then paste.'); });
+  });
+})();
+</script>
+</body>
+</html>
