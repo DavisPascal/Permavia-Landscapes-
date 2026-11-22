@@ -95,7 +95,8 @@ function layout(p) {
 <link rel="canonical" href="${abs(p.path)}">
 <meta property="og:url" content="${abs(p.path)}">
 ${p.ogImage ? `<meta property="og:image" content="${abs(p.ogImage)}">\n<meta name="twitter:image" content="${abs(p.ogImage)}">` : ''}` : '';
-  const heroPreload = p.heroImage ? `<link rel="preload" as="image" href="${p.heroImage}" fetchpriority="high">` : '';
+  const heroSet = p.heroImage && imgSet(p.heroImage);
+  const heroPreload = p.heroImage ? `<link rel="preload" as="image" href="${p.heroImage}"${heroSet ? ` imagesrcset="${heroSet}" imagesizes="100vw"` : ''} fetchpriority="high">` : '';
   return `<!doctype html>
 <html lang="en-UG">
 <head>
@@ -140,6 +141,26 @@ ${p.bare ? '' : footer()}
 `;
 }
 
+// ── Responsive photos ────────────────────────────────────────
+// Large photos have a phone-sized copy (<name>-sm.webp, 1200px wide). src/img-sizes.json lists them
+// (regenerate it when photos change). Each <img> of such a photo gets srcset/sizes, so phones download the small copy.
+let IMG_SIZES = {};
+try { IMG_SIZES = JSON.parse(fs.readFileSync(path.join(__dirname, 'src', 'img-sizes.json'), 'utf8')); } catch { /* no list: plain images */ }
+const SM_W = 1200;
+const FULL_BLEED = /(hero-bg|page-hero-bg|how-bg|image-band|mnt-bg)"[^<]*$/; // background photos that fill the screen width
+const imgSet = (src) => {
+  const m = src.match(/^\/assets\/img\/(.+)\.webp$/); const s = m && IMG_SIZES[m[1]];
+  return s && s.sm ? `/assets/img/${m[1]}-sm.webp ${SM_W}w, ${src} ${s.w}w` : null;
+};
+function responsiveImages(html) {
+  return html.replace(/<img src="([^"]+)"([^>]*)>/g, (tag, src, rest, offset) => {
+    const set = imgSet(src); if (!set || /srcset=/.test(rest)) return tag;
+    const before = html.slice(Math.max(0, offset - 160), offset);
+    const sizes = FULL_BLEED.test(before) ? '100vw' : '(max-width: 767px) 100vw, 50vw';
+    return `<img src="${src}" srcset="${set}" sizes="${sizes}"${rest}>`;
+  });
+}
+
 // Hero image of the page (first fetchpriority image), so it can be preloaded.
 const heroOf = (body) => (body.match(/<img src="([^"]+)" alt="[^"]*" fetchpriority="high"/) || [])[1];
 
@@ -153,7 +174,7 @@ for (const file of fs.readdirSync(PAGES).filter((f) => f.endsWith('.js'))) {
     p.heroImage = p.heroImage || heroOf(p.body);
     const dir = path.join(OUT, p.path);
     fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, 'index.html'), layout(p));
+    fs.writeFileSync(path.join(dir, 'index.html'), responsiveImages(layout(p)));
     if (!p.noindex) indexable.push(p);
     count++;
     console.log('  built', p.path);

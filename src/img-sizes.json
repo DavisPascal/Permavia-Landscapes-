@@ -1,0 +1,427 @@
+{
+ "01-home__01-hero__background-contour": {
+  "w": 1920,
+  "h": 1920,
+  "sm": true
+ },
+ "01-home__01-hero__farmer": {
+  "w": 910,
+  "h": 1040,
+  "sm": false
+ },
+ "01-home__02-projects__card-1-million-trees": {
+  "w": 960,
+  "h": 720,
+  "sm": false
+ },
+ "01-home__02-projects__card-2-permavia-farm": {
+  "w": 960,
+  "h": 540,
+  "sm": false
+ },
+ "01-home__02-projects__card-3-permavia-academy": {
+  "w": 720,
+  "h": 421,
+  "sm": false
+ },
+ "01-home__03-how-we-work__background": {
+  "w": 600,
+  "h": 450,
+  "sm": false
+ },
+ "01-home__03-how-we-work__step-01-data-driven-abundance": {
+  "w": 960,
+  "h": 414,
+  "sm": false
+ },
+ "01-home__03-how-we-work__step-02-nature-ethics-science": {
+  "w": 650,
+  "h": 650,
+  "sm": false
+ },
+ "01-home__03-how-we-work__step-03-sticking-to-principles": {
+  "w": 650,
+  "h": 611,
+  "sm": false
+ },
+ "01-home__04-benefits__tab-1-home-living": {
+  "w": 1708,
+  "h": 952,
+  "sm": true
+ },
+ "01-home__04-benefits__tab-2-farm-land": {
+  "w": 1920,
+  "h": 1076,
+  "sm": true
+ },
+ "01-home__04-benefits__tab-3-business": {
+  "w": 1200,
+  "h": 746,
+  "sm": false
+ },
+ "01-home__05-services__card-1-design": {
+  "w": 960,
+  "h": 535,
+  "sm": false
+ },
+ "01-home__05-services__card-2-implementation": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "01-home__05-services__card-3-education": {
+  "w": 960,
+  "h": 597,
+  "sm": false
+ },
+ "01-home__07-inspiration__tile-1-forest-gardens": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "01-home__07-inspiration__tile-2-water-systems": {
+  "w": 960,
+  "h": 720,
+  "sm": false
+ },
+ "01-home__07-inspiration__tile-3-soil-life": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "01-home__07-inspiration__tile-4-agroforestry": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "01-home__07-inspiration__tile-5-community-development": {
+  "w": 960,
+  "h": 614,
+  "sm": false
+ },
+ "01-home__07-inspiration__tile-6-carbon-projects": {
+  "w": 960,
+  "h": 435,
+  "sm": false
+ },
+ "01-home__08-journal__background": {
+  "w": 1200,
+  "h": 800,
+  "sm": false
+ },
+ "01-home__08-journal__post-card-1": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "01-home__08-journal__post-card-2": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "01-home__08-journal__post-card-3": {
+  "w": 960,
+  "h": 639,
+  "sm": false
+ },
+ "02-about-us__04-content-1__hold-water": {
+  "w": 1920,
+  "h": 1080,
+  "sm": true
+ },
+ "02-about-us__05-content-2__living-soils": {
+  "w": 1792,
+  "h": 2560,
+  "sm": true
+ },
+ "02-about-us__06-content-3__healthy-landscapes": {
+  "w": 1920,
+  "h": 1280,
+  "sm": true
+ },
+ "02-about-us__07-content-4__food-forests": {
+  "w": 1200,
+  "h": 746,
+  "sm": false
+ },
+ "02-about-us__08-content-5__regenerative-farming": {
+  "w": 1024,
+  "h": 683,
+  "sm": false
+ },
+ "03-services__02-service-01__landscape-design": {
+  "w": 1200,
+  "h": 675,
+  "sm": false
+ },
+ "03-services__03-service-02__installation": {
+  "w": 1200,
+  "h": 800,
+  "sm": false
+ },
+ "03-services__04-service-03__farm-agroforestry": {
+  "w": 1920,
+  "h": 1280,
+  "sm": true
+ },
+ "03-services__05-service-04__maintenance": {
+  "w": 1024,
+  "h": 768,
+  "sm": false
+ },
+ "03-services__06-service-05__education": {
+  "w": 720,
+  "h": 421,
+  "sm": false
+ },
+ "04-million-trees__01-hero__background": {
+  "w": 1708,
+  "h": 952,
+  "sm": true
+ },
+ "04-million-trees__04-cards__card-1-fruit-trees": {
+  "w": 960,
+  "h": 477,
+  "sm": false
+ },
+ "04-million-trees__04-cards__card-2-indigenous-trees": {
+  "w": 960,
+  "h": 641,
+  "sm": false
+ },
+ "04-million-trees__04-cards__card-3-timber-woodlot": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "04-million-trees__04-cards__card-4-medicinal-plants": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "04-million-trees__04-cards__card-5-herbs-spices": {
+  "w": 960,
+  "h": 538,
+  "sm": false
+ },
+ "04-million-trees__04-cards__card-6-grasses-groundcover": {
+  "w": 960,
+  "h": 540,
+  "sm": false
+ },
+ "04-million-trees__04-cards__card-7-ornamentals": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "04-million-trees__04-cards__card-8-nitrogen-fixers": {
+  "w": 960,
+  "h": 540,
+  "sm": false
+ },
+ "04-million-trees__05-highlights__highlight-1-locally-propagated-stock": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "04-million-trees__05-highlights__highlight-2-community-restoration": {
+  "w": 960,
+  "h": 641,
+  "sm": false
+ },
+ "04-million-trees__05-highlights__highlight-3-living-seed-bank": {
+  "w": 960,
+  "h": 727,
+  "sm": false
+ },
+ "04-million-trees__06-other-projects__card-1-permavia-farm": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "04-million-trees__06-other-projects__card-2-permavia-academy": {
+  "w": 960,
+  "h": 597,
+  "sm": false
+ },
+ "05-permavia-farm__01-hero__background": {
+  "w": 1600,
+  "h": 1067,
+  "sm": true
+ },
+ "05-permavia-farm__04-cards__card-1-farm-tours": {
+  "w": 960,
+  "h": 540,
+  "sm": false
+ },
+ "05-permavia-farm__04-cards__card-2-restaurant": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "05-permavia-farm__04-cards__card-3-working-gardens": {
+  "w": 960,
+  "h": 727,
+  "sm": false
+ },
+ "05-permavia-farm__04-cards__card-4-accommodation": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "05-permavia-farm__04-cards__card-5-water-systems": {
+  "w": 960,
+  "h": 540,
+  "sm": false
+ },
+ "05-permavia-farm__04-cards__card-6-workshops-events": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "05-permavia-farm__04-cards__card-7-compost-soil-labs": {
+  "w": 960,
+  "h": 538,
+  "sm": false
+ },
+ "05-permavia-farm__04-cards__card-8-animal-systems": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "05-permavia-farm__05-highlights__highlight-1-water-harvesting": {
+  "w": 960,
+  "h": 540,
+  "sm": false
+ },
+ "05-permavia-farm__05-highlights__highlight-2-food-forest": {
+  "w": 960,
+  "h": 727,
+  "sm": false
+ },
+ "05-permavia-farm__05-highlights__highlight-3-restaurant-stays": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "05-permavia-farm__06-other-projects__card-1-million-trees": {
+  "w": 960,
+  "h": 535,
+  "sm": false
+ },
+ "05-permavia-farm__06-other-projects__card-2-permavia-academy": {
+  "w": 960,
+  "h": 597,
+  "sm": false
+ },
+ "06-permavia-academy__01-hero__background": {
+  "w": 1200,
+  "h": 746,
+  "sm": false
+ },
+ "06-permavia-academy__04-cards__card-1-landscape-design": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "06-permavia-academy__04-cards__card-2-geomatics-mapping": {
+  "w": 960,
+  "h": 538,
+  "sm": false
+ },
+ "06-permavia-academy__04-cards__card-3-carbon-markets": {
+  "w": 960,
+  "h": 641,
+  "sm": false
+ },
+ "06-permavia-academy__04-cards__card-4-programme-design": {
+  "w": 960,
+  "h": 540,
+  "sm": false
+ },
+ "06-permavia-academy__04-cards__card-5-leadership-facilitation": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "06-permavia-academy__04-cards__card-6-food-forest-agroforestry": {
+  "w": 960,
+  "h": 727,
+  "sm": false
+ },
+ "06-permavia-academy__04-cards__card-7-water-harvesting": {
+  "w": 960,
+  "h": 540,
+  "sm": false
+ },
+ "06-permavia-academy__04-cards__card-8-permaculture-design": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "06-permavia-academy__05-highlights__highlight-1-african-reality": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "06-permavia-academy__05-highlights__highlight-2-online-on-farm": {
+  "w": 960,
+  "h": 540,
+  "sm": false
+ },
+ "06-permavia-academy__05-highlights__highlight-3-usable-skills": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "06-permavia-academy__06-other-projects__card-1-million-trees": {
+  "w": 960,
+  "h": 535,
+  "sm": false
+ },
+ "06-permavia-academy__06-other-projects__card-2-permavia-farm": {
+  "w": 960,
+  "h": 640,
+  "sm": false
+ },
+ "07-courses__01-hero__background": {
+  "w": 1920,
+  "h": 829,
+  "sm": true
+ },
+ "08-shop__01-hero__background": {
+  "w": 1920,
+  "h": 829,
+  "sm": true
+ },
+ "09-products__01-hero__background": {
+  "w": 1920,
+  "h": 1280,
+  "sm": true
+ },
+ "10-blog__01-header__background": {
+  "w": 1920,
+  "h": 1279,
+  "sm": true
+ },
+ "10-blog__posts__featured-transforming-spaces-green-design": {
+  "w": 1920,
+  "h": 1280,
+  "sm": true
+ },
+ "10-blog__posts__featured-why-landscaping-is-more-than-beauty": {
+  "w": 1920,
+  "h": 1279,
+  "sm": true
+ },
+ "11-contact__01-hero__background": {
+  "w": 1920,
+  "h": 1281,
+  "sm": true
+ },
+ "hero-farmer": {
+  "w": 760,
+  "h": 894,
+  "sm": false
+ }
+}

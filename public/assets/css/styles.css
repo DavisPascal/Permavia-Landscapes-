@@ -1142,3 +1142,22 @@ ol.transition-steps { list-style: none; margin: 0; padding: 0; display: grid; gr
   ol.transition-steps > li { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; align-content: start; }
   ol.transition-steps > li > * { align-self: start; }
 }
+
+/* Phone menu: the scrolled header's blur effect would trap the full-screen menu inside the header bar,
+   so switch the blur off while the menu is open. */
+.nav-open .site-header, .nav-open .site-header.is-scrolled { -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+/* Photos: a soft brand-colour placeholder shows while a photo is still downloading */
+.media, .svc-media, .frame, .tab-media, .feature-img, .tile, .step-img { background-color: var(--mist); }
+
+/* Approach / journey step cards on phones: number and icon side by side, everything centred */
+@media (max-width: 767px) {
+  ol.steps > .step { display: grid; grid-template-columns: 1fr auto auto 1fr; align-items: center; column-gap: 16px; text-align: center; padding: 26px 22px 28px; }
+  ol.steps > .step > .step-num { grid-column: 2; }
+  ol.steps > .step > .step-ic { grid-column: 3; }
+  ol.steps > .step > .step-num { margin-bottom: 0; font-size: 46px; }
+  ol.steps > .step > .step-ic { margin-bottom: 0; }
+  ol.steps > .step > h3, ol.steps > .step > p { grid-column: 1 / -1; }
+  ol.steps > .step > h3 { margin-top: 18px; }
+  ol.steps > .step > p { max-width: 34ch; justify-self: center; }
+}
