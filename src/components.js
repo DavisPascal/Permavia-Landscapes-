@@ -80,7 +80,7 @@ function header(active) {
       <div class="nav-mobile-extra">
         <a class="btn btn--primary btn--block" href="/contact/">Free Consultation</a>
         <a class="btn btn--wa btn--block" href="${waLink()}" target="_blank" rel="noopener">${waIcon()} Chat on WhatsApp</a>
-        <p class="nav-mobile-contact">${icon('map-pin')} ${site.location}<br>${icon('clock')} ${site.hours}</p>
+        <p class="nav-mobile-contact">${icon('map-pin')} Serving ${site.serviceArea}<br>${icon('clock')} ${site.hours}</p>
       </div>
     </nav>
     <a class="btn btn--primary header-cta" href="/contact/">Free Consultation</a>
@@ -126,7 +126,7 @@ function footer() {
       <div class="footer-col">
         <h2 class="footer-h">Get in Touch</h2>
         <ul class="footer-contact">
-          <li>${icon('map-pin')}<span>${site.location}</span></li>
+          <li>${icon('map-pin')}<span>Based in Uganda</span></li>
           <li>${icon('phone')}<a href="tel:${site.phoneHref}">${site.phone}</a></li>
           <li>${icon('mail')}<a class="footer-email" href="mailto:${site.email}">${site.email}</a></li>
           <li>${icon('clock')}<span>${site.hours}</span></li>

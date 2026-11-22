@@ -29,7 +29,7 @@ module.exports = {
       <a class="btn btn--primary btn--lg" href="tel:${site.phoneHref}">${icon('phone')} Call ${site.phone}</a>
     </div>
     <p class="mnt-mail">${icon('mail')} <a href="mailto:${site.email}">${site.email}</a> · ${icon('clock')} ${site.hours}</p>
-    <p class="mnt-foot">${site.brandLine} · ${site.location}</p>
+    <p class="mnt-foot">${site.brandLine} · Serving ${site.serviceArea}</p>
   </div>
 </section>`,
 };

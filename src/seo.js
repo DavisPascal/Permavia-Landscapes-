@@ -13,9 +13,9 @@ module.exports = {
     description: 'A regenerative development company designing, building and managing landscapes and farms for homes, businesses and communities. Book a free call.',
   },
   '/about-us/': {
-    keyword: 'regenerative development company Hoima',
+    keyword: 'regenerative development company East Africa',
     title: 'About Permavia | Regenerative Development Company',
-    description: 'Permavia is a regenerative development company in Hoima, Uganda. Read our story, mission, values and approach, then book a free consultation.',
+    description: 'Permavia is a regenerative development company serving East Africa. Read our story, mission, values and approach, then book a free consultation.',
   },
   '/services/': {
     keyword: 'permaculture consultant Uganda',
@@ -38,8 +38,8 @@ module.exports = {
     description: 'Agroforestry, syntropic agroforestry, food forests and silvopasture plans that cut input costs and rebuild soil on Ugandan farms. Book a farm assessment.',
   },
   '/services/maintenance/': {
-    keyword: 'landscape maintenance Hoima',
-    title: 'Regenerative Landscape Maintenance in Hoima | Permavia',
+    keyword: 'regenerative land maintenance East Africa',
+    title: 'Regenerative Land & Farm Maintenance | Permavia',
     description: 'Scheduled care, monitoring, plant health, soil and water management and yearly reviews for regenerative landscapes and farms. Get a maintenance plan.',
   },
   '/services/education/': {
@@ -53,14 +53,14 @@ module.exports = {
     description: 'What Permavia is building in Uganda: the Million Trees nursery, a regenerative demonstration farm and Permavia Academy, with honest progress updates.',
   },
   '/million-trees/': {
-    keyword: 'tree seedlings Hoima',
-    title: 'Tree Seedlings in Hoima, Uganda | Million Trees Nursery',
-    description: 'Fruit, indigenous, timber and nitrogen-fixing tree seedlings grown organically in Hoima, Uganda. For farms, schools and NGOs. Request a price list today.',
+    keyword: 'tree seedlings East Africa',
+    title: 'Tree Seedlings for East Africa | Million Trees Nursery',
+    description: 'Fruit, indigenous, timber and nitrogen-fixing tree seedlings grown organically for East Africa. For farms, schools and NGOs. Request a price list today.',
   },
   '/permavia-farm/': {
     keyword: 'regenerative farm Uganda',
     title: 'Permavia Farm | Regenerative Demonstration Farm, Uganda',
-    description: 'A 5-acre regenerative farm in Western Uganda with food forests, water systems, farm tours, dining and stays. Join the visitor waitlist to hear first.',
+    description: 'A 5-acre regenerative farm in Uganda with food forests, water systems, farm tours, dining and stays. Join the visitor waitlist to hear first.',
   },
   '/permavia-academy/': {
     keyword: 'permaculture training Africa',
@@ -93,8 +93,8 @@ module.exports = {
     description: 'Hands-on permaculture workshops, farm tours and team trainings in Uganda with Permavia Landscapes. See upcoming dates or join the events list today.',
   },
   '/contact/': {
-    keyword: 'regenerative design Hoima',
-    title: 'Contact Permavia | Regenerative Development, Hoima',
+    keyword: 'regenerative design East Africa',
+    title: 'Contact Permavia | Regenerative Development, East Africa',
     description: 'Book a free 30-minute call, chat on WhatsApp or request a site visit from Permavia, a regenerative development company serving East Africa. Quick replies.',
   },
   '/faq/': {

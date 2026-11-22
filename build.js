@@ -25,7 +25,7 @@ const business = () => {
     address: { '@type': 'PostalAddress', addressLocality: 'Hoima City', addressRegion: 'Hoima', addressCountry: 'UG' },
     geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lng },
     openingHoursSpecification: [{ '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], opens: '08:00', closes: '18:00' }],
-    areaServed: [...site.serviceAreas.map((a) => ({ '@type': 'AdministrativeArea', name: `${a}, Uganda` })), { '@type': 'Place', name: 'East Africa' }],
+    areaServed: [{ '@type': 'Place', name: site.serviceArea }],
     knowsAbout: ['Permaculture design', 'Regenerative agriculture', 'Agroforestry', 'Water harvesting', 'Food forests', 'Soil restoration', 'Tree nursery', 'Carbon projects'],
     makesOffer: services.map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.title, description: s.short, areaServed: 'East Africa' } })),
   };
@@ -112,8 +112,6 @@ ${og}
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="geo.region" content="UG-W">
-<meta name="geo.placename" content="Hoima">
 <meta name="theme-color" content="#1A2E1A">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="256x256" href="/favicon-256x256.png">
@@ -205,10 +203,10 @@ ${site.url ? `\nSitemap: ${abs('/sitemap.xml')}\n` : ''}`);
   const link = (title, p, note) => `- [${title}](${abs(p)})${note ? `: ${note}` : ''}`;
   const llms = `# ${site.name}
 
-> ${site.name} is a regenerative development company based in ${site.location}, serving ${site.serviceAreas.join(', ')} and clients across East Africa. We design, build and manage nature-positive landscapes and productive systems that restore ecosystems, strengthen livelihoods and create lasting value for communities, putting nature-based methods first. The first 30-minute discovery call (on Webex) is free.
+> ${site.name} is a regenerative development company serving clients across ${site.serviceArea}. We design, build and manage nature-positive landscapes and productive systems that restore ecosystems, strengthen livelihoods and create lasting value for communities, putting nature-based methods first. The first 30-minute discovery call (on Webex) is free.
 
 ## Key facts
-- Location: ${site.location} (serving ${site.serviceAreas.join(', ')} and East Africa)
+- Area served: ${site.serviceArea} (contact address: ${site.location})
 - Services: ${services.map((s) => s.title).join('; ')}
 - Projects: ${Object.values(projects).map((p) => `${p.name} (${p.type}, ${p.status})`).join('; ')}
 - Methods: nature-based first. Regeneration is treated as a process: machinery and limited, targeted inputs may be used to establish systems on large or degraded land, then phased out as the land regenerates itself

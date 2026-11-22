@@ -151,7 +151,7 @@ function booking() {
 
 const contact = {
   path: '/contact/', active: 'contact', title: 'Contact',
-  description: 'Book a free consultation with Permavia Landscapes in Hoima City, Uganda. Call, chat on WhatsApp or request an on-site visit for your home, farm or business.',
+  description: 'Book a free consultation with Permavia Landscapes, serving East Africa. Call, chat on WhatsApp or request an on-site visit for your home, farm or business.',
   body: `
 ${pageHero({
   eyebrow: 'Get in Touch',
@@ -183,7 +183,7 @@ ${pageHero({
         <span class="ic-badge">${icon('map-pinned')}</span>
         <h3>On-Site Consultation</h3>
         <p>We visit your site to observe slopes, soil and water, then share clear recommendations.</p>
-        <p class="meta">${icon('map-pin')} Western Uganda &amp; beyond</p>
+        <p class="meta">${icon('map-pin')} Across East Africa</p>
         <a class="btn btn--secondary" href="/contact/?type=visit#enquiry" data-visit>Request a Visit ${icon('arrow-right')}</a>
       </div>
     </div>
@@ -202,7 +202,7 @@ ${booking()}
         <label class="field"><span>Full name *</span><input name="name" autocomplete="name" required></label>
         <label class="field"><span>Phone / WhatsApp *</span><input type="tel" name="phone" autocomplete="tel" required placeholder="+256 ..."></label>
         <label class="field"><span>Email *</span><input type="email" name="email" autocomplete="email" required></label>
-        <label class="field"><span>Location of your land *</span><input name="location" required placeholder="e.g. Hoima, Masindi, Kampala"></label>
+        <label class="field"><span>Location of your land *</span><input name="location" required placeholder="Town or district, and country"></label>
       </div>
       <fieldset>
         <legend>Project type *</legend>
@@ -245,7 +245,7 @@ ${booking()}
           <li>${icon('phone')}<div><strong>Phone</strong><a href="tel:${site.phoneHref}">${site.phone}</a></div></li>
           <li>${icon('mail')}<div><strong>Email</strong><a href="mailto:${site.email}">${site.email}</a></div></li>
           <li>${icon('clock')}<div><strong>Opening hours</strong>${site.hours}</div></li>
-          <li>${icon('map')}<div><strong>Areas we serve</strong>${site.serviceAreas.join(' · ')} and across East Africa</div></li>
+          <li>${icon('map')}<div><strong>Areas we serve</strong>Across ${site.serviceArea}</div></li>
         </ul>
         <p class="side-faq">${icon('circle-help')} Questions about cost or site visits? <a href="/faq/">Read our FAQ</a></p>
         <a class="btn btn--wa btn--block" href="${waLink()}" target="_blank" rel="noopener">${waIcon()} Chat on WhatsApp</a>

@@ -40,9 +40,10 @@ module.exports = {
   location: 'Hoima City, Uganda',
   hours: 'Mon to Sat, 8am to 6pm',
 
-  // Districts we actually serve (shown on Contact, FAQ, footer and in Google's business data).
+  // Where we work. We are based in Hoima City (location above, used only as the contact address)
+  // but serve all of East Africa, so the site never lists towns or districts.
   // Keep this identical to the service area on the Google Business Profile.
-  serviceAreas: ['Hoima', 'Masindi', 'Kikuube', 'Kagadi', 'Buliisa', 'Kampala'],
+  serviceArea: 'East Africa',
   geo: { lat: 1.4331, lng: 31.3527 }, // Hoima City
 
   // Google Analytics 4 measurement ID, e.g. 'G-XXXXXXXXXX'. Turns on visit and conversion

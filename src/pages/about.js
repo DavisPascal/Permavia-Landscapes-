@@ -66,7 +66,7 @@ const body = `
 ${pageHero({
   eyebrow: 'About Permavia',
   title: 'A Regenerative Development Company Growing <em>Living Landscapes</em>',
-  lead: 'Permavia Landscapes designs, implements and manages nature-positive landscapes and productive systems that restore ecosystems, strengthen livelihoods and create lasting value for communities. We are based in Hoima City, Uganda, serving East Africa.',
+  lead: 'Permavia Landscapes designs, implements and manages nature-positive landscapes and productive systems that restore ecosystems, strengthen livelihoods and create lasting value for communities. We serve communities across East Africa.',
   image: img('01-home__07-inspiration__tile-4-agroforestry'),
   crumbs: [['About Us']],
   actions: `<a class="btn btn--primary btn--lg" href="/contact/">Book a Free Consultation ${icon('arrow-right')}</a><a class="btn btn--ghost-light btn--lg" href="#what-we-do">What We Do</a>`,
@@ -182,6 +182,6 @@ module.exports = {
   path: '/about-us/',
   active: 'about',
   title: 'About Us',
-  description: 'Permavia Landscapes is a regenerative development company in Hoima City, Uganda: our story, mission, vision, values and approach.',
+  description: 'Permavia Landscapes is a regenerative development company serving East Africa: our story, mission, vision, values and approach.',
   body,
 };

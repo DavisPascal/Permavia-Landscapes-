@@ -4,18 +4,18 @@ const { projects } = require('../data');
 
 const P = {
   'million-trees': {
-    summary: 'A tree-growing and seedling initiative being established in Hoima City to supply farms, homes and restoration sites, with the ambition of millions of trees in the ground.',
+    summary: 'A tree-growing and seedling initiative being established to supply farms, homes and restoration sites, with the ambition of millions of trees in the ground.',
     hero: img('04-million-trees__01-hero__background'),
     band: img('01-home__07-inspiration__tile-1-forest-gardens'), bandCap: 'Forest gardens: what millions of trees can become',
     stats: [['Millions', 'Of trees to plant'], ['8', 'Plant categories'], ['100%', 'Organic'], ['Africa', 'All climates']],
     stageLabel: 'Establishing',
     aboutTitle: 'Growing the Trees <em>Africa Needs</em>',
     about: [
-      'Million Trees is the tree nursery we are establishing in Hoima City, Western Uganda. It is set up to propagate fruit, indigenous, timber, medicinal and nitrogen-fixing trees from locally adapted seed and cuttings, so every seedling is ready for the conditions it will grow in.',
+      'Million Trees is the tree nursery we are establishing in Uganda. It is set up to propagate fruit, indigenous, timber, medicinal and nitrogen-fixing trees from locally adapted seed and cuttings, so every seedling is ready for the conditions it will grow in.',
       'As the nursery grows, its seedlings will supply Permavia design and farm projects, farmers moving to agroforestry, homes, schools, NGOs and restoration programmes. Every tree is grown organically, without synthetic fertilisers or pesticides. Ask us which species are ready now.',
       'The ambition is simple and big: millions of trees in the ground across East Africa, each one chosen for the right place and the right purpose. We will publish progress here as it happens.',
     ],
-    facts: [['Location', 'Hoima City, Uganda'], ['Climates', 'Tropical, highland and semi-arid'], ['Inputs', '100% organic, locally sourced seed'], ['Goal', 'Millions of trees planted'], ['Now', 'Setting up the nursery and first seedling beds']],
+    facts: [['Serves', 'East Africa'], ['Climates', 'Tropical, highland and semi-arid'], ['Inputs', '100% organic, locally sourced seed'], ['Goal', 'Millions of trees planted'], ['Now', 'Setting up the nursery and first seedling beds']],
     cardsTitle: 'What We <em>Grow</em>',
     cardsText: 'Eight plant categories, each chosen for food, income, soil health or restoration.',
     cards: [
@@ -48,7 +48,7 @@ const P = {
       'The farm is planned in zones: intensive kitchen gardens near the centre, a multi-storey food forest, water harvesting earthworks, animal systems and a farm-to-table restaurant with simple, comfortable stays.',
       'It will host tours, workshops and trainings, and prove that regenerative farming can be both beautiful and profitable in East Africa.',
     ],
-    facts: [['Location', 'Western Uganda'], ['Size', '5 acres, 5+ zones'], ['Inputs', 'Zero synthetic inputs'], ['Goal', 'A profitable living showcase']],
+    facts: [['Location', 'Uganda'], ['Size', '5 acres, 5+ zones'], ['Inputs', 'Zero synthetic inputs'], ['Goal', 'A profitable living showcase']],
     cardsTitle: 'What We Will <em>Offer</em>',
     cardsText: 'Eight experiences in one regenerative landscape.',
     cards: [
@@ -112,11 +112,11 @@ const { signupForm, inShort, faqSection, faqSchema, businessRef, site } = requir
 const pageUrl = (p) => (site.url ? site.url.replace(/\/$/, '') + p : p);
 const AEO = {
   'million-trees': {
-    short: 'Million Trees is the tree nursery Permavia Landscapes is establishing in Hoima City, Uganda. It is set up to grow organic, locally adapted seedlings in eight categories (fruit, indigenous, timber, medicinal, herbs and spices, grasses, ornamentals and nitrogen fixers) for farms, homes, schools, NGOs and restoration projects, with the goal of planting millions of trees across East Africa.',
+    short: 'Million Trees is the tree nursery Permavia Landscapes is establishing in Uganda. It is set up to grow organic, locally adapted seedlings in eight categories (fruit, indigenous, timber, medicinal, herbs and spices, grasses, ornamentals and nitrogen fixers) for farms, homes, schools, NGOs and restoration projects, with the goal of planting millions of trees across East Africa.',
     faqTitle: 'Questions About <em>Seedlings</em>',
     faqs: [
-      ['Where can I buy tree seedlings in Hoima?',
-        'From the Million Trees nursery that Permavia Landscapes is establishing in Hoima City. The nursery is still being set up, so <a href="/contact/?service=seedlings#enquiry">request a price list</a> or message us on WhatsApp to hear which species are ready.'],
+      ['Where can I buy tree seedlings in East Africa?',
+        'From the Million Trees nursery that Permavia Landscapes is establishing. The nursery is still being set up, so <a href="/contact/?service=seedlings#enquiry">request a price list</a> or message us on WhatsApp to hear which species are ready.'],
       ['What kinds of tree seedlings does Million Trees grow?',
         'Eight categories: fruit trees, indigenous trees, timber and woodlot trees, medicinal plants, herbs and spices, grasses and groundcover, ornamentals, and nitrogen-fixing trees.'],
       ['Are the seedlings organic?',
@@ -139,7 +139,7 @@ const AEO = {
     }],
   },
   'permavia-farm': {
-    short: 'Permavia Farm is a planned 5-acre regenerative demonstration farm in Western Uganda, run by Permavia Landscapes. It will show water harvesting, a multi-storey food forest, working gardens and animal systems with zero synthetic inputs, and will offer farm tours, workshops, a farm-to-table restaurant and simple eco-stays. It is currently in the planning stage (stage 2 of 5).',
+    short: 'Permavia Farm is a planned 5-acre regenerative demonstration farm in Uganda, run by Permavia Landscapes. It will show water harvesting, a multi-storey food forest, working gardens and animal systems with zero synthetic inputs, and will offer farm tours, workshops, a farm-to-table restaurant and simple eco-stays. It is currently in the planning stage (stage 2 of 5).',
     faqTitle: 'Questions About <em>Permavia Farm</em>',
     faqs: [
       ['Can I visit Permavia Farm?',

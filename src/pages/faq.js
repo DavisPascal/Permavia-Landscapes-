@@ -1,6 +1,5 @@
 const { img, icon, waLink, waIcon, pageHero, ctaBand, site } = require('../components');
 
-const areas = site.serviceAreas.join(', ');
 
 // Questions clients ask on calls. Answers are plain text so they can also feed Google's FAQ data.
 const groups = [
@@ -10,7 +9,7 @@ const groups = [
       ['How much does landscape design cost in Uganda?',
         'It depends on the size of the land, how much earthwork and planting is needed, and whether you want design only or design and build. Your first 30-minute call is free. After a site visit we send a clear written quote in Ugandan shillings (UGX), split into phases so you can start small and grow the project over time.'],
       ['Do you charge for the first consultation?',
-        'No. The first 30-minute discovery call is a free Webex video call with no obligation. We email you the link; just have the free Webex app or a web browser ready. We confirm any cost for an on-site visit, such as travel outside Hoima, before we book it.'],
+        'No. The first 30-minute discovery call is a free Webex video call with no obligation. We email you the link; just have the free Webex app or a web browser ready. We confirm any cost for an on-site visit, such as travel to your site, before we book it.'],
       ['Can I pay in phases?',
         'Yes. Most projects are planned in phases timed with the rainy seasons, so you can spread the cost and see results before the next phase begins.'],
     ],
@@ -19,7 +18,7 @@ const groups = [
     title: 'Areas & site visits', icon: 'map-pin',
     items: [
       ['Which areas do you cover?',
-        `We are based in Hoima City and work regularly in ${areas}. For larger projects we travel across Uganda and East Africa, and we can also design remotely using maps, photos and video calls.`],
+        `We work across ${site.serviceArea}. We travel to project sites, and we can also design remotely using maps, photos and video calls.`],
       ['How does a site visit work?',
         'We walk the land with you and look at slopes, soil, water flow, sun, wind and existing plants, and talk through your goals and budget. Afterwards you receive written recommendations and a quote for the next steps.'],
       ['Do you work with small plots and home compounds?',
@@ -34,7 +33,7 @@ const groups = [
       ['Do you use chemicals or synthetic fertilisers?',
         'Nature-based methods come first: compost, mulch, cover crops, nitrogen-fixing trees and natural pest balance. Regeneration is a process, though. On large or badly degraded land we may use machinery, and limited, targeted inputs where needed (for example to control invasive weeds or help first plantings establish), because doing that work by hand would take years. Each one has an exit plan and is phased out as the land starts to regenerate itself. <a href="/about-us/#transition">How we transition land</a>.'],
       ['Can you supply tree seedlings?',
-        'Yes. Our Million Trees nursery in Hoima grows fruit, indigenous, timber, medicinal and nitrogen-fixing seedlings for farms, schools, NGOs and restoration projects. Ask us for a price list.'],
+        'Yes. Our Million Trees nursery grows fruit, indigenous, timber, medicinal and nitrogen-fixing seedlings for farms, schools, NGOs and restoration projects. Ask us for a price list.'],
       ['Do you work with NGOs, schools and carbon projects?',
         'Yes. We design restoration and agroforestry sites, supply seedlings, train field teams and community members, and support planting and monitoring for carbon and restoration programmes.'],
     ],
@@ -88,7 +87,7 @@ ${pageHero({
       </div>
       <div class="areas-card">
         <h3>${icon('map')} Areas we serve</h3>
-        <ul class="area-chips">${site.serviceAreas.map((a) => `<li>${a}</li>`).join('')}<li class="is-wide">+ across East Africa</li></ul>
+        <ul class="area-chips"><li class="is-wide">Across ${site.serviceArea}</li></ul>
       </div>
     </aside>
   </div>

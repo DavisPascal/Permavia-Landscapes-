@@ -1,7 +1,7 @@
 const { img, icon, pageHero, sectionHead, signupForm, site } = require('../components');
 
 // Upcoming events. Add one object per event and rebuild; the empty state shows while this is empty.
-// { date: '2027-01-18', title: 'Food Forest Weekend', location: 'Hoima', price: 'UGX 150,000', register: 'https://...' }
+// { date: '2027-01-18', title: 'Food Forest Weekend', location: 'Permavia Farm', price: 'UGX 150,000', register: 'https://...' }
 const EVENTS = [];
 
 const eventList = EVENTS.length

@@ -7,7 +7,7 @@ const projects = {
     status: 'Underway: Establishing', stage: 2, badge: 'badge--fern', phase: 'underway',
     card: img('01-home__02-projects__card-1-million-trees'),
     short: 'A tree nursery being set up to grow seedlings for farms, homes and restoration sites, with the ambition of millions of trees in the ground.',
-    now: 'Setting up the nursery and its first seedling beds in Hoima City.',
+    now: 'Setting up the nursery and its first seedling beds.',
   },
   'permavia-farm': {
     name: 'Permavia Farm', path: '/permavia-farm/', type: 'Regenerative Demonstration Farm',
@@ -181,7 +181,7 @@ const posts = [
     excerpt: 'Two rainy seasons, two dry ones. Swales, ponds and roof catchment turn that rhythm into year-round water for your land.',
     date: '2026-10-20', read: 6, image: img('01-home__07-inspiration__tile-2-water-systems'),
     body: `
-<p>Western Uganda receives generous rain, yet many homes and farms still run short of water in the dry months. The problem is rarely how much rain falls. It is how quickly that water leaves the land. Regenerative design slows it down, spreads it out and sinks it into the soil, where plants can use it for months.</p>
+<p>Much of East Africa receives generous rain, yet many homes and farms still run short of water in the dry months. The problem is rarely how much rain falls. It is how quickly that water leaves the land. Regenerative design slows it down, spreads it out and sinks it into the soil, where plants can use it for months.</p>
 <h2>How much rain can your roof collect?</h2>
 <p>A typical 100 square metre roof collects about 1,000 litres for every 10 mm of rain. Gutters, a first-flush diverter and a covered tank turn that into clean water for the house, the kitchen garden and young trees. Overflow is then directed into the landscape rather than onto the road.</p>
 <h2>What is a swale, and how does it store water?</h2>

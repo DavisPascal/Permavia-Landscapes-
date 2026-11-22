@@ -2,7 +2,6 @@
 const { img, icon, ctaBand, pageHero, sectionHead, inShort, faqSection, faqSchema, businessRef, waLink, waIcon, site } = require('../components');
 const { services } = require('../data');
 
-const areas = site.serviceAreas.join(', ');
 const pageUrl = (p) => (site.url ? site.url.replace(/\/$/, '') + p : p);
 const enquire = (s) => `/contact/?service=${s.key}#enquiry`;
 const shortName = { design: 'Design', installation: 'Installation', farm: 'Farm Solutions', maintenance: 'Maintenance', education: 'Education' };
@@ -11,7 +10,7 @@ const serviceSchema = (s) => ({
   '@context': 'https://schema.org', '@type': 'Service',
   name: s.title, serviceType: s.title, description: `${s.purpose} ${s.desc}`,
   provider: businessRef(),
-  areaServed: [...site.serviceAreas.map((a) => `${a}, Uganda`), 'East Africa'],
+  areaServed: site.serviceArea,
   audience: { '@type': 'Audience', audienceType: s.for },
   url: pageUrl(s.path),
 });
@@ -36,8 +35,8 @@ const faqs = [
     'Most people start with <a href="/services/regenerative-design/">Regenerative Design</a>, because a good plan saves money on everything that follows. If you are unsure, book a free 30-minute <a href="/contact/#book">discovery call on Webex</a> and we will recommend the right first step.'],
   ['Do you only design, or do you also build and look after the landscape?',
     'We do all of it: design, installation (earthworks, planting, water systems), farm solutions, maintenance (seasonal care and yearly reviews) and education (hands-on training). You can use one service or all of them as one accountable team.'],
-  ['Which areas of Uganda do you work in?',
-    `We are based in Hoima City and work regularly in ${areas}. For larger projects we travel across Uganda and East Africa, and we can design remotely using maps, photos and video calls.`],
+  ['Which areas do you work in?',
+    `We work across ${site.serviceArea}. We travel to project sites, and we can also design remotely using maps, photos and video calls.`],
   ['Can you help a farm move to agroforestry or regenerative farming?',
     'Yes. Our <a href="/services/farm-solutions/">Farm Solutions</a> service plans a phased move away from costly inputs, protecting your income while agroforestry, syntropic agroforestry, food forests or silvopasture rebuild soil fertility, all in line with permaculture.'],
   ['Do you work with NGOs, government and development partners?',
@@ -225,7 +224,7 @@ function detail(s) {
     : `<a class="btn btn--primary btn--lg" href="${enquire(s)}">${s.cta} ${icon('arrow-right')}</a>`;
   const faq = [
     [`What does ${s.title} include?`, `${s.purpose} Typical work includes: ${s.activities ? s.activities.map((a) => a.charAt(0).toLowerCase() + a.slice(1)).join('; ') : s.tags.join(', ').toLowerCase()}.`],
-    ['Who is it for?', `${s.for}. We work in ${areas} and across East Africa.`],
+    ['Who is it for?', `${s.for}. We work across ${site.serviceArea}.`],
     ['How do I start?', `Book a free 30-minute <a href="/contact/#book">discovery call</a> or <a href="${enquire(s)}">send an enquiry</a>. We reply within one working day.`],
   ];
   const body = `
@@ -243,7 +242,7 @@ ${pageHero({
     <div class="copy" data-reveal>
       <p class="eyebrow">About This Service</p>
       <h2 id="about-title">What It <em>Involves</em></h2>
-      ${inShort(`<strong>${s.title}</strong> from Permavia Landscapes. ${s.purpose} Available in ${areas} and across East Africa, putting nature-based methods first.`)}
+      ${inShort(`<strong>${s.title}</strong> from Permavia Landscapes. ${s.purpose} Available across ${site.serviceArea}, putting nature-based methods first.`)}
       <p>${s.desc}</p>
       ${s.activities ? `<h3 class="copy-h3">Typical Activities</h3>${checks(s.activities)}` : ''}
     </div>
@@ -251,7 +250,7 @@ ${pageHero({
       <h3>${icon('clipboard-list')} At a Glance</h3>
       <dl>
         <div><dt>Ideal for</dt><dd>${s.for}</dd></div>
-        <div><dt>Where</dt><dd>${areas} and across East Africa</dd></div>
+        <div><dt>Where</dt><dd>Across ${site.serviceArea}</dd></div>
         <div><dt>Methods</dt><dd>Nature-based first; machinery or other inputs only where they speed up regeneration, then phased out</dd></div>
         ${s.receive ? `<div><dt>You receive</dt><dd>${s.receive.join('<br>')}</dd></div>` : ''}
         <div><dt>First step</dt><dd>A free 30-minute discovery call</dd></div>

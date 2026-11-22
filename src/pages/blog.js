@@ -98,7 +98,7 @@ const single = posts.map((p) => {
         ${p.tags && p.tags.length ? `<div class="post-tags-list">${tagLinks(p)}</div>` : ''}
       </div>
       ${p.faqs ? `<div class="post-faq"><h2>Frequently asked questions</h2>${p.faqs.map(([q, a], i) => `<details class="faq-item"${i === 0 ? ' open' : ''}><summary>${q}<span class="faq-ic">${icon('plus')}</span></summary><div class="faq-a"><p>${a}</p></div></details>`).join('')}</div>` : ''}
-      <div class="author-box"><span class="av">${icon('leaf')}</span><div><strong>Written by the Permavia Team</strong><p>Regenerative designers and builders serving East Africa from Hoima City, Uganda.</p></div></div>
+      <div class="author-box"><span class="av">${icon('leaf')}</span><div><strong>Written by the Permavia Team</strong><p>Regenerative designers and builders serving East Africa.</p></div></div>
       <div class="post-cta">
         <div><h2>Want this on your land?</h2><p>Book a free consultation and we'll show you what's possible.</p></div>
         <a class="btn btn--primary" href="/contact/">Free Consultation ${icon('arrow-right')}</a>
